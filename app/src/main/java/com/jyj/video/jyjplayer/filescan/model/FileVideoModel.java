@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.jyj.video.jyjplayer.R;
 import com.jyj.video.jyjplayer.download.bean.DownloadSidecar;
+import com.jyj.video.jyjplayer.event.SystemMediaScanFinishEvent;
 import com.jyj.video.jyjplayer.utils.FileUtils;
 import com.jyj.video.jyjplayer.utils.SdcardUtil;
 import com.jyj.video.jyjplayer.utils.VideoUtil;
@@ -29,6 +30,7 @@ import com.jyj.video.jyjplayer.filescan.model.bean.VideoInfo;
 import com.zjyang.base.utils.HandlerUtils;
 import com.zjyang.base.utils.LogUtil;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.greendao.annotation.NotNull;
 
 import java.io.File;
@@ -123,13 +125,16 @@ public class FileVideoModel {
      */
     public List<FolderInfo> loadFolderInfosAsync() {
         LogUtil.e(TAG, "loadFolderInfosAsync: " + sFolderInfoList.size());
+        if(sFolderInfoList.size() > 0){
+            EventBus.getDefault().post(new SystemMediaScanFinishEvent());
+        }
         HandlerUtils.postThread(new Runnable() {
             @Override
             public void run() {
                 startLoadFileInfosTask();
             }
         });
-        return null;
+        return sFolderInfoList;
     }
 
     /**

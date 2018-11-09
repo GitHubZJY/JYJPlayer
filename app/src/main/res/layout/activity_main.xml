@@ -6,17 +6,27 @@
     android:layout_height="match_parent"
     tools:context="com.jyj.video.jyjplayer.MainActivity">
 
-    <android.support.v4.view.ViewPager
+    <com.jyj.video.jyjplayer.ui.CustomViewPager
         android:id="@+id/main_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
        />
 
+
+
     <com.jyj.video.jyjplayer.module.home.widget.HomeBottomBar
+        android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
     </com.jyj.video.jyjplayer.module.home.widget.HomeBottomBar>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#40000000"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        />
 
 </android.support.constraint.ConstraintLayout>

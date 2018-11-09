@@ -33,6 +33,7 @@ public class PlugInSoHelper implements Runnable {
             "libijkffmpeg.so",
             "libijkplayer.so",
             "libijksdl.so",
+            "libscan.so"
     };
 
     private static boolean sIsRunning;
@@ -96,6 +97,7 @@ public class PlugInSoHelper implements Runnable {
         PlugInSoHelper.loadLibrary("ijkffmpeg");
         PlugInSoHelper.loadLibrary("ijksdl");
         PlugInSoHelper.loadLibrary("ijkplayer");
+        PlugInSoHelper.loadLibrary("scan");
     }
 
     private void copySo(String soName, String apkPath, boolean notNewTime) {

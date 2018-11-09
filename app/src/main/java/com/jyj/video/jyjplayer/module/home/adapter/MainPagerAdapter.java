@@ -1,4 +1,4 @@
-package com.jyj.video.jyjplayer.module.local;
+package com.jyj.video.jyjplayer.module.home.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

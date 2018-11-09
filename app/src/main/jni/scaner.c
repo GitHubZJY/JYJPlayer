@@ -77,11 +77,11 @@ int filter_flag_ads_cache;
 // temp & shared
 int i;
 /*
- * Class:     com_gomo_quickvideo_filescan_JniUtils
+ * Class:     com_jyj_video_jyjplayer_filescan_JniUtils
  * Method:    getDocumentFiles
  * Signature: (Ljava/lang/String;[Ljava/lang/String;)[Ljava/lang/String;
  */
-JNIEXPORT void JNICALL Java_com_gomo_quickvideo_filescan_JniUtils_getDocumentFiles
+JNIEXPORT void JNICALL Java_com_jyj_video_jyjplayer_filescan_JniUtils_getDocumentFiles
   (JNIEnv *env, jobject obj, jobjectArray jdirs, jlong filter)
  {
 
@@ -321,7 +321,7 @@ void notify_file_found(JNIEnv *env, jobject obj)
         //在C语言中调用Java的空方法
         //1.找到java代码native方法所在的字节码文件
         //jclass (*FindClass)(JNIEnv*, const char*);
-        jclass clazz = (*env)->FindClass(env, "com/gomo/quickvideo/filescan/JniUtils");
+        jclass clazz = (*env)->FindClass(env, "com/jyj/video/jyjplayer/filescan/JniUtils");
         if(clazz != 0){
        //     LOGE("find class error");
         //} else {
@@ -329,7 +329,7 @@ void notify_file_found(JNIEnv *env, jobject obj)
           //2.找到class里面对应的方法
           // jmethodID (*GetMethodID)(JNIEnv*, jclass, const char*, const char*);
           // 填入方法签名,  对应 JniUtils#onFileScaned(String[])  void方法,  可以用javap -s xxxxx.class打印签名
-          method_id_on_folder_found = (*env)->GetMethodID(env,clazz,"onFileScaned","([Lcom/gomo/quickvideo/filescan/model/bean/VideoInfo;)V");
+          method_id_on_folder_found = (*env)->GetMethodID(env,clazz,"onFileScaned","([Lcom/jyj/video/jyjplayer/filescan/model/bean/VideoInfo;)V");
           //if(method_id_on_folder_found == 0){
           //   LOGE("find method_id_on_folder_found error");
           //} else {
@@ -341,7 +341,7 @@ void notify_file_found(JNIEnv *env, jobject obj)
         //在C语言中调用Java的空方法
         //1.找到java代码native方法所在的字节码文件
         //jclass (*FindClass)(JNIEnv*, const char*);
-        jclass clazz = (*env)->FindClass(env, "com/gomo/quickvideo/filescan/JniUtils");
+        jclass clazz = (*env)->FindClass(env, "com/jyj/video/jyjplayer/filescan/JniUtils");
         if(clazz != 0){
        //     LOGE("find class error");
         //} else {
@@ -349,7 +349,7 @@ void notify_file_found(JNIEnv *env, jobject obj)
           //2.找到class里面对应的方法
           // jmethodID (*GetMethodID)(JNIEnv*, jclass, const char*, const char*);
           // 填入方法签名,  对应 JniUtils#onFileScaned(String[])  void方法,  可以用javap -s xxxxx.class打印签名
-          method_id_on_single_folder_found = (*env)->GetMethodID(env,clazz,"onFolderScaned","([Lcom/gomo/quickvideo/filescan/model/bean/VideoInfo;)V");
+          method_id_on_single_folder_found = (*env)->GetMethodID(env,clazz,"onFolderScaned","([Lcom/jyj/video/jyjplayer/filescan/model/bean/VideoInfo;)V");
           //if(method_id_on_single_folder_found == 0){
           //   LOGE("find method_id_on_single_folder_found error");
           //} else {
@@ -362,7 +362,7 @@ void notify_file_found(JNIEnv *env, jobject obj)
             //3.调用方法
            if (video_info_clazz == 0)
            {
-              video_info_clazz = (*env)->FindClass(env, "com/gomo/quickvideo/filescan/model/bean/VideoInfo");
+              video_info_clazz = (*env)->FindClass(env, "com/jyj/video/jyjplayer/filescan/model/bean/VideoInfo");
            }
 
          //  if (video_info_clazz == 0) {
