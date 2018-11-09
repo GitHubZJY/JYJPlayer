@@ -107,7 +107,7 @@ public class HomeBottomBar extends LinearLayout{
 
     private void initTabItemTv(TextView itemTv){
         itemTv.setTextColor(getResources().getColor(R.color.primary_text_color));
-        itemTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+        itemTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
         LayoutParams mItemTvParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         itemTv.setLayoutParams(mItemTvParams);
     }
