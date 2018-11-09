@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Base</string>
+
+    <string name="webView_loading_tips">Please wait, page is loading......</string>
+</resources>

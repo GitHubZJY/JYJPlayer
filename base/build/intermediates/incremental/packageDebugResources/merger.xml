@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main$Generated" generated="true"><source path="E:\AS_Project\JYJPlayer\base\src\main\res"/><source path="E:\AS_Project\JYJPlayer\base\build\generated\res\rs\debug"/><source path="E:\AS_Project\JYJPlayer\base\build\generated\res\resValues\debug"/></dataSet><dataSet config="main" generated-set="main$Generated"><source path="E:\AS_Project\JYJPlayer\base\src\main\res"><file name="webview_seekbar" path="E:\AS_Project\JYJPlayer\base\src\main\res\drawable\webview_seekbar.xml" qualifiers="" type="drawable"/><file name="ic_back" path="E:\AS_Project\JYJPlayer\base\src\main\res\drawable-xxhdpi\ic_back.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="webview_close" path="E:\AS_Project\JYJPlayer\base\src\main\res\drawable-xxhdpi\webview_close.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="web_close" path="E:\AS_Project\JYJPlayer\base\src\main\res\drawable-xxhdpi\web_close.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="web_home" path="E:\AS_Project\JYJPlayer\base\src\main\res\drawable-xxhdpi\web_home.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="web_next" path="E:\AS_Project\JYJPlayer\base\src\main\res\drawable-xxhdpi\web_next.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="web_pre" path="E:\AS_Project\JYJPlayer\base\src\main\res\drawable-xxhdpi\web_pre.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="web_refresh" path="E:\AS_Project\JYJPlayer\base\src\main\res\drawable-xxhdpi\web_refresh.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="activity_web_view" path="E:\AS_Project\JYJPlayer\base\src\main\res\layout\activity_web_view.xml" qualifiers="" type="layout"/><file name="layout_base_item" path="E:\AS_Project\JYJPlayer\base\src\main\res\layout\layout_base_item.xml" qualifiers="" type="layout"/><file name="layout_common_toolbar" path="E:\AS_Project\JYJPlayer\base\src\main\res\layout\layout_common_toolbar.xml" qualifiers="" type="layout"/><file name="layout_refresh_header" path="E:\AS_Project\JYJPlayer\base\src\main\res\layout\layout_refresh_header.xml" qualifiers="" type="layout"/><file path="E:\AS_Project\JYJPlayer\base\src\main\res\values\attrs.xml" qualifiers=""><declare-styleable name="CustomToolBar">
+        
+        <attr format="boolean" name="left_btn_visible"/>
+        <attr format="reference|color" name="left_btn_src"/>
+        
+        <attr format="boolean" name="left_tv_visible"/>
+        <attr format="string" name="left_tv_text"/>
+        
+        <attr format="boolean" name="right_btn_visible"/>
+        <attr format="reference|color" name="right_btn_src"/>
+        
+        <attr format="boolean" name="right_tv_visible"/>
+        <attr format="string" name="right_tv_text"/>
+        
+        <attr format="boolean" name="title_visible"/>
+        <attr format="string" name="title_text"/>
+        
+        <attr format="reference|color" name="barBackground"/>
+        
+        <attr format="boolean" name="shader_visible"/>
+
+    </declare-styleable><declare-styleable name="BaseSettingItem">
+        <attr format="boolean" name="top_line_visible"/>
+        <attr format="boolean" name="bottom_line_visible"/>
+        <attr format="reference" name="left_icon_src"/>
+        <attr format="reference|string" name="content_text"/>
+        <attr format="dimension" name="bottom_line_margin"/>
+    </declare-styleable></file><file path="E:\AS_Project\JYJPlayer\base\src\main\res\values\colors.xml" qualifiers=""><color name="colorPrimary1">#7adfb8</color><color name="colorPrimaryDark">#303F9F</color><color name="colorAccent">#FF4081</color><color name="colorPrimary">#00c1de</color><color name="primary_text_color">#000000</color><color name="text_color_gray">#aaaaaa</color><color name="yellow">#ffd600</color><color name="white">#ffffff</color><color name="line">#dadada</color><color name="goplay_home_tab_strip_bottom">#26000000</color><color name="goplay_home_tab_strip_side">#d1d1d1</color><color name="goplay_home_tab_strip_fg_tabs_default">#99ffffff</color><color name="goplay_home_tab_strip_fg_tabs_light">#ffffffff</color><color name="goplay_home_tab_strip_selected_indicator">#f8de0b</color><color name="goplay_selecor_view_gap_line_color">#c6c6c6</color><color name="goplay_selector_child_view_title">#898989</color><color name="orange">#f15c0e</color></file><file path="E:\AS_Project\JYJPlayer\base\src\main\res\values\strings.xml" qualifiers=""><string name="app_name">Base</string><string name="webView_loading_tips">Please wait, page is loading......</string></file><file path="E:\AS_Project\JYJPlayer\base\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style></file></source><source path="E:\AS_Project\JYJPlayer\base\build\generated\res\rs\debug"/><source path="E:\AS_Project\JYJPlayer\base\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug$Generated" generated="true"><source path="E:\AS_Project\JYJPlayer\base\src\debug\res"/></dataSet><dataSet config="debug" generated-set="debug$Generated"><source path="E:\AS_Project\JYJPlayer\base\src\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="CustomToolBar"><attr format="boolean" name="left_btn_visible"/><attr format="reference|color" name="left_btn_src"/><attr format="boolean" name="left_tv_visible"/><attr format="string" name="left_tv_text"/><attr format="boolean" name="right_btn_visible"/><attr format="reference|color" name="right_btn_src"/><attr format="boolean" name="right_tv_visible"/><attr format="string" name="right_tv_text"/><attr format="boolean" name="title_visible"/><attr format="string" name="title_text"/><attr format="reference|color" name="barBackground"/><attr format="boolean" name="shader_visible"/></declare-styleable><declare-styleable name="BaseSettingItem"><attr format="boolean" name="top_line_visible"/><attr format="boolean" name="bottom_line_visible"/><attr format="reference" name="left_icon_src"/><attr format="reference|string" name="content_text"/><attr format="dimension" name="bottom_line_margin"/></declare-styleable></configuration></mergedItems></merger>

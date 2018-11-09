@@ -1,0 +1,1 @@
+include ':app', ':base', ':ijkplayer-java', ':ijkplayer-example', ':player'

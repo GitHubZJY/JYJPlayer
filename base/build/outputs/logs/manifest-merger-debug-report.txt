@@ -1,0 +1,51 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:1:1-11:12
+INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:1:1-11:12
+INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:1:1-11:12
+INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:1:1-11:12
+INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:1:1-11:12
+INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:1:1-11:12
+INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:1:1-11:12
+	package
+		ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:1:70-95
+		INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+		INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+		ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:1:1-11:12
+		INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+		ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:1:1-11:12
+		INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:1:11-69
+application
+ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:3:5-9:19
+	android:supportsRtl
+		ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:4:42-68
+	android:label
+		ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:4:9-41
+	android:allowBackup
+		ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:3:18-44
+	android:theme
+		ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:5:9-40
+activity#com.zjyang.base.ui.WebViewActivity
+ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:7:9-55
+	android:name
+		ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml:7:19-53
+uses-sdk
+INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+		ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+		INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+		ADDED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml
+		INJECTED from E:\AS_Project\JYJPlayer\base\src\main\AndroidManifest.xml

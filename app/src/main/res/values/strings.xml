@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">JYJPlayer</string>
+
+    <string name="latest_early">更早</string>
+
+    <string name="can_not_read_sd">SD卡不可用</string>
+    <string name="cannot_download_tip">下载失败</string>
+    <string name="latest_today">昨天</string>
+    <string name="latest_week">一周前</string>
+
+    <string name="local_tab_name">本地</string>
+    <string name="download_tab_name">下载</string>
+</resources>

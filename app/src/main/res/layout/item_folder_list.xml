@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/root_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/third_iv"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="6dp"
+            fresco:roundingBorderWidth="1dp"
+            fresco:roundingBorderColor="#ffffff"
+            android:visibility="gone"/>
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/second_iv"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="3dp"
+            fresco:roundingBorderWidth="1dp"
+            fresco:roundingBorderColor="#ffffff"
+            android:visibility="gone"/>
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/folder_iv"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            fresco:roundingBorderWidth="1dp"
+            fresco:roundingBorderColor="#ffffff"
+            android:src="@drawable/ic_folder"/>
+
+        <TextView
+            android:id="@+id/folder_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/folder_iv"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/main_text_color"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/video_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="2dp"
+            android:layout_alignBottom="@id/folder_iv"
+            android:layout_toRightOf="@id/folder_iv"
+            android:textColor="@color/text_color_gray"
+            android:textSize="13sp"
+            android:text="5个视频"/>
+    </RelativeLayout>
+
+</LinearLayout>

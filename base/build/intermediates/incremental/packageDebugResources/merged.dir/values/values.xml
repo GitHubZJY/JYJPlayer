@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#00c1de</color>
+    <color name="colorPrimary1">#7adfb8</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="goplay_home_tab_strip_bottom">#26000000</color>
+    <color name="goplay_home_tab_strip_fg_tabs_default">#99ffffff</color>
+    <color name="goplay_home_tab_strip_fg_tabs_light">#ffffffff</color>
+    <color name="goplay_home_tab_strip_selected_indicator">#f8de0b</color>
+    <color name="goplay_home_tab_strip_side">#d1d1d1</color>
+    <color name="goplay_selecor_view_gap_line_color">#c6c6c6</color>
+    <color name="goplay_selector_child_view_title">#898989</color>
+    <color name="line">#dadada</color>
+    <color name="orange">#f15c0e</color>
+    <color name="primary_text_color">#000000</color>
+    <color name="text_color_gray">#aaaaaa</color>
+    <color name="white">#ffffff</color>
+    <color name="yellow">#ffd600</color>
+    <declare-styleable name="BaseSettingItem"><attr format="boolean" name="top_line_visible"/><attr format="boolean" name="bottom_line_visible"/><attr format="reference" name="left_icon_src"/><attr format="reference|string" name="content_text"/><attr format="dimension" name="bottom_line_margin"/></declare-styleable>
+    <declare-styleable name="CustomToolBar"><attr format="boolean" name="left_btn_visible"/><attr format="reference|color" name="left_btn_src"/><attr format="boolean" name="left_tv_visible"/><attr format="string" name="left_tv_text"/><attr format="boolean" name="right_btn_visible"/><attr format="reference|color" name="right_btn_src"/><attr format="boolean" name="right_tv_visible"/><attr format="string" name="right_tv_text"/><attr format="boolean" name="title_visible"/><attr format="string" name="title_text"/><attr format="reference|color" name="barBackground"/><attr format="boolean" name="shader_visible"/></declare-styleable>
+    <string name="app_name">Base</string>
+    <string name="webView_loading_tips">Please wait, page is loading......</string>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+</resources>
