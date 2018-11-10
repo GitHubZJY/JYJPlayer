@@ -33,7 +33,7 @@ public class SkinManager {
     public final List<ThemeInfo> themeList = new ArrayList<>();
 
     private int primaryColor = Color.parseColor("#00c1de");
-    private int primaryTextColor = Color.parseColor("#000000");
+    private int primaryTextColor = Color.parseColor("#ffffff");
 
     private static final String CUR_THEME_SP = "cur_theme_sp";
 

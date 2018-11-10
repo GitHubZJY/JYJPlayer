@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 下载成功的视频/图片
  *
- * @author denglongyun
+ * @author zjyang
  * @date 17-11-7
  */
 public class DownloadInfo extends AbstractBean {

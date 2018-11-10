@@ -5,7 +5,7 @@ import com.jyj.video.jyjplayer.constant.SpConstant;
 import com.zjyang.base.utils.SpUtils;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-11-3
  */
 

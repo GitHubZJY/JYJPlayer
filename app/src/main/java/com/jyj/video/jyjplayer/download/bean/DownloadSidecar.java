@@ -12,7 +12,7 @@ import org.greenrobot.greendao.annotation.NotNull;
 /**
  * 下载成功的视频/图片
  *
- * @author denglongyun
+ * @author zjyang
  * @date 17-11-7
  */
 public class DownloadSidecar extends AbstractBean {

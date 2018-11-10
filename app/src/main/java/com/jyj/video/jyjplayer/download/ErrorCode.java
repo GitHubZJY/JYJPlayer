@@ -1,7 +1,7 @@
 package com.jyj.video.jyjplayer.download;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-12-16
  */
 

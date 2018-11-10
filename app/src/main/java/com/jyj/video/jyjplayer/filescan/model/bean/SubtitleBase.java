@@ -4,7 +4,7 @@ package com.jyj.video.jyjplayer.filescan.model.bean;
 import com.jyj.video.jyjplayer.utils.VideoUtil;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-12-8
  */
 

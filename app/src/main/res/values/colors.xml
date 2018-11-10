@@ -5,4 +5,5 @@
     <color name="colorAccent">#00c1de</color>
 
     <color name="main_text_color">#000000</color>
+    <color name="tran">#00000000</color>
 </resources>

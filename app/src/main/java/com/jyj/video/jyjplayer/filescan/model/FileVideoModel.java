@@ -48,7 +48,7 @@ import java.util.Set;
 import static com.jyj.video.jyjplayer.download.Constant.Status.FINISH;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-10-30
  */
 

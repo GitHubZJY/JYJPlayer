@@ -14,7 +14,7 @@ import org.greenrobot.greendao.annotation.Unique;
 import java.util.List;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-11-7
  */
 @Entity

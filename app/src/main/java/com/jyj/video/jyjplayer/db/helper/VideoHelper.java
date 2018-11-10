@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * 视频数据的db操作类
- * @author denglongyun
+ * @author zjyang
  * @date 17-11-7
  */
 

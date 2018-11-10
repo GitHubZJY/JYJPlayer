@@ -6,7 +6,7 @@ import com.jyj.video.jyjplayer.R;
 import com.jyj.video.jyjplayer.utils.VideoUtil;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-10-19
  */
 

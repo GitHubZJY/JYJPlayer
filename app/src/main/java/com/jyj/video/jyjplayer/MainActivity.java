@@ -1,5 +1,7 @@
 package com.jyj.video.jyjplayer;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -9,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.jyj.video.jyjplayer.module.download.DownLoadFragment;
+import com.jyj.video.jyjplayer.module.download.view.AddDownLoadActivity;
 import com.jyj.video.jyjplayer.module.home.widget.HomeBottomBar;
 import com.jyj.video.jyjplayer.module.local.view.LocalFragment;
 import com.jyj.video.jyjplayer.module.home.adapter.MainPagerAdapter;
@@ -19,6 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class MainActivity extends AppCompatActivity implements HomeBottomBar.TabClickListener{
@@ -29,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements HomeBottomBar.Tab
     CustomViewPager mMainPager;
     @BindView(R.id.bottom_bar)
     HomeBottomBar mBottomBar;
+    @BindView(R.id.add_down_btn)
+    FloatingActionButton mAddDownBtn;
 
     private List<Fragment> mFragments;
     private LocalFragment mLocalFragment;
@@ -75,6 +81,12 @@ public class MainActivity extends AppCompatActivity implements HomeBottomBar.Tab
     public boolean clickTab(int index) {
         mMainPager.setCurrentItem(index-1);
         return false;
+    }
+
+    @OnClick(R.id.add_down_btn)
+    void clickAddBtn(){
+        Intent intent = new Intent(MainActivity.this, AddDownLoadActivity.class);
+        startActivity(intent);
     }
 
     @Override

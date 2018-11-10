@@ -25,7 +25,7 @@ import java.util.TimeZone;
 import wseemann.media.FFmpegMediaMetadataRetriever;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-10-23
  */
 

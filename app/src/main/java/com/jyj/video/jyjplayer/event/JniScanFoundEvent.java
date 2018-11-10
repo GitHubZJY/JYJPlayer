@@ -1,7 +1,7 @@
 package com.jyj.video.jyjplayer.event;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-11-10
  */
 

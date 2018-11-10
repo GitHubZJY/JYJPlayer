@@ -3,7 +3,7 @@ package com.jyj.video.jyjplayer.filescan.model.bean;
 import java.io.Serializable;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-11-7
  */
 

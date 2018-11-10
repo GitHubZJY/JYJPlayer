@@ -106,7 +106,7 @@ public class HomeBottomBar extends LinearLayout{
     }
 
     private void initTabItemTv(TextView itemTv){
-        itemTv.setTextColor(getResources().getColor(R.color.primary_text_color));
+        itemTv.setTextColor(Color.parseColor("#8a8a8a"));
         itemTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
         LayoutParams mItemTvParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         itemTv.setLayoutParams(mItemTvParams);
@@ -147,7 +147,7 @@ public class HomeBottomBar extends LinearLayout{
                 mLocalIv.setImageDrawable(mDiscoverActive);
                 mDownLoadIv.setImageDrawable(mFocusNormal);
                 mLocalTv.setTextColor(SkinManager.getInstance().getPrimaryColor());
-                mDownloadTv.setTextColor(Color.parseColor("#bfbfbf"));
+                mDownloadTv.setTextColor(Color.parseColor("#8a8a8a"));
                 if(mTabClickListener != null){
                     mTabClickListener.clickTab((Integer) mLocalTab.getTag());
                 }
@@ -158,7 +158,7 @@ public class HomeBottomBar extends LinearLayout{
             public void onClick(View view) {
                 mLocalIv.setImageDrawable(mDiscoverNormal);
                 mDownLoadIv.setImageDrawable(mFocusActive);
-                mLocalTv.setTextColor(Color.parseColor("#bfbfbf"));
+                mLocalTv.setTextColor(Color.parseColor("#8a8a8a"));
                 mDownloadTv.setTextColor(SkinManager.getInstance().getPrimaryColor());
                 if(mTabClickListener != null){
                     mTabClickListener.clickTab((Integer) mDownLoadTab.getTag());

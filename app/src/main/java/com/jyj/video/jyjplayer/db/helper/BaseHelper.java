@@ -7,7 +7,7 @@ import com.jyj.video.jyjplayer.db.dao.DaoSession;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-11-7
  */
 

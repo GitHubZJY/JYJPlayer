@@ -3,7 +3,7 @@ package com.jyj.video.jyjplayer.download.callback;
 import com.jyj.video.jyjplayer.download.bean.DownloadInfo;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-12-16
  */
 

@@ -27,7 +27,7 @@ import java.util.Set;
 import tv.danmaku.ijk.media.player.PlugInSoHelper;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-11-2
  */
 

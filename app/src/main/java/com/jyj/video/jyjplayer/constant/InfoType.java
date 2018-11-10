@@ -1,7 +1,7 @@
 package com.jyj.video.jyjplayer.constant;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-10-20
  */
 

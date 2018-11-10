@@ -9,7 +9,7 @@ import com.zjyang.base.utils.LogUtil;
 import com.zjyang.base.utils.SpUtils;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-10-19
  */
 

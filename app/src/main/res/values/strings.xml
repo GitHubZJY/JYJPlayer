@@ -10,4 +10,26 @@
 
     <string name="local_tab_name">本地</string>
     <string name="download_tab_name">下载</string>
+
+    <string name="download_url_edit_tip">输入你的网络视频播放地址</string>
+    <string name="add_down_title">视频流下载</string>
+    <string name="down_empty_tips">下载地址不能为空</string>
+    <string name="unformat_url">目标地址无效</string>
+
+    <string name="ok">确定</string>
+    <string name="download_forbidden_content">根据规定，Youtube视频不允许被下载</string>
+    <string name="download_forbidden_content2">请尝试其他网站下载</string>
+    <string name="tip">提示</string>
+    <string name="no_empty_tip">名字不能为空</string>
+    <string name="cancel">取消</string>
+    <string name="already_download">下载列表中已存在</string>
+
+    <string name="download_save_title">另存为</string>
+    <string name="download_forbidden_title">抱歉</string>
+    <string name="download_pause">Paused</string>
+    <string name="download_finish">Downloaded</string>
+    <string name="download_error">Download Error</string>
+    <string name="download_auto_connecting">Auto Connecting</string>
+
+    <string name="network_connection_error">当前网络状态不佳</string>
 </resources>

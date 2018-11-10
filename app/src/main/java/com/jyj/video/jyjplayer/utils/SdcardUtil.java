@@ -12,7 +12,7 @@ import com.zjyang.base.utils.ToastUtils;
 import java.io.File;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 16-4-27
  */
 public class SdcardUtil {
@@ -32,7 +32,7 @@ public class SdcardUtil {
 
     public static final String SDCARD_DIR = "/sdcard" /*getStorageAddress()*/;
 
-    public static final String APP_DIR = SDCARD_DIR + "/goplayer";
+    public static final String APP_DIR = SDCARD_DIR + "/jyjplayer";
     public static final String PRIVACY_DIR = "/.privacy.power";
 
     public static final String CRASH_REPORT_PATH = APP_DIR + "/log/";

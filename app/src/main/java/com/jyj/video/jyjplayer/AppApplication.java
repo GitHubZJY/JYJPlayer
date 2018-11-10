@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.liulishuo.filedownloader.FileDownloader;
 import com.zjyang.base.BaseApp;
 
 import tv.danmaku.ijk.media.player.PlugInSoHelper;
@@ -49,5 +50,6 @@ public class AppApplication extends Application{
         BaseApp.init(this);
         //复制加载ijk so库
         new PlugInSoHelper(this).run();
+        FileDownloader.setupOnApplicationOnCreate(this);
     }
 }

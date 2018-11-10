@@ -10,7 +10,7 @@ import com.jyj.video.jyjplayer.filescan.model.bean.VideoInfo;
 import java.util.Comparator;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-11-8
  */
 

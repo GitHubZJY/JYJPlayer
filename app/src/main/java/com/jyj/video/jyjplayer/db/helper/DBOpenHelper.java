@@ -17,7 +17,7 @@ import org.greenrobot.greendao.database.Database;
 /**
  * 默认的 DaoMaster.DevOpenHelper 会在数据库升级时，删除所有的表，导致数据的丢失。
  * 封装一层 自定义升级方式
- * @author denglongyun
+ * @author zjyang
  * @date 17-11-7
  */
 

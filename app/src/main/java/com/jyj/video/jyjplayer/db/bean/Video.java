@@ -9,7 +9,7 @@ import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Unique;
 
 /**
- * @author denglongyun
+ * @author zjyang
  * @date 17-11-7
  */
 @Entity
