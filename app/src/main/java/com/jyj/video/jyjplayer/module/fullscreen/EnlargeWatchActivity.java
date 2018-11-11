@@ -79,7 +79,7 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
     @Override
     public void onInfo(IMediaPlayer imp, MediaPlayer mp, int what, int extra) {
         if (what == 10001 && extra == 0) {
-            setOrientationPortrait();
+            setOrientationLandScape();
         } else if (what == 10001 && extra == 90) {
             setOrientationLandScape();
         }
