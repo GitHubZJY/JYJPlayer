@@ -1,20 +1,29 @@
 package com.jyj.video.jyjplayer;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.util.Pair;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.jyj.video.jyjplayer.module.download.DownLoadFragment;
 import com.jyj.video.jyjplayer.module.download.view.AddDownLoadActivity;
 import com.jyj.video.jyjplayer.module.home.widget.HomeBottomBar;
 import com.jyj.video.jyjplayer.module.local.view.LocalFragment;
 import com.jyj.video.jyjplayer.module.home.adapter.MainPagerAdapter;
+import com.jyj.video.jyjplayer.module.search.SearchActivity;
+import com.jyj.video.jyjplayer.module.setting.SettingActivity;
 import com.jyj.video.jyjplayer.ui.CustomViewPager;
 
 import java.util.ArrayList;
@@ -24,6 +33,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
+import static android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
 public class MainActivity extends AppCompatActivity implements HomeBottomBar.TabClickListener{
 
@@ -42,6 +53,9 @@ public class MainActivity extends AppCompatActivity implements HomeBottomBar.Tab
     private MainPagerAdapter mPagerAdapter;
     private FragmentManager fm;
 
+    private ImageView mSearchIv;
+    private ImageView mSettingIv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,24 +71,34 @@ public class MainActivity extends AppCompatActivity implements HomeBottomBar.Tab
         mMainPager.setAdapter(mPagerAdapter);
         mMainPager.setOffscreenPageLimit(3);
 
+        ActionBar mActionBar = getSupportActionBar();
+        mActionBar.setDisplayShowCustomEnabled(true);
+        mActionBar.setDisplayOptions(DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+        mActionBar.setCustomView(R.layout.layout_home_actionbar);
+        mSearchIv = (ImageView) mActionBar.getCustomView().findViewById(R.id.action_search);
+        mSettingIv = (ImageView) mActionBar.getCustomView().findViewById(R.id.action_settings);
+
+        mSearchIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
+                        new Pair<View, String>(mSearchIv,
+                                SearchActivity.SEARCH_IV_SHARE));
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                // ActivityCompat是android支持库中用来适应不同android版本的
+                ActivityCompat.startActivity(MainActivity.this, intent, activityOptions.toBundle());
+            }
+        });
+
+        mSettingIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentToSetting = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(intentToSetting);
+            }
+        });
+
         mBottomBar.setTabClickListener(this);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_search:
-                break;
-            case R.id.action_settings:
-                break;
-        }
-        return true;
     }
 
     @Override

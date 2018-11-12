@@ -25,13 +25,18 @@
 
         <activity android:name=".module.fullscreen.EnlargeWatchActivity"
             android:theme="@style/ActivityFullScreen"
-            android:configChanges="keyboardHidden|orientation|screenSize">
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape">
 
         </activity>
 
         <activity android:name=".module.download.view.AddDownLoadActivity">
 
         </activity>
+
+        <activity android:name=".module.setting.SettingActivity"></activity>
+
+        <activity android:name=".module.search.SearchActivity"></activity>
     </application>
 
 </manifest>

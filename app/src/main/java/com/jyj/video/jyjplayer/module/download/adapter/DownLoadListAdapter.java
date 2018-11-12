@@ -23,6 +23,8 @@ import com.jyj.video.jyjplayer.download.film.bean.DownLoadFilmInfo;
 import com.jyj.video.jyjplayer.filescan.model.FileVideoModel;
 import com.jyj.video.jyjplayer.filescan.model.bean.VideoInfo;
 import com.jyj.video.jyjplayer.manager.FolderListPicManager;
+import com.jyj.video.jyjplayer.manager.VideoPlayDataManager;
+import com.jyj.video.jyjplayer.module.fullscreen.EnlargeWatchActivity;
 import com.jyj.video.jyjplayer.utils.VideoUtil;
 import com.zjyang.base.utils.LogUtil;
 
@@ -265,6 +267,8 @@ public class DownLoadListAdapter extends RecyclerView.Adapter<DownLoadListAdapte
                     if (downLoadFilmInfo != null) {
                         parentFolderPath = VideoUtil.getParentPath(downLoadFilmInfo.getPath());
                     }
+                    VideoPlayDataManager.getInstance().setCurPlayVideoInfo(DownLoadFilmInfo.getVideoInfo(downLoadFilmInfo));
+                    EnlargeWatchActivity.start(mContext);
 //                    DownFilmPlayManager.getInstance().setmIsFromOnlineFilm(false);
 //                    DownFilmPlayManager.getInstance().filmListToVideoList(mDownFilmList);
 //                    DownFilmPlayManager.getInstance().setCurPlayFilm(downLoadFilmInfo);
