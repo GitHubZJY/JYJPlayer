@@ -32,4 +32,5 @@
     <string name="download_auto_connecting">Auto Connecting</string>
 
     <string name="network_connection_error">当前网络状态不佳</string>
+    <string name="search_fail_tip">搜索不到相关视频</string>
 </resources>

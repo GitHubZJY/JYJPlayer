@@ -3,6 +3,7 @@ package com.jyj.video.jyjplayer.module.folderdetail;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.Vide
     @Override
     public void onBindViewHolder(VideoListViewHolder holder, int position) {
         final VideoInfo videoInfo = mVideoList.get(position);
-        holder.mVideoNameTv.setText(videoInfo.getName());
+        holder.mVideoNameTv.setText((Html.fromHtml(videoInfo.getDisplayName())));
         holder.mVideoTimeTv.setText(VideoUtil.switchDurationFormat(videoInfo.getDuration()));
         final Bitmap icon = FolderListPicManager.loadVideoIcon(videoInfo);//VideoUtil.createVideoThumbnail(videoInfo.getPath());if (icon != null) {
         holder.mVideoIv.setImageBitmap(icon);
