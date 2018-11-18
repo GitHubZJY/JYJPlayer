@@ -19,6 +19,7 @@ import com.jyj.video.jyjplayer.module.local.presenter.LocalPresenter;
 import com.zjyang.base.utils.DrawUtils;
 import com.zjyang.base.utils.HandlerUtils;
 import com.zjyang.base.utils.ShapeUtils;
+import com.zjyang.base.widget.RefreshLoadRecyclerView;
 import com.zjyang.base.widget.SpaceItemDecoration;
 
 import org.greenrobot.eventbus.EventBus;
@@ -30,9 +31,9 @@ import java.util.List;
  * Created by 74215 on 2018/11/3.
  */
 
-public class LocalFragment extends Fragment implements LocalTasksContract.View {
+public class LocalFragment extends Fragment implements LocalTasksContract.View, RefreshLoadRecyclerView.RefreshLoadListener {
 
-    private RecyclerView mFolderLv;
+    private RefreshLoadRecyclerView mFolderLv;
     private RelativeLayout mSearchEntrance;
     private List<FolderInfo> mFolderList;
     private FolderListAdapter mFolderAdapter;
@@ -58,7 +59,8 @@ public class LocalFragment extends Fragment implements LocalTasksContract.View {
         View view = inflater.inflate(R.layout.fragment_local, container, false);
         mSearchEntrance = (RelativeLayout) view.findViewById(R.id.search_entrance);
         mSearchEntrance.setBackground(ShapeUtils.getRoundRectDrawable(DrawUtils.dp2px(20), Color.WHITE));
-        mFolderLv = (RecyclerView) view.findViewById(R.id.folder_lv);
+        mFolderLv = (RefreshLoadRecyclerView) view.findViewById(R.id.folder_lv);
+        mFolderLv.setOnRefreshLoadListener(this);
         mFolderList = new ArrayList<>();
         mFolderAdapter = new FolderListAdapter(getContext(), mFolderList);
         mFolderLv.setAdapter(mFolderAdapter);
@@ -69,12 +71,29 @@ public class LocalFragment extends Fragment implements LocalTasksContract.View {
 
     }
 
+    @Override
+    public void onRefresh() {
+        mPresenter.scanSystemFolderData();
+    }
+
+    @Override
+    public void onLoadMore(boolean isSilence) {
+
+    }
+
+    @Override
+    public void onRelease(float direction) {
+
+    }
 
     @Override
     public void notifyFolderListView(final List<FolderInfo> scanList) {
         HandlerUtils.post(new Runnable() {
             @Override
             public void run() {
+                if(mFolderLv != null){
+                    mFolderLv.stopRefresh();
+                }
                 mFolderList.clear();
                 mFolderList.addAll(scanList);
                 mFolderAdapter.notifyDataSetChanged();
