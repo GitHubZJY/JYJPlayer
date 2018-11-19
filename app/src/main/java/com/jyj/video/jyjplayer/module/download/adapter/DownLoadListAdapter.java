@@ -26,6 +26,7 @@ import com.jyj.video.jyjplayer.manager.FolderListPicManager;
 import com.jyj.video.jyjplayer.manager.VideoPlayDataManager;
 import com.jyj.video.jyjplayer.module.fullscreen.EnlargeWatchActivity;
 import com.jyj.video.jyjplayer.utils.VideoUtil;
+import com.zjyang.base.base.SkinManager;
 import com.zjyang.base.utils.LogUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -146,7 +147,7 @@ public class DownLoadListAdapter extends RecyclerView.Adapter<DownLoadListAdapte
                     break;
                 case RETRY:
                     mDownStatusTv.setText(mContext.getResources().getText(R.string.download_auto_connecting));
-                    mDownStatusTv.setTextColor(Color.parseColor("#00c1de"));
+                    mDownStatusTv.setTextColor(SkinManager.getInstance().getPrimaryColor());
                     mDownStatusTv.setVisibility(View.VISIBLE);
                     //mDownStatusIv.setVisibility(View.GONE);
                     mCurSizeTv.setVisibility(View.VISIBLE);
@@ -163,7 +164,7 @@ public class DownLoadListAdapter extends RecyclerView.Adapter<DownLoadListAdapte
                     break;
                 case PAUSE:
                     mDownStatusTv.setText(mContext.getResources().getString(R.string.download_pause));
-                    mDownStatusTv.setTextColor(Color.parseColor("#00c1de"));
+                    mDownStatusTv.setTextColor(SkinManager.getInstance().getPrimaryColor());
                     mDownStatusTv.setVisibility(View.VISIBLE);
                     //mDownStatusIv.setVisibility(View.GONE);
                     mCurSizeTv.setVisibility(View.VISIBLE);
@@ -196,7 +197,7 @@ public class DownLoadListAdapter extends RecyclerView.Adapter<DownLoadListAdapte
                     break;
                 default:
                     mDownStatusTv.setText("");
-                    mDownStatusTv.setTextColor(Color.parseColor("#00c1de"));
+                    mDownStatusTv.setTextColor(SkinManager.getInstance().getPrimaryColor());
                     mDownStatusTv.setVisibility(View.GONE);
                     //mDownStatusIv.setVisibility(View.GONE);
                     mCurSizeTv.setVisibility(View.VISIBLE);

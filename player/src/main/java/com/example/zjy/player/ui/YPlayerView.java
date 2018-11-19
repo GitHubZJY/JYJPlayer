@@ -15,12 +15,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.example.zjy.player.R;
 import com.example.zjy.player.controller.ItemVideoController;
+import com.example.zjy.player.controller.PanelManager;
 import com.example.zjy.player.controller.PlayerGestureManager;
 import com.example.zjy.player.controller.QVMediaController;
 import com.example.zjy.player.setting.VideoSetting;
@@ -54,6 +56,10 @@ public class YPlayerView extends RelativeLayout implements QVMediaController.Con
     private ImageView mBackIv;
     //顶部视频名字
     private TextView mVideoNameTv;
+    //锁定屏幕按钮
+    private ImageView mLockIv;
+    //锁屏之后底部的进度条
+    private SeekBar mBottomBar;
     //手势控制器
     private PlayerGestureManager mPlayerGesture;
     //播放界面的相关监听
@@ -88,10 +94,14 @@ public class YPlayerView extends RelativeLayout implements QVMediaController.Con
         mToolBar = (RelativeLayout) view.findViewById(R.id.toolbar);
         mBackIv = (ImageView) view.findViewById(R.id.play_video_back_iv);
         mVideoNameTv = (TextView) view.findViewById(R.id.play_video_name_tv);
+        mLockIv = (ImageView) view.findViewById(R.id.lock_iv);
+        mBottomBar = (SeekBar) view.findViewById(R.id.media_controller_progress_bottom);
+        mBottomBar.setMax(100000);
         mVideoFrame.setHudView(mHudView);
         //mVideoFrame.setOnTouchListener(this);
         mVideoFrame.setOnInfoListener(this);
         mBackIv.setOnClickListener(this);
+        mLockIv.setOnClickListener(this);
 
         //RelativeLayout.LayoutParams toolbarParams = (RelativeLayout.LayoutParams)mToolBar.getLayoutParams();
         mToolBar.setPadding(0, ScreenUtils.px2dip(context, ScreenUtils.getStatusBarHeight(context)), 0, 0);
@@ -159,18 +169,9 @@ public class YPlayerView extends RelativeLayout implements QVMediaController.Con
         mMediaController.setPauseStatus();
     }
 
-    @Override
-    public void clickPre() {
-
-    }
-
-    @Override
-    public void clickNext() {
-
-    }
-
     public void stopPlayback(){
         mVideoFrame.stopPlayback();
+        PanelManager.getInstance(this).reset();
     }
 
     public void stop(){
@@ -223,18 +224,21 @@ public class YPlayerView extends RelativeLayout implements QVMediaController.Con
 
     @Override
     public void progress(int progress) {
+        if(mBottomBar != null){
+            long pos = 100000L * progress / mMediaController.getDuration();
+            mBottomBar.setProgress((int)pos);
+        }
+    }
+
+    @Override
+    public void clickNext() {
 
     }
 
-//    @Override
-//    public void clickNext() {
-//
-//    }
-//
-//    @Override
-//    public void clickPre() {
-//
-//    }
+    @Override
+    public void clickPre() {
+
+    }
 
     @Override
     public void forward(String curTime, String durTime, long lTime, long duration) {
@@ -267,6 +271,8 @@ public class YPlayerView extends RelativeLayout implements QVMediaController.Con
             if(mListener != null){
                 mListener.clickBack();
             }
+        }else if(v == mLockIv){
+            PanelManager.getInstance(this).toggleLockStatus();
         }
     }
 

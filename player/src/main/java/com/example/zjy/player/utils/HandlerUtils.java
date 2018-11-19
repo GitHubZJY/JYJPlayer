@@ -1,4 +1,4 @@
-package com.zjyang.base.utils;
+package com.example.zjy.player.utils;
 
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -10,7 +10,7 @@ import android.os.Looper;
 
 public class HandlerUtils {
 
-    private static HandlerThread sWorkerThread = new HandlerThread("jyjplayer-main");
+    private static HandlerThread sWorkerThread = new HandlerThread("player-main");
 
     static {
         sWorkerThread.start();

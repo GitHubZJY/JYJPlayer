@@ -28,7 +28,6 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text="@string/search_fail_tip"
-            android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
     </LinearLayout>
 

@@ -16,8 +16,11 @@ import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
 import com.example.zjy.player.R;
+import com.example.zjy.player.ui.BrightChangeView;
 import com.example.zjy.player.ui.VideoFrame;
+import com.example.zjy.player.ui.VolumeChangeView;
 import com.example.zjy.player.ui.YPlayerView;
+import com.example.zjy.player.utils.HandlerUtils;
 
 
 /**
@@ -47,11 +50,12 @@ public class PlayerGestureManager {
     GestureDetector gestureDetector;
 
     private Activity mActivity;
-    private View rootView;
     private VideoFrame mVideoView;
     private YPlayerView mPlayerView;
     private QVMediaController mediaController;
     private ImageView mCenterPauseIv;
+    private BrightChangeView mBrightChangeView;
+    private VolumeChangeView mVolumeChangeView;
     //滑动的起点位置
     int mStartX,mStartY;
     //滑动的结束位置
@@ -67,10 +71,11 @@ public class PlayerGestureManager {
     public PlayerGestureManager(Activity activity, YPlayerView playerView) {
         this.mActivity = activity;
         mPlayerView = playerView;
-        rootView = activity.findViewById(R.id.root_view);
         mVideoView = (VideoFrame) mPlayerView.findViewById(R.id.video_frame);
         mediaController = (QVMediaController) mPlayerView.findViewById(R.id.media_controller);
         mCenterPauseIv = (ImageView) mPlayerView.findViewById(R.id.center_pause_iv);
+        mBrightChangeView = (BrightChangeView) mPlayerView.findViewById(R.id.bright_change_view);
+        mVolumeChangeView = (VolumeChangeView) mPlayerView.findViewById(R.id.volume_change_view);
         audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
         mMaxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         gestureDetector = new GestureDetector(activity, new PlayerGestureListener());
@@ -83,7 +88,7 @@ public class PlayerGestureManager {
                     case MotionEvent.ACTION_DOWN:
                         mStartX=(int)motionEvent.getX();
                         mStartY=(int)motionEvent.getY();
-                        PanelManager.getInstance(mActivity).stopAutoStretch();
+                        PanelManager.getInstance(mPlayerView).stopAutoStretch();
                         break;
                 }
                 if (gestureDetector.onTouchEvent(motionEvent)){
@@ -100,7 +105,7 @@ public class PlayerGestureManager {
                         if(distance <= 4){
                             //点击事件结束
                             //切换面板状态
-                            PanelManager.getInstance(mActivity).operatorPanl();
+                            PanelManager.getInstance(mPlayerView).operatorPanl();
                         }else{
                             //滑动事件结束
                             endGesture();
@@ -127,7 +132,7 @@ public class PlayerGestureManager {
         //根据滑动的结果调整进度条的位置
         mediaController.scrollEnd();
         //重置面板自动伸缩轮轮询线程
-        PanelManager.getInstance(mActivity).startAutoStretch(true);
+        PanelManager.getInstance(mPlayerView).startAutoStretch(true);
     }
 
 
@@ -175,11 +180,11 @@ public class PlayerGestureManager {
         // 变更进度条
         int i = ((int) (lpa.screenBrightness * 100));
         //亮度调动进度展示
-//        mBrightChangeView.setVisibility(View.VISIBLE);
-//        mBrightChangeView.setBrightProgress(i);
+        mBrightChangeView.setVisibility(View.VISIBLE);
+        mBrightChangeView.setBrightProgress(i);
 
-//        BaseApp.remove(mBrightDismissRunnable);
-//        BaseApp.postDelay(mBrightDismissRunnable , 2000);
+        HandlerUtils.remove(mBrightDismissRunnable);
+        HandlerUtils.postDelay(mBrightDismissRunnable , 2000);
     }
 
     /**
@@ -214,25 +219,25 @@ public class PlayerGestureManager {
             // 变更进度条
             int i = (int) (index * 1.0 / mMaxVolume * 100);
             //声音调动进度展示
-//            mVolumeChangeView.setVisibility(View.VISIBLE);
-//            mVolumeChangeView.setVolumeProgress(i);
+            mVolumeChangeView.setVisibility(View.VISIBLE);
+            mVolumeChangeView.setVolumeProgress(i);
 
-//            BaseApp.remove(mVolumeDismissRunnable);
-//            BaseApp.postDelay(mVolumeDismissRunnable , 2000);
+            HandlerUtils.remove(mVolumeDismissRunnable);
+            HandlerUtils.postDelay(mVolumeDismissRunnable , 2000);
         }
     }
 
     private Runnable mVolumeDismissRunnable = new Runnable() {
         @Override
         public void run() {
-            //mVolumeChangeView.setVisibility(View.GONE);
+            mVolumeChangeView.setVisibility(View.GONE);
         }
     };
 
     private Runnable mBrightDismissRunnable = new Runnable() {
         @Override
         public void run() {
-            //mBrightChangeView.setVisibility(View.GONE);
+            mBrightChangeView.setVisibility(View.GONE);
         }
     };
 

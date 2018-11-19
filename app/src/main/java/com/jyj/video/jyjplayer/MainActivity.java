@@ -25,6 +25,9 @@ import com.jyj.video.jyjplayer.module.home.adapter.MainPagerAdapter;
 import com.jyj.video.jyjplayer.module.search.SearchActivity;
 import com.jyj.video.jyjplayer.module.setting.SettingActivity;
 import com.jyj.video.jyjplayer.ui.CustomViewPager;
+import com.zjyang.base.base.BaseActivity;
+import com.zjyang.base.base.BasePresenter;
+import com.zjyang.base.base.SkinManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +39,7 @@ import butterknife.Unbinder;
 
 import static android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
-public class MainActivity extends AppCompatActivity implements HomeBottomBar.TabClickListener{
+public class MainActivity extends BaseActivity implements HomeBottomBar.TabClickListener{
 
     private Unbinder unbinder;
 
@@ -55,6 +58,11 @@ public class MainActivity extends AppCompatActivity implements HomeBottomBar.Tab
 
     private ImageView mSearchIv;
     private ImageView mSettingIv;
+
+    @Override
+    public BasePresenter createPresenter() {
+        return null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +107,8 @@ public class MainActivity extends AppCompatActivity implements HomeBottomBar.Tab
         });
 
         mBottomBar.setTabClickListener(this);
+
+        mAddDownBtn.setBackgroundColor(SkinManager.getInstance().getPrimaryColor());
     }
 
     @Override

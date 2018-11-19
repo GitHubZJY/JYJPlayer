@@ -134,4 +134,22 @@
         android:visibility="gone"
         />
 
+    <com.example.zjy.player.ui.BrightChangeView
+        android:id="@+id/bright_change_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+    </com.example.zjy.player.ui.BrightChangeView>
+
+    <com.example.zjy.player.ui.VolumeChangeView
+        android:id="@+id/volume_change_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+    </com.example.zjy.player.ui.VolumeChangeView>
+
 </RelativeLayout>

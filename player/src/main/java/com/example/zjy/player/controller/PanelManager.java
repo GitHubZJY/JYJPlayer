@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 
 import com.example.zjy.player.R;
+import com.example.zjy.player.ui.YPlayerView;
 
 
 /**
@@ -20,8 +21,6 @@ public class PanelManager {
 
     private static PanelManager mPanelManager = null;
 
-    private Activity mActivity;
-
     private QVMediaController mediaController;
     private RelativeLayout mToolbarTb;
     private ImageView mLockIv;
@@ -30,7 +29,7 @@ public class PanelManager {
     /**
      * 是否显示控制面板，默认为隐藏，true为显示false为隐藏
      */
-    private boolean isShowControlPanl;
+    private boolean isShowControlPanl = true;
     /**
      * 是否显示底部进度条和锁按钮
      */
@@ -43,19 +42,18 @@ public class PanelManager {
 
     private boolean mIsLockScreen;
 
-    private PanelManager(Activity activity){
-        this.mActivity = activity;
-        mediaController = (QVMediaController) mActivity.findViewById(R.id.media_controller);
-        mToolbarTb = (RelativeLayout) mActivity.findViewById(R.id.toolbar);
-        mLockIv = (ImageView) mActivity.findViewById(R.id.lock_iv);
-        mProgressBar = (SeekBar) mActivity.findViewById(R.id.media_controller_progress_bottom);
+    private PanelManager(YPlayerView playerView){
+        mediaController = (QVMediaController) playerView.findViewById(R.id.media_controller);
+        mToolbarTb = (RelativeLayout) playerView.findViewById(R.id.toolbar);
+        mLockIv = (ImageView) playerView.findViewById(R.id.lock_iv);
+        mProgressBar = (SeekBar) playerView.findViewById(R.id.media_controller_progress_bottom);
         mAutoPlayRunnable = new AutoPlayRunnable();
         mLockDismissRunnable = new LockDismissRunnable();
     }
 
-    public static PanelManager getInstance(Activity activity){
+    public static PanelManager getInstance(YPlayerView playerView){
         if(mPanelManager == null){
-            mPanelManager = new PanelManager(activity);
+            mPanelManager = new PanelManager(playerView);
         }
         return mPanelManager;
     }
@@ -217,12 +215,13 @@ public class PanelManager {
         return mIsLockScreen;
     }
 
-    public void setLockScreen(boolean mIsLockScreen) {
-        this.mIsLockScreen = mIsLockScreen;
+    public void toggleLockStatus() {
+        this.mIsLockScreen = !mIsLockScreen;
+        setPanelEnable(mIsLockScreen);
     }
 
     public void reset(){
-        isShowControlPanl = false;
+        isShowControlPanl = true;
         mHandler.removeCallbacks(mAutoPlayRunnable);
         mAutoPlayRunnable = null;
         mPanelManager = null;
