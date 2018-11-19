@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.example.zjy.player.R;
@@ -31,7 +33,7 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * Created by 74215 on 2018/3/24.
  */
 
-public class YPlayerView extends RelativeLayout implements ItemVideoController.ControllerListener, View.OnTouchListener, VideoFrame.OnInfoListener, View.OnClickListener{
+public class YPlayerView extends RelativeLayout implements QVMediaController.ControllerListener, View.OnTouchListener, VideoFrame.OnInfoListener, View.OnClickListener{
 
     private Context mContext;
     private Activity mActivity;
@@ -50,6 +52,8 @@ public class YPlayerView extends RelativeLayout implements ItemVideoController.C
     private RelativeLayout mToolBar;
     //顶部返回按钮
     private ImageView mBackIv;
+    //顶部视频名字
+    private TextView mVideoNameTv;
     //手势控制器
     private PlayerGestureManager mPlayerGesture;
     //播放界面的相关监听
@@ -83,18 +87,19 @@ public class YPlayerView extends RelativeLayout implements ItemVideoController.C
         mItemController = (ItemVideoController) view.findViewById(R.id.item_controller);
         mToolBar = (RelativeLayout) view.findViewById(R.id.toolbar);
         mBackIv = (ImageView) view.findViewById(R.id.play_video_back_iv);
+        mVideoNameTv = (TextView) view.findViewById(R.id.play_video_name_tv);
         mVideoFrame.setHudView(mHudView);
-        mVideoFrame.setOnTouchListener(this);
+        //mVideoFrame.setOnTouchListener(this);
         mVideoFrame.setOnInfoListener(this);
         mBackIv.setOnClickListener(this);
 
         //RelativeLayout.LayoutParams toolbarParams = (RelativeLayout.LayoutParams)mToolBar.getLayoutParams();
         mToolBar.setPadding(0, ScreenUtils.px2dip(context, ScreenUtils.getStatusBarHeight(context)), 0, 0);
 
-        mItemController.attachVideoView(mVideoFrame);
-        mItemController.setControllerListener(this);
-        mItemController.setNarrowEnable(true);
-        mItemController.resetPlayStatus();
+        mMediaController.attachVideoView(mVideoFrame);
+        mMediaController.setControllerListener(this);
+        mMediaController.setNarrowEnable(false);
+        mMediaController.resetPlayStatus();
 
         mLoadingView.setVisibility(VISIBLE);
 
@@ -104,13 +109,14 @@ public class YPlayerView extends RelativeLayout implements ItemVideoController.C
 
     public void attachActivity(Activity activity){
         mActivity = activity;
-        mPlayerGesture = new PlayerGestureManager(mActivity);
+        mPlayerGesture = new PlayerGestureManager(mActivity, this);
+        mPlayerGesture.setAllGestureEnable(true);
     }
 
     public void addVideoFrame(VideoFrame videoFrame){
         mRootView.removeView(mVideoFrame);
         mVideoFrame = videoFrame;
-        mItemController.attachVideoView(videoFrame);
+        mMediaController.attachVideoView(videoFrame);
         ViewGroup parentView = (ViewGroup) videoFrame.getParent();
         if(parentView != null){
             parentView.removeView(videoFrame);
@@ -145,12 +151,22 @@ public class YPlayerView extends RelativeLayout implements ItemVideoController.C
 
     public void start(){
         mVideoFrame.start();
-        mItemController.resetPlayStatus();
+        mMediaController.resetPlayStatus();
     }
 
     public void pause(){
         mVideoFrame.pause();
-        mItemController.setPauseStatus();
+        mMediaController.setPauseStatus();
+    }
+
+    @Override
+    public void clickPre() {
+
+    }
+
+    @Override
+    public void clickNext() {
+
     }
 
     public void stopPlayback(){
@@ -262,17 +278,27 @@ public class YPlayerView extends RelativeLayout implements ItemVideoController.C
         this.mVideoFrame = mVideoFrame;
     }
 
+    public void setVideoTitle(String title){
+        if(TextUtils.isEmpty(title)){
+            mVideoNameTv.setText("");
+            return;
+        }
+        if(mVideoNameTv != null){
+            mVideoNameTv.setText(title);
+        }
+    }
+
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         switch (motionEvent.getAction()){
             case MotionEvent.ACTION_DOWN:
                 if(view == mVideoFrame){
-                    if(mItemController.getVisibility() == VISIBLE){
+                    if(mMediaController.getVisibility() == VISIBLE){
                         mToolBar.setVisibility(GONE);
-                        mItemController.setVisibility(GONE);
+                        mMediaController.setVisibility(GONE);
                     }else{
                         mToolBar.setVisibility(VISIBLE);
-                        mItemController.setVisibility(VISIBLE);
+                        mMediaController.setVisibility(VISIBLE);
                     }
                 }
                 break;

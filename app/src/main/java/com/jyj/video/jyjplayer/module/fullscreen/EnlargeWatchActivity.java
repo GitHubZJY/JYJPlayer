@@ -64,7 +64,10 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
         mVideoInfo = VideoPlayDataManager.getInstance().getCurPlayVideoInfo();
         if(mVideoInfo != null){
             mPlayerView.setVideoUrl(mVideoInfo.getPath());
+            mPlayerView.setVideoTitle(mVideoInfo.getName());
         }
+        mPlayerView.attachActivity(this);
+        mPlayerView.setGestureEnable(true);
         mPlayerView.setPlayerListener(this);
         mPlayerView.setOnInfoListener(this);
         mPlayerView.start();

@@ -17,6 +17,7 @@ import android.widget.VideoView;
 
 import com.example.zjy.player.R;
 import com.example.zjy.player.ui.VideoFrame;
+import com.example.zjy.player.ui.YPlayerView;
 
 
 /**
@@ -46,9 +47,10 @@ public class PlayerGestureManager {
     GestureDetector gestureDetector;
 
     private Activity mActivity;
-    private RelativeLayout rootView;
+    private View rootView;
     private VideoFrame mVideoView;
-    private ItemVideoController mediaController;
+    private YPlayerView mPlayerView;
+    private QVMediaController mediaController;
     private ImageView mCenterPauseIv;
     //滑动的起点位置
     int mStartX,mStartY;
@@ -62,17 +64,18 @@ public class PlayerGestureManager {
     private final static int SCROLL_TYPE_VOLUME = 3;
     private final static int SCROLL_TYPE_BRIGHT = 2;
 
-    public PlayerGestureManager(Activity activity) {
+    public PlayerGestureManager(Activity activity, YPlayerView playerView) {
         this.mActivity = activity;
-        rootView = (RelativeLayout) activity.findViewById(R.id.root_view);
-        mVideoView = (VideoFrame) activity.findViewById(R.id.video_frame);
-        mediaController = (ItemVideoController) activity.findViewById(R.id.item_controller);
-        mCenterPauseIv = (ImageView) activity.findViewById(R.id.center_pause_iv);
+        mPlayerView = playerView;
+        rootView = activity.findViewById(R.id.root_view);
+        mVideoView = (VideoFrame) mPlayerView.findViewById(R.id.video_frame);
+        mediaController = (QVMediaController) mPlayerView.findViewById(R.id.media_controller);
+        mCenterPauseIv = (ImageView) mPlayerView.findViewById(R.id.center_pause_iv);
         audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
         mMaxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         gestureDetector = new GestureDetector(activity, new PlayerGestureListener());
 
-        rootView.setOnTouchListener(new View.OnTouchListener() {
+        mPlayerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 

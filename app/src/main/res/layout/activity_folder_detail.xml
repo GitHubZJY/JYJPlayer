@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    app:left_btn_src="@drawable/ic_back"
+    app:left_btn_src="@drawable/ic_exit_full"
     app:left_btn_visible="true"
     app:title_visible="true"
     app:title_text="Video"
