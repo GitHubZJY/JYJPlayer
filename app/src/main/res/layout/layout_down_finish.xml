@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/bottom_tv"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@null"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#43cfff"
+        android:text="Confirm"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_above="@id/bottom_tv"
+        android:background="#33ffffff"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_above="@id/bottom_tv">
+        <ImageView
+            android:id="@+id/down_result_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/down_result_iv"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/down_result_start_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:text="The subtitle will be applied in "/>
+
+            <TextView
+                android:id="@+id/number_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="3"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/down_result_end_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:text=" s"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

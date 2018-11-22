@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    >
+
+    <RelativeLayout
+        android:id="@+id/no_file_rlyt"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/no_file_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:src="@drawable/illustration_nofile"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@id/no_file_iv"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:text="@string/local_no_subtitle"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottom_rlyt"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true">
+        <ImageView
+            android:id="@+id/to_add_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="16dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/icn_add_file"
+            />
+
+        <TextView
+            android:id="@+id/cur_subtitle_path_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/to_add_subtitle"
+            android:layout_marginRight="16dp"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:ellipsize="start"
+            android:textColor="#80ffffff"
+            android:textSize="13sp"/>
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/file_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_rlyt"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

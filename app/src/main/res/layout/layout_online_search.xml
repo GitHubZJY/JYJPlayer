@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="24dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    >
+
+    <TextView
+        android:id="@+id/online_search_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="16dp"
+        android:textColor="#80ffffff"
+        android:textSize="13sp"
+        android:text="Video Name"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/clear_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="16dp"
+        android:src="@drawable/icn_clear_search"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/online_search_title"/>
+
+
+    <com.jyj.video.jyjplayer.ui.SoftInputObserveEditText
+        android:id="@+id/search_key_edit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/online_search_title"
+        android:layout_centerHorizontal="true"
+        android:layout_toLeftOf="@id/clear_iv"
+        android:hint="@string/name"
+        android:textColorHint="#80ffffff"
+        android:textSize="18sp"
+        android:background="@null"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textCursorDrawable="@drawable/search_cursor"
+        />
+
+
+    <View
+        android:id="@+id/liner"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/search_key_edit"
+        android:background="#33ffffff"/>
+
+    <LinearLayout
+        android:id="@+id/select_language_llyt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/liner"
+        android:layout_marginTop="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#80ffffff"
+            android:text="@string/search_start"/>
+        <TextView
+            android:id="@+id/language_switch_tv"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/bottom_arrow"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:text="English"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/select_language_llyt">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginRight="5dp"
+            android:textSize="16sp"
+            android:textColor="#80ffffff"
+            android:text="@string/search_by"/>
+        <TextView
+            android:id="@+id/link_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#80ffffff"
+            android:text=" "/>
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/search_btn"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@null"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#43cfff"
+        android:text="@string/search"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/search_btn"
+        android:background="#33ffffff"
+        />
+
+</RelativeLayout>

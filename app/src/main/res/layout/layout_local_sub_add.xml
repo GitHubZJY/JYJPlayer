@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    >
+
+    <TextView
+        android:id="@+id/subtitle_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:text="@string/subtitle_title"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/bottom_rlyt"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/cancel_add_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_cancel_local"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:text="@string/cancel"/>
+
+        <TextView
+            android:id="@+id/cur_path_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/cancel_add_tv"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="16dp"
+            android:gravity="center_vertical"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#80ffffff"
+            android:textSize="16sp"
+            android:text="/C://sdcard/folder"/>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/scroll_rlyt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="8dp"
+        android:layout_above="@id/bottom_rlyt"
+        android:layout_below="@id/subtitle_title_tv"
+        >
+        <LinearLayout
+            android:id="@+id/folder_title_llyt"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <ImageView
+                android:id="@+id/back_folder_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/ic_folder_up"/>
+            <TextView
+                android:id="@+id/folder_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/back_folder_iv"
+                android:gravity="center_vertical"
+                android:textColor="#fff"
+                android:textSize="13sp"
+                android:text=""/>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/file_lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/folder_title_llyt"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

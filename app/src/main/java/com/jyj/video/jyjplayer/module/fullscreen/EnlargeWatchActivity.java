@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,6 +19,7 @@ import com.example.zjy.player.ui.YPlayerView;
 import com.jyj.video.jyjplayer.R;
 import com.jyj.video.jyjplayer.filescan.model.bean.VideoInfo;
 import com.jyj.video.jyjplayer.manager.VideoPlayDataManager;
+import com.jyj.video.jyjplayer.subtitle.SubTitleContainer;
 import com.zjyang.base.base.BaseActivity;
 import com.zjyang.base.base.BasePresenter;
 
@@ -41,6 +43,8 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
 
     @BindView(R.id.player_view)
     YPlayerView mPlayerView;
+    @BindView(R.id.menu_panel)
+    SubTitleContainer mMenuPanel;
 
     VideoFrame mVideoFrame;
 
@@ -95,7 +99,10 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
 
     @Override
     public void clickBack() {
-        finish();
+        //finish();
+        mMenuPanel.initMenuPanel(this, Configuration.ORIENTATION_LANDSCAPE);
+        mMenuPanel.setVisibility(View.VISIBLE);
+        mMenuPanel.startEnterAnimation();
     }
 
     private void setOrientationPortrait() {

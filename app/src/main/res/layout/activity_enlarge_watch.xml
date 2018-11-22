@@ -13,4 +13,13 @@
     </com.example.zjy.player.ui.YPlayerView>
 
 
+    <com.jyj.video.jyjplayer.subtitle.SubTitleContainer
+        android:id="@+id/menu_panel"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+    </com.jyj.video.jyjplayer.subtitle.SubTitleContainer>
+
 </FrameLayout>

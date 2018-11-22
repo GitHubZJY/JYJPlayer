@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.zjyang.base.base.SkinManager;
+import com.zjyang.base.utils.ScreenUtils;
 
 /**
  * Created by zhengjiayang on 2018/9/26.
@@ -21,5 +22,6 @@ public class BaseApp {
         sContext =context;
         SkinManager.getInstance().init();
         Fresco.initialize(context);
+        ScreenUtils.init(context);
     }
 }

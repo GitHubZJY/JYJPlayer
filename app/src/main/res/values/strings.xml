@@ -33,4 +33,25 @@
 
     <string name="network_connection_error">当前网络状态不佳</string>
     <string name="search_fail_tip">搜索不到相关视频</string>
+
+    <string name="local">Local</string>
+    <string name="online">Online</string>
+    <string name="search_cancel">取消</string>
+    <string name="downloading">下载中</string>
+    <string name="local_no_subtitle">暂无本地字幕</string>
+    <string name="back">返回</string>
+    <string name="subtitle_no_found">搜不到相关字幕</string>
+    <string name="download">下载</string>
+    <string name="search_start">开始下载</string>
+    <string name="search_by"></string>
+    <string name="search"></string>
+    <string name="searching">搜索中</string>
+
+    <string name="download_sub_success">下载成功</string>
+    <string name="download_sub_failed">下载失败</string>
+    <string name="confirm">确认</string>
+    <string name="name">字幕名</string>
+    <string name="subtitle_title">Subtitle</string>
+    <string name="folder_up"></string>
+
 </resources>

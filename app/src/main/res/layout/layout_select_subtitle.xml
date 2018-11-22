@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="270dp"
+    android:paddingTop="12dp"
+    >
+
+    <com.jyj.video.jyjplayer.ui.SwitchCheck
+        android:id="@+id/subtitle_switch"
+        android:layout_width="36dp"
+        android:layout_height="56dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="16dp"
+        android:enabled="true"
+        android:gravity="center_vertical"
+        tools:checked="false"/>
+
+    <LinearLayout
+        android:id="@+id/title_group_llyt"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_toLeftOf="@id/subtitle_switch"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
+        <TextView
+            android:id="@+id/local_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:gravity="center|left"
+            android:layout_marginRight="40dp"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:text="@string/local"/>
+
+        <TextView
+            android:id="@+id/online_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:gravity="center|left"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:text="@string/online"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/title_linear"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="1dp"
+        android:background="#33ffffff"
+        android:layout_below="@id/title_group_llyt"
+        />
+
+    <View
+        android:id="@+id/title_cursor"
+        android:layout_width="16dp"
+        android:layout_height="2dp"
+        android:background="@drawable/cursor_subtitle_title"
+        android:layout_below="@id/title_group_llyt"
+        />
+
+    <com.jyj.video.jyjplayer.subtitle.UnScrollViewPager
+        android:id="@+id/local_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_linear">
+    </com.jyj.video.jyjplayer.subtitle.UnScrollViewPager>
+
+
+
+
+</RelativeLayout>

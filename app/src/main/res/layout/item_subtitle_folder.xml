@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="16dp">
+
+    <RelativeLayout
+        android:id="@+id/subtitle_folder_file_name_rlyt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingRight="16dp">
+        <TextView
+            android:id="@+id/subtitle_file_left_tv"
+            android:layout_width="16dp"
+            android:layout_height="13dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="1dp"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:textSize="9sp"
+            />
+        <TextView
+            android:id="@+id/subtitle_folder_file_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:singleLine="false"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/subtitle_file_left_tv"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="5sp"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

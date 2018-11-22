@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/down_load_item_rlyt"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+    <CheckBox
+        android:id="@+id/is_download_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:button="@drawable/selector_checkbox"
+        />
+
+    <TextView
+        android:id="@+id/subtitle_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/is_download_checkbox"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:text="subtitle"/>
+
+
+
+</RelativeLayout>
