@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.example.zjy.player.ui.VideoFrame;
 import com.example.zjy.player.ui.YPlayerView;
+import com.jyj.video.jyjplayer.event.PlaySettingCloseEvent;
+import com.jyj.video.jyjplayer.event.SubtitleAsyncEvent;
 import com.jyj.video.jyjplayer.subtitle.bean.SRT;
 import com.jyj.video.jyjplayer.utils.FileUtils;
 
@@ -115,12 +117,12 @@ public class SRTUtils {
         Log.d("zimu", "parse end");
 
         if(srt_map_new == null || srt_map_new.size() == 0){
-            //EventBus.getDefault().post(new PlaySettingCloseEvent());
-            //EventBus.getDefault().post(new SubtitleAsyncEvent(false, isAuto));
+            EventBus.getDefault().post(new PlaySettingCloseEvent());
+            EventBus.getDefault().post(new SubtitleAsyncEvent(false, isAuto));
         }else{
             srt_map = srt_map_new;
-            //EventBus.getDefault().post(new PlaySettingCloseEvent(srtPath));
-            //EventBus.getDefault().post(new SubtitleAsyncEvent(true, isAuto));
+            EventBus.getDefault().post(new PlaySettingCloseEvent(srtPath));
+            EventBus.getDefault().post(new SubtitleAsyncEvent(true, isAuto));
         }
         //关闭菜单
 

@@ -6,24 +6,36 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.zjy.player.ui.PlayerListener;
 import com.example.zjy.player.ui.VideoFrame;
 import com.example.zjy.player.ui.YPlayerView;
 import com.jyj.video.jyjplayer.R;
+import com.jyj.video.jyjplayer.constant.SpConstant;
+import com.jyj.video.jyjplayer.event.PlaySettingCloseEvent;
+import com.jyj.video.jyjplayer.event.SubtitleAsyncEvent;
+import com.jyj.video.jyjplayer.filescan.model.FileVideoModel;
+import com.jyj.video.jyjplayer.filescan.model.bean.SubtitleInfo;
 import com.jyj.video.jyjplayer.filescan.model.bean.VideoInfo;
 import com.jyj.video.jyjplayer.manager.VideoPlayDataManager;
+import com.jyj.video.jyjplayer.subtitle.SRTUtils;
 import com.jyj.video.jyjplayer.subtitle.SubTitleContainer;
+import com.jyj.video.jyjplayer.utils.FileUtils;
 import com.zjyang.base.base.BaseActivity;
 import com.zjyang.base.base.BasePresenter;
+import com.zjyang.base.utils.SpUtils;
+import com.zjyang.base.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,10 +57,14 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
     YPlayerView mPlayerView;
     @BindView(R.id.menu_panel)
     SubTitleContainer mMenuPanel;
+    @BindView(R.id.subtitle_tv)
+    TextView mSubtitleTv;
 
     VideoFrame mVideoFrame;
 
     private VideoInfo mVideoInfo;
+
+    private boolean mIsShowSubTitle;
 
 
     public static void start(Context context){
@@ -64,6 +80,7 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_enlarge_watch);
         unbinder = ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
 
         mVideoInfo = VideoPlayDataManager.getInstance().getCurPlayVideoInfo();
         if(mVideoInfo != null){
@@ -76,6 +93,50 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
         mPlayerView.setOnInfoListener(this);
         mPlayerView.start();
         mVideoFrame = mPlayerView.getVideoFrame();
+
+        SubtitleInfo subtitleInfo = FileVideoModel.getSubtitleInfo(mVideoInfo.getPath());
+        SRTUtils.clear();
+
+        if(subtitleInfo != null && subtitleInfo.getAllSubtitles() != null && !subtitleInfo.getAllSubtitles().isEmpty()){
+            String cacheSubPath = subtitleInfo.getCurSubtitle().getPath();
+            if(!TextUtils.isEmpty(cacheSubPath)){
+                //有字幕文件
+                SRTUtils.parseSrt(cacheSubPath, true);
+                mIsShowSubTitle = SpUtils.obtain(SpConstant.DEFAULT_SP_FILE).getBoolean(SpConstant.IS_OPEN_SUBTITLE, true);
+                if(mIsShowSubTitle){
+                    mSubtitleTv.setVisibility(View.VISIBLE);
+                    SRTUtils.showSRT(mSubtitleTv, mPlayerView.getVideoFrame());
+                }
+            }
+        }else{
+            initDefaultSrt();
+        }
+    }
+
+    /**
+     * 初始化寻找同目录下是否有同名字幕文件
+     */
+    public void initDefaultSrt(){
+        if(mVideoInfo == null){
+            return;
+        }
+        String defaultSubtitle = SRTUtils.getRandomSrtInFolder(FileUtils.getFileDirPath(mVideoInfo.getPath()), mVideoInfo.getDisplayName());
+        if(!TextUtils.isEmpty(defaultSubtitle)){
+            //同目录下找到字幕文件
+            FileVideoModel.createSubtitle(mVideoInfo.getPath(), defaultSubtitle);
+
+            SRTUtils.parseSrt(defaultSubtitle, true);
+            mIsShowSubTitle = SpUtils.obtain(SpConstant.DEFAULT_SP_FILE).getBoolean(SpConstant.IS_OPEN_SUBTITLE, true);
+            if(mIsShowSubTitle){
+                mSubtitleTv.setVisibility(View.VISIBLE);
+                SRTUtils.showSRT(mSubtitleTv, mPlayerView.getVideoFrame());
+            }
+//            if(curVideoInfo != null){
+//                curVideoInfo.setSubtitleName(FileUtils.getReallyFileName(curVideoInfo.getDisplayName())+".srt");
+//                curVideoInfo.setSubtitlePath(defaultSubtitle);
+//                VideoHelper.getInstance().addOrReplace(curVideoInfo);
+//            }
+        }
     }
 
     @Override
@@ -98,11 +159,16 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
     }
 
     @Override
-    public void clickBack() {
-        //finish();
+    public void clickSubtitle() {
         mMenuPanel.initMenuPanel(this, Configuration.ORIENTATION_LANDSCAPE);
         mMenuPanel.setVisibility(View.VISIBLE);
+        mMenuPanel.setVideoPath(mVideoInfo.getPath());
         mMenuPanel.startEnterAnimation();
+    }
+
+    @Override
+    public void clickBack() {
+        finish();
     }
 
     private void setOrientationPortrait() {
@@ -119,6 +185,46 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
     }
 
 
+    @Subscribe
+    public void onEvent(PlaySettingCloseEvent event){
+        //AndroidDevice.hideSoftInput(this);
+        onWindowFocusChanged(true);
+        String srtFileUrl = event.getSrtFileUrl();
+        if(!TextUtils.isEmpty(srtFileUrl)){
+            //不为空路径，说明选择了某个字幕文件
+            //获取当前播放的视频信息，将选中的字幕信息一同存入数据库
+            VideoInfo videoInfo = VideoPlayDataManager.getInstance().getCurPlayVideoInfo();
+            if(videoInfo != null){
+//                videoInfo.setSubtitleName(FileUtils.getFileNameInPath(srtFileUrl));
+//                videoInfo.setSubtitlePath(srtFileUrl);
+//                VideoHelper.getInstance().addOrReplace(videoInfo);
+                FileVideoModel.createSubtitle(videoInfo.getPath(), srtFileUrl);
+            }
+            SRTUtils.showSRT(mSubtitleTv, mPlayerView.getVideoFrame());
+            mIsShowSubTitle = true;
+        }
+        mIsShowSubTitle = SpUtils.obtain(SpConstant.DEFAULT_SP_FILE).getBoolean(SpConstant.IS_OPEN_SUBTITLE, true);
+        if(mIsShowSubTitle){
+            mSubtitleTv.setVisibility(View.VISIBLE);
+        }else{
+            mSubtitleTv.setVisibility(View.GONE);
+        }
+        //收起菜单面板
+        mMenuPanel.startExitAnimation();
+    }
+
+    @Subscribe
+    public void onEvent(SubtitleAsyncEvent event){
+        if(!event.isSuccess()){
+            ToastUtils.showToast(this, getResources().getString(R.string.fail_load_tip));
+        }else{
+            if(!event.isAuto()){
+                ToastUtils.showToast(this, getResources().getString(R.string.already_apply));
+            }
+        }
+    }
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -126,6 +232,7 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
         if(unbinder != null){
             unbinder.unbind();
         }
+        EventBus.getDefault().unregister(this);
         //EventBus.getDefault().post(new FullScreenExitEvent());
     }
 }

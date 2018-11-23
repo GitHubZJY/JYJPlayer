@@ -46,6 +46,7 @@ public class QVMediaController extends FrameLayout {
     private TextView mDurTimeTv;
     private TextView mCurTimeTv;
     private ImageView mNarrowIv;
+    private TextView mSubtitleTv;
 
     private ControllerListener mControllerListener;
 
@@ -93,6 +94,7 @@ public class QVMediaController extends FrameLayout {
         mDurTimeTv = (TextView)rootView.findViewById(R.id.duration_time_tv);
         mCurTimeTv = (TextView)rootView.findViewById(R.id.current_time_tv);
         mNarrowIv = (ImageView)rootView.findViewById(R.id.narrow_iv);
+        mSubtitleTv = (TextView)rootView.findViewById(R.id.subtitle_tv);
         mProgressBar = (SeekBar)rootView.findViewById(R.id.media_controller_progress);
         mProgressBar.setMax(100000);
         mProgressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -201,6 +203,15 @@ public class QVMediaController extends FrameLayout {
             public void onClick(View view) {
                 if(mControllerListener != null){
                     mControllerListener.clickNarrow();
+                }
+            }
+        });
+
+        mSubtitleTv.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mControllerListener != null){
+                    mControllerListener.clickSubtitle();
                 }
             }
         });
@@ -477,6 +488,7 @@ public class QVMediaController extends FrameLayout {
         void forward(String curTime, String durTime, long lTime, long duration);
         void backward(String curTime, String durTime, long lTime, long duration);
         void clickNarrow();
+        void clickSubtitle();
     }
 }
 

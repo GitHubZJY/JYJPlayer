@@ -11,6 +11,8 @@ public interface PlayerListener {
 
     void clickBack();
 
+    void clickSubtitle();
+
 //    void clickPlay(boolean isPlay);
 //
 //    void progress(int progress) ;

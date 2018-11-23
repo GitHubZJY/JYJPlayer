@@ -12,6 +12,20 @@
 
     </com.example.zjy.player.ui.YPlayerView>
 
+    <TextView
+        android:id="@+id/subtitle_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:gravity="center"
+        android:shadowColor="#99000000"
+        android:shadowRadius="12"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:textSize="16sp"
+        android:textColor="#fff"
+        android:text=""/>
+
 
     <com.jyj.video.jyjplayer.subtitle.SubTitleContainer
         android:id="@+id/menu_panel"

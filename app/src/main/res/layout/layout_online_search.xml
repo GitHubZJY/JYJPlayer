@@ -40,6 +40,7 @@
         android:layout_toLeftOf="@id/clear_iv"
         android:hint="@string/name"
         android:textColorHint="#80ffffff"
+        android:textColor="#ffffff"
         android:textSize="18sp"
         android:background="@null"
         android:maxLines="1"
