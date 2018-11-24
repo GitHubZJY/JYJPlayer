@@ -90,7 +90,7 @@ public class DownloadDialog extends Dialog {
         mCancelBtn = rootView.findViewById(R.id.cancel);
         mOkBtn = rootView.findViewById(R.id.ok);
         //mEditName.setBackground(ShapeUtils.getRoundRectDrawable(DrawUtils.dp2px(0), Color.parseColor("#fbfbfb")));
-
+        mClear.setBackground(ShapeUtils.drawColor(getContext().getDrawable(R.drawable.web_close), Color.parseColor("#000000")));
 
         mCancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override

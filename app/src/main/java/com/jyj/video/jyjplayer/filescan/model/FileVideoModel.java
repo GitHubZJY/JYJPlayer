@@ -713,6 +713,15 @@ public class FileVideoModel {
         return (List<FolderInfo>) sFolderInfoList.clone();
     }
 
+    public static FolderInfo getFolderInfoByName(String foldername){
+        for(FolderInfo folderInfo : sFolderInfoList){
+            if(folderInfo.getName().equals(foldername)){
+                return folderInfo;
+            }
+        }
+        return null;
+    }
+
     public static int getFolderInfoCntFromDB() {
         return FolderHelper.getInstance().queryFolderDaoData().size();
     }

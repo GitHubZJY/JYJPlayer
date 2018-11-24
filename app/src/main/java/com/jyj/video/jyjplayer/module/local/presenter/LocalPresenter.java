@@ -64,7 +64,11 @@ public class LocalPresenter implements LocalTasksContract.Presenter{
         for(FolderInfo folderInfo : scanList){
             LogUtil.d("zjy", folderInfo.getName());
         }
-        mView.notifyFolderListView(scanList);
+        if(scanList == null || scanList.size() == 0){
+            mView.showEmptyView();
+        }else{
+            mView.notifyFolderListView(scanList);
+        }
         LogUtil.d("zjy", "获取扫描结果-系统媒体文件: " + (scanList == null ? -1 : scanList.size()));
     }
 

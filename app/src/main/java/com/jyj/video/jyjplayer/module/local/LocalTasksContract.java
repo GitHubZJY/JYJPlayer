@@ -13,6 +13,8 @@ public interface LocalTasksContract {
 
     interface View {
         void notifyFolderListView(List<FolderInfo> scanList);
+        void showEmptyView();
+        void hideEmptyView();
     }
 
     interface Model {

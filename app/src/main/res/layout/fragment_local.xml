@@ -80,5 +80,14 @@
 
     </com.zjyang.base.widget.RefreshLoadRecyclerView>
 
+    <com.jyj.video.jyjplayer.ui.EmptyTipView
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+    </com.jyj.video.jyjplayer.ui.EmptyTipView>
+
 
 </LinearLayout>

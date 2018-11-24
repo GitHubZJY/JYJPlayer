@@ -25,12 +25,14 @@ import com.jyj.video.jyjplayer.event.PlaySettingCloseEvent;
 import com.jyj.video.jyjplayer.event.SubtitleAsyncEvent;
 import com.jyj.video.jyjplayer.event.SubtitleSwitchEvent;
 import com.jyj.video.jyjplayer.filescan.model.FileVideoModel;
+import com.jyj.video.jyjplayer.filescan.model.bean.FolderInfo;
 import com.jyj.video.jyjplayer.filescan.model.bean.SubtitleInfo;
 import com.jyj.video.jyjplayer.filescan.model.bean.VideoInfo;
 import com.jyj.video.jyjplayer.manager.VideoPlayDataManager;
 import com.jyj.video.jyjplayer.subtitle.SRTUtils;
 import com.jyj.video.jyjplayer.subtitle.SubTitleContainer;
 import com.jyj.video.jyjplayer.utils.FileUtils;
+import com.jyj.video.jyjplayer.utils.VideoUtil;
 import com.zjyang.base.base.BaseActivity;
 import com.zjyang.base.base.BasePresenter;
 import com.zjyang.base.utils.SpUtils;
@@ -65,6 +67,7 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
     VideoFrame mVideoFrame;
 
     private VideoInfo mVideoInfo;
+    private FolderInfo mFolderInfo;
 
     private boolean mIsShowSubTitle;
 
@@ -86,16 +89,33 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
 
         mVideoInfo = VideoPlayDataManager.getInstance().getCurPlayVideoInfo();
         if(mVideoInfo != null){
-            mPlayerView.setVideoUrl(mVideoInfo.getPath());
-            mPlayerView.setVideoTitle(mVideoInfo.getName());
+            mVideoInfo.setIsPlaying(true);
+           initVideoParams();
         }
         mPlayerView.attachActivity(this);
         mPlayerView.setGestureEnable(true);
         mPlayerView.setPlayerListener(this);
         mPlayerView.setOnInfoListener(this);
-        mPlayerView.start();
         mVideoFrame = mPlayerView.getVideoFrame();
 
+
+
+        String folderPath = VideoUtil.getParentPath(mVideoInfo.getPath());
+        mFolderInfo = FileVideoModel.getFileInfo(folderPath);
+
+        initVideoParams();
+    }
+
+    public void initVideoParams(){
+
+        if(mVideoInfo == null){
+            return;
+        }
+
+        mPlayerView.setVideoUrl(mVideoInfo.getPath());
+        mPlayerView.setVideoTitle(mVideoInfo.getName());
+        mPlayerView.start();
+        mSubtitleTv.setText("");
         SubtitleInfo subtitleInfo = FileVideoModel.getSubtitleInfo(mVideoInfo.getPath());
         SRTUtils.clear();
 
@@ -154,6 +174,52 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
     public void progress(int progress) {
         if(mIsShowSubTitle){
             SRTUtils.showSRT(mSubtitleTv, mPlayerView.getVideoFrame());
+        }
+    }
+
+    @Override
+    public void clickPre() {
+        VideoInfo videoInfo = null;
+
+        if (mFolderInfo != null) {
+            videoInfo = mFolderInfo.getPre();
+        }
+        if(videoInfo != null){
+            mVideoFrame.setRender(0);
+            mVideoFrame.initRenders();
+            mVideoFrame.stopPlayback();
+            //先置当前视频为false
+            mVideoInfo.setIsPlaying(false);
+            //赋值新的视频
+            mVideoInfo = videoInfo;
+            //将新的视频设置为true
+            mVideoInfo.setIsPlaying(true);
+            initVideoParams();
+        }else{
+            ToastUtils.showToast(EnlargeWatchActivity.this, "Already the first video");
+        }
+    }
+
+    @Override
+    public void clickNext() {
+        VideoInfo videoInfo = null;
+
+        if (mFolderInfo != null) {
+            videoInfo = mFolderInfo.getNext();
+        }
+        if(videoInfo != null){
+            mVideoFrame.setRender(0);
+            mVideoFrame.initRenders();
+            mVideoFrame.stopPlayback();
+            //先置当前视频为false
+            mVideoInfo.setIsPlaying(false);
+            //赋值新的视频
+            mVideoInfo = videoInfo;
+            //将新的视频设置为true
+            mVideoInfo.setIsPlaying(true);
+            initVideoParams();
+        }else{
+            ToastUtils.showToast(EnlargeWatchActivity.this, "Already the last video");
         }
     }
 
@@ -262,6 +328,7 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
         if(unbinder != null){
             unbinder.unbind();
         }
+        mVideoInfo.setIsPlaying(false);
         EventBus.getDefault().unregister(this);
         //EventBus.getDefault().post(new FullScreenExitEvent());
     }

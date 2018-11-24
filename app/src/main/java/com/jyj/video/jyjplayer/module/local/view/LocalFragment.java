@@ -16,6 +16,7 @@ import com.jyj.video.jyjplayer.filescan.model.bean.FolderInfo;
 import com.jyj.video.jyjplayer.module.local.LocalTasksContract;
 import com.jyj.video.jyjplayer.module.local.adapter.FolderListAdapter;
 import com.jyj.video.jyjplayer.module.local.presenter.LocalPresenter;
+import com.jyj.video.jyjplayer.ui.EmptyTipView;
 import com.zjyang.base.utils.DrawUtils;
 import com.zjyang.base.utils.HandlerUtils;
 import com.zjyang.base.utils.ShapeUtils;
@@ -31,8 +32,9 @@ import java.util.List;
  * Created by 74215 on 2018/11/3.
  */
 
-public class LocalFragment extends Fragment implements LocalTasksContract.View, RefreshLoadRecyclerView.RefreshLoadListener {
+public class LocalFragment extends Fragment implements LocalTasksContract.View, RefreshLoadRecyclerView.RefreshLoadListener, EmptyTipView.ClickEmptyListener {
 
+    private EmptyTipView mEmptyTipView;
     private RefreshLoadRecyclerView mFolderLv;
     private RelativeLayout mSearchEntrance;
     private List<FolderInfo> mFolderList;
@@ -57,6 +59,8 @@ public class LocalFragment extends Fragment implements LocalTasksContract.View, 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_local, container, false);
+        mEmptyTipView = (EmptyTipView) view.findViewById(R.id.empty_view);
+        mEmptyTipView.setClickEmptyListener(this);
         mSearchEntrance = (RelativeLayout) view.findViewById(R.id.search_entrance);
         mSearchEntrance.setBackground(ShapeUtils.getRoundRectDrawable(DrawUtils.dp2px(20), Color.WHITE));
         mFolderLv = (RefreshLoadRecyclerView) view.findViewById(R.id.folder_lv);
@@ -84,6 +88,25 @@ public class LocalFragment extends Fragment implements LocalTasksContract.View, 
     @Override
     public void onRelease(float direction) {
 
+    }
+
+    @Override
+    public void clickRefresh() {
+        if(mPresenter != null){
+            mPresenter.scanSystemFolderData();
+        }
+    }
+
+    @Override
+    public void showEmptyView() {
+        mEmptyTipView.setVisibility(View.VISIBLE);
+        mFolderLv.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideEmptyView() {
+        mEmptyTipView.setVisibility(View.GONE);
+        mFolderLv.setVisibility(View.VISIBLE);
     }
 
     @Override

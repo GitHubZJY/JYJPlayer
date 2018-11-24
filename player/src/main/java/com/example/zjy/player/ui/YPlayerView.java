@@ -242,12 +242,16 @@ public class YPlayerView extends RelativeLayout implements QVMediaController.Con
 
     @Override
     public void clickNext() {
-
+        if(mListener != null){
+            mListener.clickNext();
+        }
     }
 
     @Override
     public void clickPre() {
-
+        if(mListener != null){
+            mListener.clickPre();
+        }
     }
 
     @Override

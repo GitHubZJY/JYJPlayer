@@ -199,6 +199,30 @@ public class VideoFrame extends RelativeLayout {
         }
     }
 
+    public void setRender(int render){
+        switch (VideoSetting.getVideoType()){
+            case VideoSetting.ANDROID_VIDEO_VIEW:
+                LogUtil.d(TAG, "System--->setRender");
+                break;
+            case VideoSetting.IJK_VIDEO_VIEW:
+                LogUtil.d(TAG, "IjK--->setRender");
+                mIjkVideoView.setRender(render);
+                break;
+        }
+    }
+
+    public void initRenders() {
+        switch (VideoSetting.getVideoType()) {
+            case VideoSetting.ANDROID_VIDEO_VIEW:
+                LogUtil.d(TAG, "System--->initRenders");
+                break;
+            case VideoSetting.IJK_VIDEO_VIEW:
+                LogUtil.d(TAG, "IjK--->initRenders");
+                mIjkVideoView.initRenders();
+
+        }
+    }
+
     public void setOnPrePareListener(final OnPreparedListener prePareListener){
         switch (VideoSetting.getVideoType()){
             case VideoSetting.ANDROID_VIDEO_VIEW:

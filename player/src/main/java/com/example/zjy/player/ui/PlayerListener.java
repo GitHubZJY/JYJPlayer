@@ -17,9 +17,9 @@ public interface PlayerListener {
 //
     void progress(int progress) ;
 //
-//    void clickNext();
+    void clickNext();
 //
-//    void clickPre();
+    void clickPre();
 //
 //    void forward(String curTime, String durTime, long lTime, long duration);
 //
