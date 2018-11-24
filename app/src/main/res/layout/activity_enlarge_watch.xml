@@ -13,10 +13,13 @@
     </com.example.zjy.player.ui.YPlayerView>
 
     <TextView
-        android:id="@+id/subtitle_tv"
+        android:id="@+id/subtitle_text_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
         android:gravity="center"
         android:shadowColor="#99000000"
         android:shadowRadius="12"

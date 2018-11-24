@@ -7,16 +7,36 @@
     android:paddingTop="12dp"
     >
 
+    <ImageView
+        android:id="@+id/close_dialog_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/subtitle_switch"
+        android:src="@drawable/web_close"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="16dp"/>
+
     <com.jyj.video.jyjplayer.ui.SwitchCheck
         android:id="@+id/subtitle_switch"
         android:layout_width="36dp"
         android:layout_height="56dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="16dp"
+        android:layout_toLeftOf="@id/close_dialog_btn"
+        android:layout_marginRight="24dp"
         android:enabled="true"
         android:gravity="center_vertical"
         tools:checked="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:gravity="center"
+        android:layout_marginRight="4dp"
+        android:textColor="#ffffff"
+        android:textSize="13sp"
+        android:text="字幕开关"
+        android:layout_toLeftOf="@id/subtitle_switch"
+        />
 
     <LinearLayout
         android:id="@+id/title_group_llyt"

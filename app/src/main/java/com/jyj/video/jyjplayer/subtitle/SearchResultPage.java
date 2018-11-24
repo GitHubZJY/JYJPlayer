@@ -191,7 +191,7 @@ public class SearchResultPage extends RelativeLayout implements RequestManager.D
             if(!isSelected){
                 //假如未被选中
                 mSelectFileList.add(fileInfo);
-                if(mSelectFileList.size() >= 3){
+                if(mSelectFileList.size() >= 2){
                     mSelectFileList.get(0).setSelect(false);
                     mSelectFileList.remove(0);
                 }

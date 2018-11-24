@@ -235,6 +235,9 @@ public class YPlayerView extends RelativeLayout implements QVMediaController.Con
             long pos = 100000L * progress / mMediaController.getDuration();
             mBottomBar.setProgress((int)pos);
         }
+        if(mListener != null){
+            mListener.progress(progress);
+        }
     }
 
     @Override

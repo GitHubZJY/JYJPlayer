@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -22,6 +23,7 @@ import com.jyj.video.jyjplayer.R;
 import com.jyj.video.jyjplayer.constant.SpConstant;
 import com.jyj.video.jyjplayer.event.PlaySettingCloseEvent;
 import com.jyj.video.jyjplayer.event.SubtitleAsyncEvent;
+import com.jyj.video.jyjplayer.event.SubtitleSwitchEvent;
 import com.jyj.video.jyjplayer.filescan.model.FileVideoModel;
 import com.jyj.video.jyjplayer.filescan.model.bean.SubtitleInfo;
 import com.jyj.video.jyjplayer.filescan.model.bean.VideoInfo;
@@ -57,7 +59,7 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
     YPlayerView mPlayerView;
     @BindView(R.id.menu_panel)
     SubTitleContainer mMenuPanel;
-    @BindView(R.id.subtitle_tv)
+    @BindView(R.id.subtitle_text_tv)
     TextView mSubtitleTv;
 
     VideoFrame mVideoFrame;
@@ -131,11 +133,6 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
                 mSubtitleTv.setVisibility(View.VISIBLE);
                 SRTUtils.showSRT(mSubtitleTv, mPlayerView.getVideoFrame());
             }
-//            if(curVideoInfo != null){
-//                curVideoInfo.setSubtitleName(FileUtils.getReallyFileName(curVideoInfo.getDisplayName())+".srt");
-//                curVideoInfo.setSubtitlePath(defaultSubtitle);
-//                VideoHelper.getInstance().addOrReplace(curVideoInfo);
-//            }
         }
     }
 
@@ -150,6 +147,13 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
             setOrientationLandScape();
         } else if (what == 10001 && extra == 90) {
             setOrientationLandScape();
+        }
+    }
+
+    @Override
+    public void progress(int progress) {
+        if(mIsShowSubTitle){
+            SRTUtils.showSRT(mSubtitleTv, mPlayerView.getVideoFrame());
         }
     }
 
@@ -203,12 +207,6 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
             SRTUtils.showSRT(mSubtitleTv, mPlayerView.getVideoFrame());
             mIsShowSubTitle = true;
         }
-        mIsShowSubTitle = SpUtils.obtain(SpConstant.DEFAULT_SP_FILE).getBoolean(SpConstant.IS_OPEN_SUBTITLE, true);
-        if(mIsShowSubTitle){
-            mSubtitleTv.setVisibility(View.VISIBLE);
-        }else{
-            mSubtitleTv.setVisibility(View.GONE);
-        }
         //收起菜单面板
         mMenuPanel.startExitAnimation();
     }
@@ -223,6 +221,38 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
             }
         }
     }
+
+    @Subscribe
+    public void onSubtitleSwitchEvent(SubtitleSwitchEvent event){
+        mIsShowSubTitle = SpUtils.obtain(SpConstant.DEFAULT_SP_FILE).getBoolean(SpConstant.IS_OPEN_SUBTITLE, true);
+        if(mIsShowSubTitle){
+            mSubtitleTv.setVisibility(View.VISIBLE);
+        }else{
+            mSubtitleTv.setVisibility(View.GONE);
+        }
+    }
+
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (keyCode == KeyEvent.KEYCODE_BACK) { //表示按返回键 时的操作
+                //  return true;    //已处理
+                if(mMenuPanel.getVisibility() == View.VISIBLE){
+                    mMenuPanel.startExitAnimation();
+                    return true;
+                }else{
+                    onBackPressed();
+                }
+            }
+
+        }
+
+        return super.onKeyDown(keyCode, event);
+
+    }
+
 
 
     @Override

@@ -33,7 +33,7 @@ void analyze_filter(long filter);
 char * switch_lowercase(char *str);
 
 // 实现链表的机构体,  包含多个char*指针, 数据和指向下一个链地址的指针, 用于实现文件夹广度遍历(相对递归的深度遍历, 这里使用的是循环和链表, 函数进出栈的操作没那么多, 速度快点, 后期还可以扩展成扫描到N个文件就回调一次或者一个文件夹回调一次的形式)
-// 估计没什么人看这里面写得什么鬼了,  有问题找我 panguowei@gomo.com
+// 估计没什么人看这里面写得什么鬼了,  有问题找我
 struct LNode
 {
    char* path;

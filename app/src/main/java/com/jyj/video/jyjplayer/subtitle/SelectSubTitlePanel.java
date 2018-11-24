@@ -10,10 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jyj.video.jyjplayer.R;
+import com.jyj.video.jyjplayer.constant.SpConstant;
+import com.jyj.video.jyjplayer.event.PlaySettingCloseEvent;
+import com.jyj.video.jyjplayer.event.SubtitleSwitchEvent;
 import com.jyj.video.jyjplayer.filescan.model.bean.VideoInfo;
 import com.jyj.video.jyjplayer.manager.VideoPlayDataManager;
 import com.jyj.video.jyjplayer.subtitle.bean.SubTitleFileInfo;
@@ -21,6 +25,7 @@ import com.jyj.video.jyjplayer.ui.SwitchCheck;
 import com.jyj.video.jyjplayer.utils.TypefaceUtil;
 import com.zjyang.base.utils.DrawUtils;
 import com.zjyang.base.utils.HandlerUtils;
+import com.zjyang.base.utils.SpUtils;
 import com.zjyang.base.utils.ToastUtils;
 
 
@@ -43,6 +48,7 @@ public class SelectSubTitlePanel extends RelativeLayout {
     private int mOnlineTitleWidth = 0;
     private View mCursorIv;
     private SwitchCheck mSubtitleSwitch;
+    private ImageView mCloseIv;
 
     private UnScrollViewPager mViewPager;
     private PagerAdapter mPagerAdapter;
@@ -84,6 +90,7 @@ public class SelectSubTitlePanel extends RelativeLayout {
         mOnlineTitleTv = rootView.findViewById(R.id.online_title_tv);
         mCursorIv = rootView.findViewById(R.id.title_cursor);
         mSubtitleSwitch = rootView.findViewById(R.id.subtitle_switch);
+        mCloseIv = rootView.findViewById(R.id.close_dialog_btn);
         mViewPager = rootView.findViewById(R.id.local_viewpager);
         initLocalView(context);
         initOnLineView(context);
@@ -128,22 +135,24 @@ public class SelectSubTitlePanel extends RelativeLayout {
         });
 
 
-//        boolean isOpen = SpUtils.obtain(SpConstant.DEFAULT_SP_FILE).getBoolean(SpConstant.IS_OPEN_SUBTITLE, true);
-//        mSubtitleSwitch.setCheck(isOpen);
-//
-//        mSubtitleSwitch.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mSubtitleSwitch.setCheck(!mSubtitleSwitch.isCheck());
-//                SpUtils.obtain(SpConstant.DEFAULT_SP_FILE).save(SpConstant.IS_OPEN_SUBTITLE, mSubtitleSwitch.isCheck());
-//                if(mSubtitleSwitch.isCheck()){
-//                    StatisticsTools.uploadData(StatisticsConstants.VIDEO_OPEN_MENU);
-//                }else{
-//                    StatisticsTools.uploadData(StatisticsConstants.CLOSE_MENU_CLICK);
-//                }
-//                EventBus.getDefault().post(new PlaySettingCloseEvent());
-//            }
-//        });
+        boolean isOpen = SpUtils.obtain(SpConstant.DEFAULT_SP_FILE).getBoolean(SpConstant.IS_OPEN_SUBTITLE, true);
+        mSubtitleSwitch.setCheck(isOpen);
+
+        mSubtitleSwitch.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSubtitleSwitch.setCheck(!mSubtitleSwitch.isCheck());
+                SpUtils.obtain(SpConstant.DEFAULT_SP_FILE).save(SpConstant.IS_OPEN_SUBTITLE, mSubtitleSwitch.isCheck());
+                EventBus.getDefault().post(new SubtitleSwitchEvent());
+            }
+        });
+
+        mCloseIv.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EventBus.getDefault().post(new PlaySettingCloseEvent());
+            }
+        });
 
         addView(rootView);
     }
