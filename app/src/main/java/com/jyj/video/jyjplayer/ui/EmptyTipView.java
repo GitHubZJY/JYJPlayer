@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jyj.video.jyjplayer.R;
@@ -20,7 +21,9 @@ import com.zjyang.base.utils.ShapeUtils;
 
 public class EmptyTipView extends FrameLayout{
 
+    private ImageView mIcon;
     private TextView mRefreshBtn;
+    private TextView mTipTv;
 
     public EmptyTipView(@NonNull Context context) {
         this(context, null);
@@ -38,7 +41,10 @@ public class EmptyTipView extends FrameLayout{
     private void initView(Context context){
         View rootView = LayoutInflater.from(context).inflate(R.layout.layout_empty_tip, this);
         mRefreshBtn = rootView.findViewById(R.id.refresh_btn);
-        mRefreshBtn.setBackground(ShapeUtils.getRoundRectDrawable(DrawUtils.dp2px(8), SkinManager.getInstance().getPrimaryColor()));
+        mIcon = rootView.findViewById(R.id.empty_iv);
+        mTipTv = rootView.findViewById(R.id.tip_tv);
+        mRefreshBtn.setTextColor(SkinManager.getInstance().getPrimaryColor());
+        //mRefreshBtn.setBackground(ShapeUtils.drawColor(getResources().getDrawable(R.drawable.bg_radius_border), SkinManager.getInstance().getPrimaryColor()));
         mRefreshBtn.setVisibility(VISIBLE);
         mRefreshBtn.setOnClickListener(new OnClickListener() {
             @Override
@@ -48,6 +54,26 @@ public class EmptyTipView extends FrameLayout{
                 }
             }
         });
+    }
+
+    public void setTipText(String s){
+        mTipTv.setText(s);
+    }
+
+    public void setReloadText(String s){
+        mRefreshBtn.setText(s);
+    }
+
+    public void setIcon(int resId){
+        mIcon.setImageResource(resId);
+    }
+
+    public void setIconVisible(boolean isVisible){
+        mIcon.setVisibility(isVisible ? VISIBLE : GONE);
+    }
+
+    public void setReloadEnable(boolean isVisible){
+        mRefreshBtn.setVisibility(isVisible ? VISIBLE : GONE);
     }
 
     private ClickEmptyListener mListener;

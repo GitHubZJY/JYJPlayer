@@ -18,6 +18,7 @@ import com.jyj.video.jyjplayer.R;
 import com.jyj.video.jyjplayer.download.film.bean.DownLoadFilmInfo;
 import com.jyj.video.jyjplayer.module.download.adapter.DownLoadListAdapter;
 import com.jyj.video.jyjplayer.module.download.presenter.DownLoadPresenter;
+import com.jyj.video.jyjplayer.ui.EmptyTipView;
 import com.zjyang.base.broadcast.NetBroadcastReceiver;
 import com.zjyang.base.utils.LogUtil;
 import com.zjyang.base.utils.NetworkUtils;
@@ -31,7 +32,7 @@ import butterknife.Unbinder;
  * Created by 74215 on 2018/11/3.
  */
 
-public class DownLoadFragment extends Fragment implements NetBroadcastReceiver.NetEvent, DownloadTasksContract.View{
+public class DownLoadFragment extends Fragment implements NetBroadcastReceiver.NetEvent, DownloadTasksContract.View, EmptyTipView.ClickEmptyListener{
 
     private static final String TAG = "DownFilmListFragment";
     private Unbinder unbinder;
@@ -40,7 +41,7 @@ public class DownLoadFragment extends Fragment implements NetBroadcastReceiver.N
     RecyclerView mDownLoadLv;
 
     @BindView(R.id.empty_view)
-    LinearLayout mEmptyView;
+    EmptyTipView mEmptyView;
 
     @BindView(R.id.network_connection_error)
     TextView mNetConnectionError;
@@ -96,10 +97,20 @@ public class DownLoadFragment extends Fragment implements NetBroadcastReceiver.N
          * 设置监听
          */
         netBroadcastReceiver.setNetEvent(this);
+
+        mEmptyView.setClickEmptyListener(this);
+        mEmptyView.setReloadText("刷新");
+        mEmptyView.setTipText("暂无下载记录");
+        mEmptyView.setIcon(R.drawable.ic_empty_download);
         initData(savedInstanceState);
     }
 
     protected void initData(Bundle savedInstanceState) {
+        mPresenter.initDownLoadData();
+    }
+
+    @Override
+    public void clickRefresh() {
         mPresenter.initDownLoadData();
     }
 
@@ -116,8 +127,10 @@ public class DownLoadFragment extends Fragment implements NetBroadcastReceiver.N
     @Override
     public void checkEmptyView(List<DownLoadFilmInfo> downloadList){
         if(downloadList == null || downloadList.size() == 0){
+            mDownLoadLv.setVisibility(View.GONE);
             mEmptyView.setVisibility(View.VISIBLE);
         }else{
+            mDownLoadLv.setVisibility(View.VISIBLE);
             mEmptyView.setVisibility(View.GONE);
         }
     }

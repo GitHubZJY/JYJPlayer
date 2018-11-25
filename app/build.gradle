@@ -60,4 +60,5 @@ dependencies {
     implementation 'com.liulishuo.filedownloader:library:1.7.0'
     implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever-armeabi-v7a:1.0.14'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'com.yanzhenjie:permission:2.0.0-rc4'
 }

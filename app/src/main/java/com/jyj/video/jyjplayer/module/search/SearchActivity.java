@@ -24,6 +24,8 @@ import com.jyj.video.jyjplayer.filescan.model.bean.VideoInfo;
 import com.jyj.video.jyjplayer.module.folderdetail.VideoListAdapter;
 import com.jyj.video.jyjplayer.module.search.model.LocalSearchController;
 import com.jyj.video.jyjplayer.module.search.model.SearchObserver;
+import com.jyj.video.jyjplayer.ui.EmptyTipView;
+import com.jyj.video.jyjplayer.utils.AndroidDevice;
 import com.zjyang.base.base.BaseActivity;
 import com.zjyang.base.base.BasePresenter;
 import com.zjyang.base.base.SkinManager;
@@ -52,7 +54,7 @@ public class SearchActivity extends BaseActivity implements SearchObserver{
     @BindView(R.id.search_result_lv)
     RecyclerView mSearchResultLv;
     @BindView(R.id.empty_view)
-    View mSearchEmptyView;
+    EmptyTipView mSearchEmptyView;
 
     ImageView mEmptyIv;
 
@@ -102,9 +104,7 @@ public class SearchActivity extends BaseActivity implements SearchObserver{
         mSearchListAdapter = new VideoListAdapter(this, mSearchList);
         mSearchResultLv.setAdapter(mSearchListAdapter);
 
-        mEmptyIv = mSearchEmptyView.findViewById(R.id.empty_iv);
-        mEmptyIv.setImageDrawable(ShapeUtils.drawColor(getResources().getDrawable(R.drawable.illustration_nofiles), SkinManager.getInstance().getPrimaryColor()));
-
+        mSearchEmptyView.setReloadEnable(false);
         mSearchEd.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -131,6 +131,7 @@ public class SearchActivity extends BaseActivity implements SearchObserver{
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    AndroidDevice.hideSoftInput(SearchActivity.this);
                     LocalSearchController.getInstance().searchVideos(mSearchEd.getText().toString());
                     return true;
                 }

@@ -1,77 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:paddingLeft="16dp"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:text="@string/app_name"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_settings"/>
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentTop="true"
-        android:visibility="gone">
-
-        <RelativeLayout
-            android:id="@+id/search_entrance"
-            android:layout_width="match_parent"
-            android:layout_height="28dp"
-            android:background="@color/white"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
-            <ImageView
-                android:id="@+id/search_iv"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="2dp"
-                android:layout_marginLeft="12dp"
-                android:src="@drawable/ic_search"
-                />
-            <TextView
-                android:id="@+id/search_entrance_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="28dp"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/search_iv"
-                android:gravity="center"
-                android:paddingLeft="6dp"
-                android:textSize="14sp"
-                android:textColor="@color/text_color_gray"
-                android:text="搜索本地视频"/>
-        </RelativeLayout>
-
-
-    </RelativeLayout>
 
     <com.zjyang.base.widget.RefreshLoadRecyclerView
         android:id="@+id/folder_lv"
@@ -90,4 +22,4 @@
     </com.jyj.video.jyjplayer.ui.EmptyTipView>
 
 
-</LinearLayout>
+</RelativeLayout>

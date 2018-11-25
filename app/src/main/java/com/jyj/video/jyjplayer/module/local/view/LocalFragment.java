@@ -19,6 +19,7 @@ import com.jyj.video.jyjplayer.module.local.presenter.LocalPresenter;
 import com.jyj.video.jyjplayer.ui.EmptyTipView;
 import com.zjyang.base.utils.DrawUtils;
 import com.zjyang.base.utils.HandlerUtils;
+import com.zjyang.base.utils.LogUtil;
 import com.zjyang.base.utils.ShapeUtils;
 import com.zjyang.base.widget.RefreshLoadRecyclerView;
 import com.zjyang.base.widget.SpaceItemDecoration;
@@ -36,7 +37,6 @@ public class LocalFragment extends Fragment implements LocalTasksContract.View, 
 
     private EmptyTipView mEmptyTipView;
     private RefreshLoadRecyclerView mFolderLv;
-    private RelativeLayout mSearchEntrance;
     private List<FolderInfo> mFolderList;
     private FolderListAdapter mFolderAdapter;
     LocalPresenter mPresenter;
@@ -61,8 +61,6 @@ public class LocalFragment extends Fragment implements LocalTasksContract.View, 
         View view = inflater.inflate(R.layout.fragment_local, container, false);
         mEmptyTipView = (EmptyTipView) view.findViewById(R.id.empty_view);
         mEmptyTipView.setClickEmptyListener(this);
-        mSearchEntrance = (RelativeLayout) view.findViewById(R.id.search_entrance);
-        mSearchEntrance.setBackground(ShapeUtils.getRoundRectDrawable(DrawUtils.dp2px(20), Color.WHITE));
         mFolderLv = (RefreshLoadRecyclerView) view.findViewById(R.id.folder_lv);
         mFolderLv.setOnRefreshLoadListener(this);
         mFolderList = new ArrayList<>();
@@ -70,7 +68,7 @@ public class LocalFragment extends Fragment implements LocalTasksContract.View, 
         mFolderLv.setAdapter(mFolderAdapter);
         mFolderLv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         mFolderLv.addItemDecoration(new SpaceItemDecoration(DrawUtils.dp2px(2), 1, LinearLayoutManager.VERTICAL));
-        mPresenter.scanSystemFolderData();
+        mPresenter.checkSDPermission(getContext());
         return view;
 
     }
@@ -92,21 +90,32 @@ public class LocalFragment extends Fragment implements LocalTasksContract.View, 
 
     @Override
     public void clickRefresh() {
+        LogUtil.d("zjy", "clickReload");
         if(mPresenter != null){
-            mPresenter.scanSystemFolderData();
+            mPresenter.checkSDPermission(getContext());
         }
     }
 
     @Override
     public void showEmptyView() {
-        mEmptyTipView.setVisibility(View.VISIBLE);
-        mFolderLv.setVisibility(View.GONE);
+        HandlerUtils.post(new Runnable() {
+            @Override
+            public void run() {
+                mEmptyTipView.setVisibility(View.VISIBLE);
+                mFolderLv.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
     public void hideEmptyView() {
-        mEmptyTipView.setVisibility(View.GONE);
-        mFolderLv.setVisibility(View.VISIBLE);
+        HandlerUtils.post(new Runnable() {
+            @Override
+            public void run() {
+                mEmptyTipView.setVisibility(View.GONE);
+                mFolderLv.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
@@ -122,6 +131,11 @@ public class LocalFragment extends Fragment implements LocalTasksContract.View, 
                 mFolderAdapter.notifyDataSetChanged();
             }
         });
+    }
+
+    @Override
+    public void resume() {
+        onResume();
     }
 
     @Override

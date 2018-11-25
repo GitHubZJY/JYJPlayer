@@ -19,6 +19,7 @@ import com.jyj.video.jyjplayer.manager.FolderListPicManager;
 import com.jyj.video.jyjplayer.manager.VideoPlayDataManager;
 import com.jyj.video.jyjplayer.module.fullscreen.EnlargeWatchActivity;
 import com.jyj.video.jyjplayer.utils.TimeUtils;
+import com.jyj.video.jyjplayer.utils.TypefaceUtil;
 import com.jyj.video.jyjplayer.utils.VideoUtil;
 
 import java.util.List;
@@ -47,7 +48,9 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.Vide
     @Override
     public void onBindViewHolder(VideoListViewHolder holder, int position) {
         final VideoInfo videoInfo = mVideoList.get(position);
+        holder.mVideoNameTv.setTypeface(TypefaceUtil.getDefaultTypeface(mContext));
         holder.mVideoNameTv.setText((Html.fromHtml(videoInfo.getDisplayName())));
+        holder.mVideoTimeTv.setTypeface(TypefaceUtil.getDefaultTypeface(mContext));
         holder.mVideoTimeTv.setText(VideoUtil.switchDurationFormat(videoInfo.getDuration()));
         final Bitmap icon = FolderListPicManager.loadVideoIcon(videoInfo);//VideoUtil.createVideoThumbnail(videoInfo.getPath());if (icon != null) {
         holder.mVideoIv.setImageBitmap(icon);

@@ -59,10 +59,14 @@ public class SystemVideoScanner {
                 MediaStore.Video.Media.MIME_TYPE,
                 MediaStore.Video.Media.DISPLAY_NAME};
 
-
+        Cursor cursor = null;
         ContentResolver resolver = AppApplication.getContext().getContentResolver();
-        Cursor cursor = resolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-                mediaColumns, null, null, null);
+        try{
+            cursor = resolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+                    mediaColumns, null, null, null);
+        }catch (Exception e){
+            cursor = null;
+        }
 
         if (cursor == null) {
             LogUtil.e(TAG, "系统--没有找到可播放视频文件");

@@ -1,5 +1,8 @@
 package com.jyj.video.jyjplayer.module.local.presenter;
 
+import android.content.Context;
+
+import com.jyj.video.jyjplayer.AppApplication;
 import com.jyj.video.jyjplayer.event.JniScanFoundEvent;
 import com.jyj.video.jyjplayer.event.SingleFolderScanFinishEvent;
 import com.jyj.video.jyjplayer.event.SystemMediaScanFinishEvent;
@@ -7,6 +10,7 @@ import com.jyj.video.jyjplayer.filescan.model.FileVideoModel;
 import com.jyj.video.jyjplayer.filescan.model.bean.FolderInfo;
 import com.jyj.video.jyjplayer.module.local.LocalTasksContract;
 import com.jyj.video.jyjplayer.module.local.model.LocalModel;
+import com.jyj.video.jyjplayer.utils.PermissionUtils;
 import com.zjyang.base.base.BasePresenter;
 import com.zjyang.base.utils.LogUtil;
 
@@ -31,6 +35,21 @@ public class LocalPresenter implements LocalTasksContract.Presenter{
         }
         mView = view;
         mModel = new LocalModel();
+    }
+
+    @Override
+    public void checkSDPermission(Context context){
+        PermissionUtils.requestSDPermission(context, new PermissionUtils.RequestPermissionCallback() {
+            @Override
+            public void onGranted() {
+                scanSystemFolderData();
+            }
+
+            @Override
+            public void onDenied() {
+                mView.showEmptyView();
+            }
+        });
     }
 
     @Override
@@ -67,6 +86,7 @@ public class LocalPresenter implements LocalTasksContract.Presenter{
         if(scanList == null || scanList.size() == 0){
             mView.showEmptyView();
         }else{
+            mView.hideEmptyView();
             mView.notifyFolderListView(scanList);
         }
         LogUtil.d("zjy", "获取扫描结果-系统媒体文件: " + (scanList == null ? -1 : scanList.size()));

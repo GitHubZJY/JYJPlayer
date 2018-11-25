@@ -1,5 +1,7 @@
 package com.jyj.video.jyjplayer.module.local;
 
+import android.content.Context;
+
 import com.jyj.video.jyjplayer.filescan.model.FileVideoModel;
 import com.jyj.video.jyjplayer.filescan.model.bean.FolderInfo;
 
@@ -15,6 +17,7 @@ public interface LocalTasksContract {
         void notifyFolderListView(List<FolderInfo> scanList);
         void showEmptyView();
         void hideEmptyView();
+        void resume();
     }
 
     interface Model {
@@ -24,6 +27,7 @@ public interface LocalTasksContract {
     }
 
     interface Presenter {
+        void checkSDPermission(Context context);
         void scanSystemFolderData();
         void destroy();
     }

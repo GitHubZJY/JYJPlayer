@@ -37,7 +37,7 @@ public class PermissionUtils {
 
     private static Context mContext;
 
-    private String packageName = "com.zjyang.mvpframe";
+    private String packageName = "com.jyj.video.jyjplayer";
 
     public static PermissionUtils newInstance() {
         if(mInstance == null){

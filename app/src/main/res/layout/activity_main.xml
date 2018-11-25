@@ -42,6 +42,6 @@
         fab:elevation="6dp"
         fab:pressedTranslationZ="12dp"
         fab:fabSize="normal"
-        android:src="@drawable/ic_float_add" />
+        android:src="@drawable/ic_float_download" />
 
 </android.support.constraint.ConstraintLayout>
