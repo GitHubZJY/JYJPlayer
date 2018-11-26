@@ -9,6 +9,7 @@
         android:layout_height="60dp"
         app:content_text="主题"
         app:bottom_line_margin="16dp"
+        app:left_icon_src="@drawable/ic_setting_theme"
         app:bottom_line_visible="false">
 
     </com.zjyang.base.widget.BaseSettingItem>
@@ -17,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:content_text="我要反馈"
+        app:left_icon_src="@drawable/ic_setting_about"
         app:bottom_line_margin="16dp"
         app:bottom_line_visible="false">
 
@@ -25,7 +27,8 @@
     <com.zjyang.base.widget.BaseSettingItem
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:content_text="关于我们">
+        app:content_text="关于我们"
+        app:left_icon_src="@drawable/ic_setting_feedback">
 
     </com.zjyang.base.widget.BaseSettingItem>
 </LinearLayout>

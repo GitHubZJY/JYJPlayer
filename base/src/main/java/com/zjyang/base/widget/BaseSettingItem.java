@@ -63,6 +63,7 @@ public class BaseSettingItem extends RelativeLayout{
 
         mTopLine.setVisibility(mTopLineVisible ? VISIBLE : GONE);
         mBottomLine.setVisibility(mBottomLineVisible ? VISIBLE : GONE);
+        mLeftIconIv.setBackground(getResources().getDrawable(R.drawable.bg_radius_border));
         if(mLeftIconRes != -1){
             mLeftIconIv.setImageResource(mLeftIconRes);
         }

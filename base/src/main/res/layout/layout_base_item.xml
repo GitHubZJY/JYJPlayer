@@ -13,8 +13,9 @@
 
     <ImageView
         android:id="@+id/setting_left_icon_iv"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:padding="6dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
@@ -28,7 +29,7 @@
         android:layout_toRightOf="@id/setting_left_icon_iv"
         android:gravity="center"
         android:textColor="@color/primary_text_color"
-        android:textSize="16sp"
+        android:textSize="15sp"
         android:text="Setting"/>
 
     <View
