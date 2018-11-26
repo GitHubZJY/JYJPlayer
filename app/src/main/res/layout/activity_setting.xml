@@ -15,6 +15,7 @@
     </com.zjyang.base.widget.BaseSettingItem>
 
     <com.zjyang.base.widget.BaseSettingItem
+        android:id="@+id/feedback_item"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:content_text="我要反馈"

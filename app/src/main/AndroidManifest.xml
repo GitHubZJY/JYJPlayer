@@ -41,6 +41,11 @@
 
         <activity android:name=".module.search.SearchActivity"
             android:theme="@style/BaseActivityTheme"></activity>
+
+        <activity android:name=".module.setting.feedback.FeedbackActivity"
+            android:theme="@style/BaseActivityTheme">
+
+        </activity>
     </application>
 
 </manifest>

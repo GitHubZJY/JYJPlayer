@@ -4,15 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.youli.feiyu.fynotification.MainActivity">
     <item
-        android:id="@+id/action_search"
+        android:id="@+id/action_send"
         android:orderInCategory="0"
-        android:icon="@drawable/ic_float_search"
-        android:title=""
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="0"
-        android:icon="@drawable/ic_settings"
+        android:icon="@drawable/ic_feedback_send"
         android:title=""
         app:showAsAction="ifRoom" />
 </menu>
