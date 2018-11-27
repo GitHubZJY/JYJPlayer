@@ -2,6 +2,7 @@ package com.jyj.video.jyjplayer.module.setting.feedback;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import com.zjyang.base.base.BaseActivity;
 import com.zjyang.base.base.BasePresenter;
 import com.zjyang.base.utils.HandlerUtils;
 import com.zjyang.base.utils.LogUtil;
+import com.zjyang.base.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +29,8 @@ public class FeedbackActivity extends BaseActivity {
 
     private ActionBar mActionBar;
 
+    @BindView(R.id.et_email)
+    EditText mEmailEd;
     @BindView(R.id.et_feedback_content)
     EditText mContentEd;
 
@@ -59,14 +63,20 @@ public class FeedbackActivity extends BaseActivity {
                 this.finish();
                 return true;
             case R.id.action_send:
+                final String email = mEmailEd.getText().toString();
+                final String content = mContentEd.getText().toString();
+                if(TextUtils.isEmpty(email)){
+                    ToastUtils.showToast(this, "联系方式不能为空");
+                    return true;
+                }
+                if(TextUtils.isEmpty(content)){
+                    ToastUtils.showToast(this, "内容不能为空");
+                    return true;
+                }
                 HandlerUtils.postThread(new Runnable() {
                     @Override
                     public void run() {
-                        try{
-                            MailService.send_email("", mContentEd.getText().toString());
-                        }catch (Exception e){
-                            LogUtil.e("zjy", "e: " + e.toString());
-                        }
+                        MailService.send(email, content);
                     }
                 });
 
