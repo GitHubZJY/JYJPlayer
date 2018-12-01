@@ -10,7 +10,19 @@
         app:content_text="主题"
         app:bottom_line_margin="16dp"
         app:left_icon_src="@drawable/ic_setting_theme"
-        app:bottom_line_visible="false">
+        app:bottom_line_visible="true">
+
+    </com.zjyang.base.widget.BaseSettingItem>
+
+    <com.zjyang.base.widget.BaseSettingItem
+        android:id="@+id/language_item"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:content_text="切换语言"
+        app:top_line_visible="false"
+        app:left_icon_src="@drawable/ic_setting_about"
+        app:bottom_line_margin="16dp"
+        app:bottom_line_visible="true">
 
     </com.zjyang.base.widget.BaseSettingItem>
 
@@ -19,9 +31,10 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:content_text="我要反馈"
+        app:top_line_visible="false"
         app:left_icon_src="@drawable/ic_setting_about"
         app:bottom_line_margin="16dp"
-        app:bottom_line_visible="false">
+        app:bottom_line_visible="true">
 
     </com.zjyang.base.widget.BaseSettingItem>
 
@@ -29,7 +42,96 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:content_text="关于我们"
+        app:top_line_visible="false"
         app:left_icon_src="@drawable/ic_setting_feedback">
 
     </com.zjyang.base.widget.BaseSettingItem>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_text_color"
+            android:textSize="17sp"
+            android:text="播放设置"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/ripple"
+            >
+
+            <ImageView
+                android:id="@+id/decode_iv"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:padding="6dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_setting_decode"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/decode_iv"
+                android:layout_marginLeft="16dp"
+                android:textSize="15sp"
+                android:textColor="@color/main_text_color"
+                android:text="解码方式"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="软解码"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/line"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/ripple"
+            >
+
+            <ImageView
+                android:id="@+id/auto_play_iv"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:padding="6dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_setting_auto"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/auto_play_iv"
+                android:layout_marginLeft="16dp"
+                android:textSize="15sp"
+                android:textColor="@color/main_text_color"
+                android:text="自动播放下一个"/>
+            <com.jyj.video.jyjplayer.ui.SwitchCheck
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/line"/>
+
+    </LinearLayout>
 </LinearLayout>

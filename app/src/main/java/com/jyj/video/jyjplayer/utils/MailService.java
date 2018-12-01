@@ -34,6 +34,11 @@ public class MailService {
     private static final String ACCOUNT = "742155745@qq.com";
     private static final String AUTHEN_CODE = "ewghqpxrvjadbdia";
 
+    public interface SendMailListener {
+        void sendFinish();
+        void sendFail();
+    }
+
     public static void sendGmail(String email, String content) throws IOException, MessagingException {
         File file = new File(content);
 
@@ -89,7 +94,7 @@ public class MailService {
 
     }
 
-    public static void send(String email, String content){
+    public static void send(String email, String content, final SendMailListener listener){
         Properties props = new Properties();
         //邮件的协议 pop3 smtp imap
         props.put("mail.transport.protocol", "smtp");
@@ -164,11 +169,17 @@ public class MailService {
                 @Override
                 public void messageDelivered(TransportEvent e) {
                     LogUtil.d(TAG, "邮件送达");
+                    if(listener != null){
+                        listener.sendFinish();
+                    }
                 }
 
                 @Override
                 public void messageNotDelivered(TransportEvent e) {
                     LogUtil.d(TAG, "邮件未送达");
+                    if(listener != null){
+                        listener.sendFail();
+                    }
                 }
 
                 @Override

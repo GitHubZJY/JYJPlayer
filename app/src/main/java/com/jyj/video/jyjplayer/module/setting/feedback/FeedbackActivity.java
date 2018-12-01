@@ -5,15 +5,20 @@ import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 
 import com.jyj.video.jyjplayer.R;
+import com.jyj.video.jyjplayer.ui.StatusLoadingDialog;
+import com.jyj.video.jyjplayer.ui.StatusLoadingView;
 import com.jyj.video.jyjplayer.utils.MailService;
 import com.zjyang.base.base.BaseActivity;
 import com.zjyang.base.base.BasePresenter;
 import com.zjyang.base.utils.HandlerUtils;
 import com.zjyang.base.utils.LogUtil;
 import com.zjyang.base.utils.ToastUtils;
+import com.zjyang.base.widget.dialog.BaseDialogFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +38,8 @@ public class FeedbackActivity extends BaseActivity {
     EditText mEmailEd;
     @BindView(R.id.et_feedback_content)
     EditText mContentEd;
+
+    StatusLoadingDialog mLoadingDialog;
 
     @Override
     public BasePresenter createPresenter() {
@@ -73,10 +80,45 @@ public class FeedbackActivity extends BaseActivity {
                     ToastUtils.showToast(this, "内容不能为空");
                     return true;
                 }
+                mLoadingDialog = StatusLoadingDialog.create(false);
+                mLoadingDialog.show(getFragmentManager(), "loading");
                 HandlerUtils.postThread(new Runnable() {
                     @Override
                     public void run() {
-                        MailService.send(email, content);
+                        MailService.send(email, content, new MailService.SendMailListener() {
+                            @Override
+                            public void sendFinish() {
+                                HandlerUtils.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mLoadingDialog.loadSuccess();
+                                    }
+                                });
+                                HandlerUtils.postDelay(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mLoadingDialog.dismiss();
+                                    }
+                                }, 1000);
+                            }
+
+                            @Override
+                            public void sendFail() {
+                                HandlerUtils.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mLoadingDialog.loadFail();
+
+                                    }
+                                });
+                                HandlerUtils.postDelay(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mLoadingDialog.dismiss();
+                                    }
+                                }, 1000);
+                            }
+                        });
                     }
                 });
 

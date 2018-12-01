@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import com.jyj.video.jyjplayer.R;
 import com.jyj.video.jyjplayer.module.setting.feedback.FeedbackActivity;
@@ -29,6 +30,11 @@ public class SettingActivity extends BaseActivity{
     @BindView(R.id.feedback_item)
     BaseSettingItem mFeedbackItem;
 
+    @BindView(R.id.decode_iv)
+    ImageView mDecodeIv;
+    @BindView(R.id.auto_play_iv)
+    ImageView mAutoIv;
+
     @Override
     public BasePresenter createPresenter() {
         return null;
@@ -40,6 +46,9 @@ public class SettingActivity extends BaseActivity{
         setContentView(R.layout.activity_setting);
         unbinder = ButterKnife.bind(this);
         initActionBar();
+        mDecodeIv.setBackground(getResources().getDrawable(com.zjyang.base.R.drawable.bg_radius_border));
+        mAutoIv.setBackground(getResources().getDrawable(com.zjyang.base.R.drawable.bg_radius_border));
+
     }
 
     public void initActionBar() {
