@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">player</string>
+
+
+    <string name="speed">Speed</string>
+    <string name="subtitle">Subtitle</string>
+</resources>

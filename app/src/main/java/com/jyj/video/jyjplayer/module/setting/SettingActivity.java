@@ -9,11 +9,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jyj.video.jyjplayer.MainActivity;
 import com.jyj.video.jyjplayer.R;
 import com.jyj.video.jyjplayer.manager.SpManager;
 import com.jyj.video.jyjplayer.module.setting.feedback.FeedbackActivity;
+import com.jyj.video.jyjplayer.module.setting.language.LanguageActivity;
 import com.jyj.video.jyjplayer.module.setting.widget.DecodeSwitchDialog;
 import com.jyj.video.jyjplayer.ui.SwitchCheck;
+import com.jyj.video.jyjplayer.utils.LanguageUtils;
 import com.zjyang.base.base.BaseActivity;
 import com.zjyang.base.base.BasePresenter;
 import com.zjyang.base.widget.BaseSettingItem;
@@ -54,6 +57,8 @@ public class SettingActivity extends BaseActivity{
     SwitchCheck mScanHideSwitch;
     @BindView(R.id.scan_hide_iv)
     ImageView mScanHideIv;
+    @BindView(R.id.language_item)
+    BaseSettingItem mLanguageItem;
 
     @Override
     public BasePresenter createPresenter() {
@@ -79,7 +84,7 @@ public class SettingActivity extends BaseActivity{
         if (mActionBar != null) {
             mActionBar.setHomeButtonEnabled(true);
             mActionBar.setDisplayHomeAsUpEnabled(true);
-            mActionBar.setTitle("设置");
+            mActionBar.setTitle(getResources().getString(R.string.setting));
         }
     }
 
@@ -115,6 +120,11 @@ public class SettingActivity extends BaseActivity{
         mScanHideSwitch.setCheck(!isShowHiddenFolder);
     }
 
+    @OnClick(R.id.language_item)
+    void clickLanguage(){
+        Intent languageIntent = new Intent(this, LanguageActivity.class);
+        startActivity(languageIntent);
+    }
 
 
     @Override

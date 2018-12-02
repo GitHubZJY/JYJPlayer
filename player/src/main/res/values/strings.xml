@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">player</string>
+
+
+    <string name="speed">倍速</string>
+    <string name="subtitle">字幕</string>
 </resources>

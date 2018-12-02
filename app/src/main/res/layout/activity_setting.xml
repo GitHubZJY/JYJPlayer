@@ -25,7 +25,7 @@
                 android:layout_marginRight="16dp"
                 android:textColor="@color/main_text_color"
                 android:textSize="17sp"
-                android:text="播放设置"/>
+                android:text="@string/play_setting"/>
 
             <View
                 android:layout_width="match_parent"
@@ -58,14 +58,14 @@
                     android:layout_marginLeft="16dp"
                     android:textSize="15sp"
                     android:textColor="@color/main_text_color"
-                    android:text="解码方式"/>
+                    android:text="@string/decode_type"/>
                 <TextView
                     android:id="@+id/cur_decode_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="软解码"/>
+                    android:text="@string/setting_decode_soft"/>
             </RelativeLayout>
 
             <View
@@ -99,7 +99,7 @@
                     android:layout_marginLeft="16dp"
                     android:textSize="15sp"
                     android:textColor="@color/main_text_color"
-                    android:text="自动播放下一个"/>
+                    android:text="@string/auto_play_next"/>
                 <com.jyj.video.jyjplayer.ui.SwitchCheck
                     android:id="@+id/auto_next_switch"
                     android:layout_width="wrap_content"
@@ -137,7 +137,7 @@
                 android:layout_marginRight="16dp"
                 android:textColor="@color/main_text_color"
                 android:textSize="17sp"
-                android:text="扫描设置"/>
+                android:text="@string/scan_setting"/>
 
             <View
                 android:layout_width="match_parent"
@@ -170,7 +170,7 @@
                     android:layout_marginLeft="16dp"
                     android:textSize="15sp"
                     android:textColor="@color/main_text_color"
-                    android:text="显示“.”开头的文件或文件夹"/>
+                    android:text="@string/show_hidden_folder"/>
                 <com.jyj.video.jyjplayer.ui.SwitchCheck
                     android:id="@+id/scan_hide_switch"
                     android:layout_width="wrap_content"
@@ -201,7 +201,7 @@
             android:layout_marginRight="16dp"
             android:textColor="@color/main_text_color"
             android:textSize="17sp"
-            android:text="通用设置"/>
+            android:text="@string/common_setting"/>
 
         <View
             android:layout_width="match_parent"
@@ -212,7 +212,7 @@
         <com.zjyang.base.widget.BaseSettingItem
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:content_text="主题"
+            app:content_text="@string/theme"
             app:top_line_visible="false"
             app:bottom_line_margin="16dp"
             app:left_icon_src="@drawable/ic_setting_theme"
@@ -224,7 +224,7 @@
             android:id="@+id/language_item"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:content_text="切换语言"
+            app:content_text="@string/switch_language"
             app:top_line_visible="false"
             app:left_icon_src="@drawable/ic_setting_language"
             app:bottom_line_margin="16dp"
@@ -236,7 +236,7 @@
             android:id="@+id/feedback_item"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:content_text="我要反馈"
+            app:content_text="@string/feedback_setting"
             app:top_line_visible="false"
             app:left_icon_src="@drawable/ic_setting_about"
             app:bottom_line_margin="16dp"
@@ -247,7 +247,7 @@
         <com.zjyang.base.widget.BaseSettingItem
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:content_text="关于我们"
+            app:content_text="@string/about_me"
             app:top_line_visible="false"
             app:left_icon_src="@drawable/ic_setting_feedback">
 

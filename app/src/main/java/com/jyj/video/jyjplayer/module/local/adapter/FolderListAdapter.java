@@ -46,7 +46,7 @@ public class FolderListAdapter extends RecyclerView.Adapter<FolderListAdapter.Fo
         holder.mFolderNameTv.setTypeface(TypefaceUtil.getDefaultTypeface(mContext));
         holder.mVideoNumTv.setTypeface(TypefaceUtil.getDefaultTypeface(mContext));
         holder.mFolderNameTv.setText(mFolderList.get(position).getName());
-        holder.mVideoNumTv.setText(mFolderList.get(position).getVideoCnt() + "个视频");
+        holder.mVideoNumTv.setText(mFolderList.get(position).getVideoCnt() + " " + mContext.getResources().getString(R.string.videos));
         List<VideoInfo> videoInfos = mFolderList.get(position).getVideoList();
         for(int i=0; i<videoInfos.size(); i++){
             VideoInfo videoInfo = videoInfos.get(i);

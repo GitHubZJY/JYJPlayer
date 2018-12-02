@@ -59,7 +59,7 @@ public class FeedbackActivity extends BaseActivity {
         if (mActionBar != null) {
             mActionBar.setHomeButtonEnabled(true);
             mActionBar.setDisplayHomeAsUpEnabled(true);
-            mActionBar.setTitle("反馈");
+            mActionBar.setTitle(getResources().getString(R.string.feedback));
         }
     }
 
@@ -73,11 +73,11 @@ public class FeedbackActivity extends BaseActivity {
                 final String email = mEmailEd.getText().toString();
                 final String content = mContentEd.getText().toString();
                 if(TextUtils.isEmpty(email)){
-                    ToastUtils.showToast(this, "联系方式不能为空");
+                    ToastUtils.showToast(this, getResources().getString(R.string.contact_empty_tip));
                     return true;
                 }
                 if(TextUtils.isEmpty(content)){
-                    ToastUtils.showToast(this, "内容不能为空");
+                    ToastUtils.showToast(this, getResources().getString(R.string.content_empty_tip));
                     return true;
                 }
                 mLoadingDialog = StatusLoadingDialog.create(false);

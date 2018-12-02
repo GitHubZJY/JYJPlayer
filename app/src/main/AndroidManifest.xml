@@ -46,6 +46,11 @@
             android:theme="@style/BaseActivityTheme">
 
         </activity>
+
+        <activity android:name=".module.setting.language.LanguageActivity"
+            android:theme="@style/BaseActivityTheme">
+
+        </activity>
     </application>
 
 </manifest>

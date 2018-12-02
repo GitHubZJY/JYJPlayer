@@ -3,63 +3,86 @@
 
     <string name="latest_early">更早</string>
 
-    <string name="can_not_read_sd">SD卡不可用</string>
-    <string name="cannot_download_tip">下载失败</string>
+    <string name="can_not_read_sd">SD card is not available</string>
+    <string name="cannot_download_tip">Download Failed</string>
     <string name="latest_today">昨天</string>
     <string name="latest_week">一周前</string>
 
-    <string name="local_tab_name">本地</string>
-    <string name="download_tab_name">下载</string>
+    <string name="local_tab_name">Local</string>
+    <string name="download_tab_name">Download</string>
 
-    <string name="download_url_edit_tip">输入你的网络视频播放地址</string>
-    <string name="add_down_title">视频流下载</string>
-    <string name="down_empty_tips">下载地址不能为空</string>
-    <string name="unformat_url">目标地址无效</string>
+    <string name="download_url_edit_tip">Input your online video url</string>
+    <string name="add_down_title">Video streaming Download</string>
+    <string name="down_empty_tips">Download address cannot be empty</string>
+    <string name="unformat_url">Invalid target address</string>
 
-    <string name="ok">确定</string>
-    <string name="download_forbidden_content">根据规定，Youtube视频不允许被下载</string>
-    <string name="download_forbidden_content2">请尝试其他网站下载</string>
-    <string name="tip">提示</string>
-    <string name="no_empty_tip">名字不能为空</string>
-    <string name="cancel">取消</string>
-    <string name="already_download">下载列表中已存在</string>
+    <string name="ok">Confirm</string>
+    <string name="download_forbidden_content">YouTube videos are not allowed to be downloaded according to regulations</string>
+    <string name="download_forbidden_content2">Please try download by others website</string>
+    <string name="tip">Tip</string>
+    <string name="no_empty_tip">Name can not be empty</string>
+    <string name="cancel">Cancel</string>
+    <string name="already_download">Download list has included</string>
 
-    <string name="download_save_title">另存为</string>
-    <string name="download_forbidden_title">抱歉</string>
+    <string name="download_save_title">Save as</string>
+    <string name="download_forbidden_title">Sorry</string>
     <string name="download_pause">Paused</string>
     <string name="download_finish">Downloaded</string>
     <string name="download_error">Download Error</string>
     <string name="download_auto_connecting">Auto Connecting</string>
 
-    <string name="network_connection_error">当前网络状态不佳</string>
-    <string name="search_fail_tip">搜索不到相关视频</string>
+    <string name="network_connection_error">Current network state is not good</string>
+    <string name="search_fail_tip">No Video Found</string>
 
-    <string name="local">本地</string>
-    <string name="online">在线</string>
-    <string name="search_cancel">取消</string>
-    <string name="downloading">下载中</string>
-    <string name="local_no_subtitle">暂无本地字幕</string>
-    <string name="back">返回</string>
-    <string name="subtitle_no_found">搜不到相关字幕</string>
-    <string name="download">下载</string>
-    <string name="search_start">下载字幕语言</string>
-    <string name="search_by">通过</string>
-    <string name="search">搜索</string>
-    <string name="searching">搜索中</string>
+    <string name="local">Local</string>
+    <string name="online">Download</string>
+    <string name="search_cancel">Cancel</string>
+    <string name="downloading">Downloading</string>
+    <string name="local_no_subtitle">No Local Subtitle found</string>
+    <string name="back">Back</string>
+    <string name="subtitle_no_found">No Online Subtitle found</string>
+    <string name="download">Download</string>
+    <string name="search_start">Download Subtitle Language</string>
+    <string name="search_by">By</string>
+    <string name="search">Search</string>
+    <string name="searching">Searching</string>
 
-    <string name="download_sub_success">下载成功</string>
-    <string name="download_sub_failed">下载失败</string>
-    <string name="confirm">确认</string>
-    <string name="name">字幕名</string>
+    <string name="start_download">Start Download</string>
+    <string name="download_sub_success">Download Success</string>
+    <string name="download_sub_failed">Download failed</string>
+    <string name="confirm">Confirm</string>
+    <string name="name">Subtitle Name</string>
     <string name="subtitle_title">Subtitle</string>
-    <string name="folder_up">返回上层</string>
+    <string name="folder_up">Back</string>
+    <string name="refresh">Refresh</string>
+    <string name="refreshing">Refreshing</string>
+    <string name="no_download_history">No download history found</string>
 
-    <string name="fail_load_tip">加载字幕失败</string>
-    <string name="already_apply">已加载</string>
+    <string name="fail_load_tip">Apply subtitle failed</string>
+    <string name="already_apply">Has apply</string>
 
-    <string name="video_decode">视频解码</string>
-    <string name="setting_decode_hard">硬解码</string>
-    <string name="setting_decode_soft">软解码</string>
+    <string name="video_decode">Video Decode</string>
+    <string name="setting_decode_hard">Hard Decode</string>
+    <string name="setting_decode_soft">Soft Decode</string>
 
+    <string name="setting">Setting</string>
+    <string name="feedback">Feedback</string>
+    <string name="contact_empty_tip">Contact cannot be empty</string>
+    <string name="content_empty_tip">Content cannot be empty</string>
+    <string name="provide_contact_tip">Provide your contact information so that we can reply in time.</string>
+    <string name="your_email">Your email/phone</string>
+    <string name="input_your_suggest">Input your suggestion for us</string>
+    <string name="play_setting">Play Setting</string>
+    <string name="decode_type">Decode type</string>
+    <string name="auto_play_next">Auto play next video</string>
+    <string name="scan_setting">Scan Setting</string>
+    <string name="show_hidden_folder">scan video or folder include "."</string>
+    <string name="common_setting">Common Setting</string>
+    <string name="theme">Theme</string>
+    <string name="switch_language">Switch Language</string>
+    <string name="feedback_setting">Feedback</string>
+    <string name="about_me">About us</string>
+
+    <string name="videos">videos</string>
 
 </resources>

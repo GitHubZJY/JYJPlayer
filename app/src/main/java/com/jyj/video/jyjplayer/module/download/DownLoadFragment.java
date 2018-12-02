@@ -99,8 +99,8 @@ public class DownLoadFragment extends Fragment implements NetBroadcastReceiver.N
         netBroadcastReceiver.setNetEvent(this);
 
         mEmptyView.setClickEmptyListener(this);
-        mEmptyView.setReloadText("刷新");
-        mEmptyView.setTipText("暂无下载记录");
+        mEmptyView.setReloadText(getResources().getString(R.string.refresh));
+        mEmptyView.setTipText(getResources().getString(R.string.no_download_history));
         mEmptyView.setIcon(R.drawable.ic_empty_download);
         initData(savedInstanceState);
     }
