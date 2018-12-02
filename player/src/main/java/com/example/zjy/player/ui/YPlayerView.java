@@ -266,7 +266,9 @@ public class YPlayerView extends RelativeLayout implements QVMediaController.Con
 
     @Override
     public void playComplete() {
-
+        if(mListener != null){
+            mListener.playComplete();
+        }
     }
 
     @Override

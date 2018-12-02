@@ -25,7 +25,7 @@ public interface PlayerListener {
 //
 //    void backward(String curTime, String durTime, long lTime, long duration);
 //
-//    void playComplete();
+    void playComplete();
 //
 //    void stopScroll();
 //

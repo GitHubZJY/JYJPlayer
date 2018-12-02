@@ -57,4 +57,9 @@
     <string name="fail_load_tip">加载字幕失败</string>
     <string name="already_apply">已加载</string>
 
+    <string name="video_decode">视频解码</string>
+    <string name="setting_decode_hard">硬解码</string>
+    <string name="setting_decode_soft">软解码</string>
+
+
 </resources>

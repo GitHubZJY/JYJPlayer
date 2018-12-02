@@ -28,6 +28,7 @@ import com.jyj.video.jyjplayer.filescan.model.FileVideoModel;
 import com.jyj.video.jyjplayer.filescan.model.bean.FolderInfo;
 import com.jyj.video.jyjplayer.filescan.model.bean.SubtitleInfo;
 import com.jyj.video.jyjplayer.filescan.model.bean.VideoInfo;
+import com.jyj.video.jyjplayer.manager.SpManager;
 import com.jyj.video.jyjplayer.manager.VideoPlayDataManager;
 import com.jyj.video.jyjplayer.subtitle.SRTUtils;
 import com.jyj.video.jyjplayer.subtitle.SubTitleContainer;
@@ -220,6 +221,13 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
             initVideoParams();
         }else{
             ToastUtils.showToast(EnlargeWatchActivity.this, "Already the last video");
+        }
+    }
+
+    @Override
+    public void playComplete() {
+        if(SpManager.getInstance().getAutoPlayNext()){
+            clickNext();
         }
     }
 
