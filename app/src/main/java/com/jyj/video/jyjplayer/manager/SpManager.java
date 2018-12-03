@@ -99,5 +99,14 @@ public class SpManager {
     }
 
 
+    // 当前应用内语言
+    public void setCurLanguage(String language) {
+        getSpUtils().save(SpConstant.CUR_LANGUAGE_CODE, language);
+    }
+
+    // 默认: null
+    public String getCurLanguage() {
+        return getSpUtils().getString(SpConstant.CUR_LANGUAGE_CODE, null);
+    }
 
 }

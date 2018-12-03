@@ -86,4 +86,7 @@
 
     <string name="videos">个视频</string>
 
+    <string name="auto_select">自动选择</string>
+    <string name="search_input_hint">输入视频关键字</string>
+
 </resources>

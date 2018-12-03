@@ -159,4 +159,6 @@ public interface SpConstant {
     String PRIVACY_WEBSITE_PANL_STATUS = "PRIVACY_WEBSITE_PANL_STATUS"; //隐私空间的隐私网站面板的展开或折叠状态
     String SEARCH_HISTORY = "SEARCH_HISTORY"; //搜索历史记录
     String SEARCH_TIPS_CONTAINER = "SEARCH_TIPS_CONTAINER"; //搜索提示弹框展示次数
+
+    String CUR_LANGUAGE_CODE = "CUR_LANGUAGE_CODE";
 }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.jyj.video.jyjplayer.MainActivity;
 import com.jyj.video.jyjplayer.R;
+import com.jyj.video.jyjplayer.event.ToggleLanguageEvent;
 import com.jyj.video.jyjplayer.manager.SpManager;
 import com.jyj.video.jyjplayer.module.setting.feedback.FeedbackActivity;
 import com.jyj.video.jyjplayer.module.setting.language.LanguageActivity;
@@ -20,6 +21,9 @@ import com.jyj.video.jyjplayer.utils.LanguageUtils;
 import com.zjyang.base.base.BaseActivity;
 import com.zjyang.base.base.BasePresenter;
 import com.zjyang.base.widget.BaseSettingItem;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,6 +74,9 @@ public class SettingActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         unbinder = ButterKnife.bind(this);
+        if(!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         initActionBar();
         mDecodeIv.setBackground(getResources().getDrawable(com.zjyang.base.R.drawable.bg_radius_border));
         mAutoIv.setBackground(getResources().getDrawable(com.zjyang.base.R.drawable.bg_radius_border));
@@ -137,11 +144,17 @@ public class SettingActivity extends BaseActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    @Subscribe
+    public void onToggleLanguageEvent(ToggleLanguageEvent event){
+        recreate();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if(unbinder != null){
             unbinder.unbind();
         }
+        EventBus.getDefault().unregister(this);
     }
 }

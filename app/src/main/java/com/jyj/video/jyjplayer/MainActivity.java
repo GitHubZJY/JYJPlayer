@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.jyj.video.jyjplayer.event.ToggleLanguageEvent;
 import com.jyj.video.jyjplayer.module.download.DownLoadFragment;
 import com.jyj.video.jyjplayer.module.download.view.AddDownLoadActivity;
 import com.jyj.video.jyjplayer.module.home.widget.HomeBottomBar;
@@ -28,6 +29,9 @@ import com.jyj.video.jyjplayer.ui.CustomViewPager;
 import com.zjyang.base.base.BaseActivity;
 import com.zjyang.base.base.BasePresenter;
 import com.zjyang.base.base.SkinManager;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +73,9 @@ public class MainActivity extends BaseActivity implements HomeBottomBar.TabClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         unbinder = ButterKnife.bind(this);
+        if(!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         fm = getSupportFragmentManager();
         mFragments = new ArrayList<Fragment>();
         mLocalFragment = LocalFragment.newInstance();
@@ -123,9 +130,15 @@ public class MainActivity extends BaseActivity implements HomeBottomBar.TabClick
         startActivity(intent);
     }
 
+    @Subscribe
+    public void onToggleLanguageEvent(ToggleLanguageEvent event){
+        recreate();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+        EventBus.getDefault().unregister(this);
     }
 }

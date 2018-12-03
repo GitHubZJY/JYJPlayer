@@ -85,4 +85,7 @@
 
     <string name="videos">videos</string>
 
+    <string name="auto_select">Auto Select</string>
+    <string name="search_input_hint">Please input your keyword</string>
+
 </resources>
