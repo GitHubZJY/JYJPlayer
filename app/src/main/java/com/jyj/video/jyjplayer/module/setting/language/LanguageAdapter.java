@@ -42,8 +42,9 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.Langua
     public void onBindViewHolder(LanguageListViewHolder holder, int position) {
         final LanguageBean languageBean = mLanguageList.get(position);
         holder.mLanguageTv.setText(languageBean.getLocale().getDisplayName());
-        String curLanguage = SpManager.getInstance().getCurLanguage();
-        if(!TextUtils.isEmpty(curLanguage) && curLanguage.equals(languageBean.getLocale().getDisplayName())){
+        LanguageBean curLanguage = SpManager.getInstance().getCurLanguage();
+        String curLanguageName = curLanguage.getLocale().getDisplayName();
+        if(!TextUtils.isEmpty(curLanguageName) && curLanguageName.equals(languageBean.getLocale().getDisplayName())){
             holder.mLanguageIv.setVisibility(View.VISIBLE);
         }else {
             holder.mLanguageIv.setVisibility(View.GONE);
@@ -51,7 +52,7 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.Langua
         holder.mRootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SpManager.getInstance().setCurLanguage(languageBean.getLocale().getDisplayName());
+                SpManager.getInstance().setCurLanguage(languageBean);
                 LanguageUtils.updateLanguage(languageBean.getLocale());
                 notifyDataSetChanged();
             }

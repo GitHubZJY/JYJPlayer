@@ -77,8 +77,8 @@ public class LanguageActivity extends BaseActivity {
         mLanguageLv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mLanguageLv.setAdapter(mAdapter);
 
-        String curLanguage = SpManager.getInstance().getCurLanguage();
-        if(TextUtils.isEmpty(curLanguage)){
+        LanguageBean curLanguage = SpManager.getInstance().getCurLanguage();
+        if(curLanguage == null){
             mAutoSelectIv.setVisibility(View.VISIBLE);
         }else{
             mAutoSelectIv.setVisibility(View.GONE);
@@ -96,7 +96,7 @@ public class LanguageActivity extends BaseActivity {
 
     @OnClick(R.id.auto_select_group)
     void clickAutoSelect(){
-        SpManager.getInstance().setCurLanguage("");
+        SpManager.getInstance().setCurLanguage(new LanguageBean(Locale.getDefault()));
         LanguageUtils.updateLanguage(Locale.getDefault());
         mAdapter.notifyDataSetChanged();
     }

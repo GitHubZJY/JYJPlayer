@@ -1,7 +1,11 @@
 package com.jyj.video.jyjplayer.manager;
 
 
+import android.text.TextUtils;
+
+import com.jyj.video.jyjplayer.AppApplication;
 import com.jyj.video.jyjplayer.constant.SpConstant;
+import com.jyj.video.jyjplayer.module.setting.language.model.LanguageBean;
 import com.zjyang.base.utils.SpUtils;
 
 /**
@@ -100,13 +104,17 @@ public class SpManager {
 
 
     // 当前应用内语言
-    public void setCurLanguage(String language) {
-        getSpUtils().save(SpConstant.CUR_LANGUAGE_CODE, language);
+    public void setCurLanguage(LanguageBean language) {
+        getSpUtils().save(SpConstant.CUR_LANGUAGE_CODE, AppApplication.getGson().toJson(language));
     }
 
     // 默认: null
-    public String getCurLanguage() {
-        return getSpUtils().getString(SpConstant.CUR_LANGUAGE_CODE, null);
+    public LanguageBean getCurLanguage() {
+        String languageJson = getSpUtils().getString(SpConstant.CUR_LANGUAGE_CODE, null);
+        if(TextUtils.isEmpty(languageJson)){
+            return null;
+        }
+        return AppApplication.getGson().fromJson(languageJson, LanguageBean.class);
     }
 
 }

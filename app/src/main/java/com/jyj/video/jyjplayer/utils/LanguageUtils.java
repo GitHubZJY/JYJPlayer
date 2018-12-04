@@ -6,6 +6,8 @@ import android.util.DisplayMetrics;
 
 import com.jyj.video.jyjplayer.AppApplication;
 import com.jyj.video.jyjplayer.event.ToggleLanguageEvent;
+import com.jyj.video.jyjplayer.manager.SpManager;
+import com.jyj.video.jyjplayer.module.setting.language.model.LanguageBean;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -25,5 +27,15 @@ public class LanguageUtils {
         config.locale = locale;
         resources.updateConfiguration(config, dm);
         EventBus.getDefault().post(new ToggleLanguageEvent());
+    }
+
+    public static void initLanguageConfig(){
+        LanguageBean curLanguage = SpManager.getInstance().getCurLanguage();
+        if(curLanguage == null){
+            SpManager.getInstance().setCurLanguage(new LanguageBean(Locale.getDefault()));
+            updateLanguage(Locale.getDefault());
+            return;
+        }
+        updateLanguage(curLanguage.getLocale());
     }
 }

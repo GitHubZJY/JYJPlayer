@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jyj.video.jyjplayer.utils.LanguageUtils;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.zjyang.base.BaseApp;
 
@@ -51,5 +52,6 @@ public class AppApplication extends Application{
         //复制加载ijk so库
         new PlugInSoHelper(this).run();
         FileDownloader.setupOnApplicationOnCreate(this);
+        LanguageUtils.initLanguageConfig();
     }
 }
