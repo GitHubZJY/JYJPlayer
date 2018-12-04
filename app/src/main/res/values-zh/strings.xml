@@ -79,6 +79,7 @@
     <string name="show_hidden_folder">显示“.”开头的文件或文件夹</string>
     <string name="common_setting">通用设置</string>
     <string name="theme">主题</string>
+    <string name="clear_cache">清除缓存</string>
     <string name="switch_language">切换语言</string>
     <string name="feedback_setting">我要反馈</string>
     <string name="about_me">关于我们</string>
@@ -88,5 +89,8 @@
 
     <string name="auto_select">自动选择</string>
     <string name="search_input_hint">输入视频关键字</string>
+
+    <string name="clear_success">清除成功</string>
+    <string name="clear_cache_tip">确认清除所有缓存数据？</string>
 
 </resources>

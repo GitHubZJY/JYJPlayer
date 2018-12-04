@@ -233,6 +233,17 @@
         </com.zjyang.base.widget.BaseSettingItem>
 
         <com.zjyang.base.widget.BaseSettingItem
+            android:id="@+id/clear_cache_item"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:content_text="@string/clear_cache"
+            app:top_line_visible="false"
+            app:left_icon_src="@drawable/ic_setting_language"
+            app:bottom_line_margin="16dp"
+            app:bottom_line_visible="true">
+        </com.zjyang.base.widget.BaseSettingItem>
+
+        <com.zjyang.base.widget.BaseSettingItem
             android:id="@+id/feedback_item"
             android:layout_width="match_parent"
             android:layout_height="60dp"

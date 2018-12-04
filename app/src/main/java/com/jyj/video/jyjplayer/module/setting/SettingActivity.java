@@ -1,14 +1,23 @@
 package com.jyj.video.jyjplayer.module.setting;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.FragmentManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jyj.video.jyjplayer.AppApplication;
 import com.jyj.video.jyjplayer.MainActivity;
 import com.jyj.video.jyjplayer.R;
 import com.jyj.video.jyjplayer.event.ToggleLanguageEvent;
@@ -17,10 +26,15 @@ import com.jyj.video.jyjplayer.module.setting.feedback.FeedbackActivity;
 import com.jyj.video.jyjplayer.module.setting.language.LanguageActivity;
 import com.jyj.video.jyjplayer.module.setting.widget.DecodeSwitchDialog;
 import com.jyj.video.jyjplayer.ui.SwitchCheck;
+import com.jyj.video.jyjplayer.utils.DataCleanManager;
 import com.jyj.video.jyjplayer.utils.LanguageUtils;
 import com.zjyang.base.base.BaseActivity;
 import com.zjyang.base.base.BasePresenter;
+import com.zjyang.base.utils.DrawUtils;
+import com.zjyang.base.utils.ShapeUtils;
+import com.zjyang.base.utils.ToastUtils;
 import com.zjyang.base.widget.BaseSettingItem;
+import com.zjyang.base.widget.dialog.BaseDialogFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -63,6 +77,8 @@ public class SettingActivity extends BaseActivity{
     ImageView mScanHideIv;
     @BindView(R.id.language_item)
     BaseSettingItem mLanguageItem;
+    @BindView(R.id.clear_cache_item)
+    BaseSettingItem mClearCacheItem;
 
     @Override
     public BasePresenter createPresenter() {
@@ -133,6 +149,47 @@ public class SettingActivity extends BaseActivity{
         startActivity(languageIntent);
     }
 
+    @OnClick(R.id.clear_cache_item)
+    void clickClearCache(){
+        showClearCacheDialog(getFragmentManager());
+    }
+
+    public void showClearCacheDialog(FragmentManager manager) {
+        final String tipText = getResources().getString(R.string.clear_success);
+        final BaseDialogFragment mClearCacheDialog = BaseDialogFragment.create(true, 0.8);
+        mClearCacheDialog.setDialogCallBack(new BaseDialogFragment.DialogCallBack() {
+            @Override
+            public Dialog getDialog(Context context) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.Base_AlertDialog);
+                builder.setCancelable(false);
+                View view = LayoutInflater.from(context).inflate(R.layout.dialog_clear_cache, null);
+                TextView closeTv = view.findViewById(R.id.cancel_tv);
+                TextView continueTv = view.findViewById(R.id.agree_tv);
+                LinearLayout mBgView = view.findViewById(R.id.dialog_bg);
+                TextView detailTv = view.findViewById(R.id.dialog_detail);
+                //detailTv.setText(DataCleanManager.getCacheSize());
+                mBgView.setBackground(ShapeUtils.getRoundRectDrawable(DrawUtils.dp2px(4), Color.WHITE));
+                continueTv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DataCleanManager.cleanApplicationData(AppApplication.getContext());
+                        ToastUtils.showToast(AppApplication.getContext(), tipText);
+                        mClearCacheDialog.dismiss();
+                    }
+                });
+                closeTv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mClearCacheDialog.dismiss();
+
+                    }
+                });
+                builder.setView(view);
+                return builder.create();
+            }
+        });
+        mClearCacheDialog.show(manager, "clearcache");
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

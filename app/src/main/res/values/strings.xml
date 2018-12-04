@@ -80,6 +80,7 @@
     <string name="common_setting">Common Setting</string>
     <string name="theme">Theme</string>
     <string name="switch_language">Switch Language</string>
+    <string name="clear_cache">Clear Cache</string>
     <string name="feedback_setting">Feedback</string>
     <string name="about_me">About us</string>
 
@@ -87,5 +88,8 @@
 
     <string name="auto_select">Auto Select</string>
     <string name="search_input_hint">Please input your keyword</string>
+
+    <string name="clear_success">Clear success</string>
+    <string name="clear_cache_tip">Confirm that all cached data is cleared?</string>
 
 </resources>
