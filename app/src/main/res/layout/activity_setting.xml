@@ -216,7 +216,8 @@
             app:top_line_visible="false"
             app:bottom_line_margin="16dp"
             app:left_icon_src="@drawable/ic_setting_theme"
-            app:bottom_line_visible="true">
+            app:bottom_line_visible="true"
+            android:visibility="gone">
 
         </com.zjyang.base.widget.BaseSettingItem>
 
@@ -238,7 +239,7 @@
             android:layout_height="60dp"
             app:content_text="@string/clear_cache"
             app:top_line_visible="false"
-            app:left_icon_src="@drawable/ic_setting_language"
+            app:left_icon_src="@drawable/ic_setting_clear_cache"
             app:bottom_line_margin="16dp"
             app:bottom_line_visible="true">
         </com.zjyang.base.widget.BaseSettingItem>
@@ -249,18 +250,19 @@
             android:layout_height="60dp"
             app:content_text="@string/feedback_setting"
             app:top_line_visible="false"
-            app:left_icon_src="@drawable/ic_setting_about"
+            app:left_icon_src="@drawable/ic_setting_feedback"
             app:bottom_line_margin="16dp"
             app:bottom_line_visible="true">
 
         </com.zjyang.base.widget.BaseSettingItem>
 
         <com.zjyang.base.widget.BaseSettingItem
+            android:id="@+id/about_item"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:content_text="@string/about_me"
             app:top_line_visible="false"
-            app:left_icon_src="@drawable/ic_setting_feedback">
+            app:left_icon_src="@drawable/ic_setting_about">
 
         </com.zjyang.base.widget.BaseSettingItem>
     </LinearLayout>

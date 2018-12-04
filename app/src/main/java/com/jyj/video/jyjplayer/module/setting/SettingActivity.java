@@ -22,6 +22,7 @@ import com.jyj.video.jyjplayer.MainActivity;
 import com.jyj.video.jyjplayer.R;
 import com.jyj.video.jyjplayer.event.ToggleLanguageEvent;
 import com.jyj.video.jyjplayer.manager.SpManager;
+import com.jyj.video.jyjplayer.module.setting.about.AboutUsActivity;
 import com.jyj.video.jyjplayer.module.setting.feedback.FeedbackActivity;
 import com.jyj.video.jyjplayer.module.setting.language.LanguageActivity;
 import com.jyj.video.jyjplayer.module.setting.widget.DecodeSwitchDialog;
@@ -79,6 +80,8 @@ public class SettingActivity extends BaseActivity{
     BaseSettingItem mLanguageItem;
     @BindView(R.id.clear_cache_item)
     BaseSettingItem mClearCacheItem;
+    @BindView(R.id.about_item)
+    BaseSettingItem mAboutUsItem;
 
     @Override
     public BasePresenter createPresenter() {
@@ -152,6 +155,12 @@ public class SettingActivity extends BaseActivity{
     @OnClick(R.id.clear_cache_item)
     void clickClearCache(){
         showClearCacheDialog(getFragmentManager());
+    }
+
+    @OnClick(R.id.about_item)
+    void clickAboutUs(){
+        Intent aboutIntent = new Intent(this, AboutUsActivity.class);
+        startActivity(aboutIntent);
     }
 
     public void showClearCacheDialog(FragmentManager manager) {

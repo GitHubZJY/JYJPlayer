@@ -83,6 +83,9 @@
     <string name="clear_cache">Clear Cache</string>
     <string name="feedback_setting">Feedback</string>
     <string name="about_me">About us</string>
+    <string name="version_code">version code</string>
+    <string name="version_describe">Version describe</string>
+    <string name="share">Share</string>
 
     <string name="videos">videos</string>
 

@@ -83,6 +83,9 @@
     <string name="switch_language">切换语言</string>
     <string name="feedback_setting">我要反馈</string>
     <string name="about_me">关于我们</string>
+    <string name="version_code">版本号</string>
+    <string name="version_describe">版本说明</string>
+    <string name="share">分享</string>
 
 
     <string name="videos">个视频</string>

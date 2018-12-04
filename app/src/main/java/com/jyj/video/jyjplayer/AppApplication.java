@@ -2,6 +2,7 @@ package com.jyj.video.jyjplayer;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -53,5 +54,21 @@ public class AppApplication extends Application{
         new PlugInSoHelper(this).run();
         FileDownloader.setupOnApplicationOnCreate(this);
         LanguageUtils.initLanguageConfig();
+    }
+
+    /**
+     * 获取版本号名称
+     *
+     * @return
+     */
+    public static String getVersionName() {
+        String verName = "";
+        try {
+            verName = sContext.getPackageManager().
+                    getPackageInfo(sContext.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return verName;
     }
 }

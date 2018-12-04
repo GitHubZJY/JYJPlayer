@@ -51,6 +51,11 @@
             android:theme="@style/BaseActivityTheme">
 
         </activity>
+
+        <activity android:name=".module.setting.about.AboutUsActivity"
+            android:theme="@style/BaseActivityTheme">
+
+        </activity>
     </application>
 
 </manifest>
