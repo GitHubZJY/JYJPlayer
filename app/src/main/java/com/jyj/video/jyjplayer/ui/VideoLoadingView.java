@@ -10,6 +10,9 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.zjyang.base.base.SkinManager;
+import com.zjyang.base.utils.DrawUtils;
+
 /**
  * Created by zhengjiayang on 2018/12/5.
  */
@@ -26,7 +29,7 @@ public class VideoLoadingView extends View{
     private float mNextStartAngle = -135;
     private float mRadius = 30;
     private float mStrokeWidth = 8;
-    private int mColor = Color.BLACK;
+    private int mColor = SkinManager.getInstance().getPrimaryColor();
 
     public VideoLoadingView(Context context) {
         this(context, null);
@@ -97,8 +100,14 @@ public class VideoLoadingView extends View{
     }
 
     @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        setMeasuredDimension((int)(mRadius * 2 + mStrokeWidth * 2), (int)(mRadius * 2 + mStrokeWidth * 2));
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        canvas.translate(mStrokeWidth, mStrokeWidth);
         float circleAngle = (float)((mRadius*Math.sqrt(2) - mRadius) / Math.sqrt(2));
         canvas.drawCircle(circleAngle, circleAngle, mStrokeWidth / 2, mDotPaint);
         canvas.drawArc(new RectF(0, 0, mRadius*2, mRadius*2), mStartAngle, mSweepAngle, false, mPaint);

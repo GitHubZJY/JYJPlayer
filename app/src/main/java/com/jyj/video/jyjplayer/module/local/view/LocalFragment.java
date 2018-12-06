@@ -65,8 +65,7 @@ public class LocalFragment extends Fragment implements LocalTasksContract.View, 
         mEmptyTipView.setClickEmptyListener(this);
         mFolderLv = (RefreshLoadRecyclerView) view.findViewById(R.id.folder_lv);
         VideoLoadingView loadingView = new VideoLoadingView(getContext());
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DrawUtils.dp2px(60), DrawUtils.dp2px(60));
-        params.setMargins(DrawUtils.dp2px(4),DrawUtils.dp2px(4),DrawUtils.dp2px(4),DrawUtils.dp2px(4));
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DrawUtils.dp2px(70), DrawUtils.dp2px(70));
         loadingView.setLayoutParams(params);
         mFolderLv.setHeader(loadingView);
         mFolderLv.setOnRefreshLoadListener(this);

@@ -3,14 +3,15 @@
     android:orientation="horizontal"
     android:id="@+id/header_root_view"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="80dp"
     android:gravity="center">
 
     <TextView
         android:id="@+id/refresh_header_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="刷新中"/>
+        android:text="刷新中"
+        android:visibility="gone"/>
 
 
 </LinearLayout>
