@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.umeng.analytics.MobclickAgent;
 import com.zjyang.base.utils.LogUtil;
 
 
@@ -86,12 +87,14 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onStart() {
         super.onStart();
+        MobclickAgent.onPageStart(this.getClass().getSimpleName());
         LogUtil.d(this.getClass().getSimpleName(), "onStart: ");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
         LogUtil.d(this.getClass().getSimpleName(), "onResume: ");
     }
 
@@ -99,6 +102,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onPause() {
         super.onPause();
+        MobclickAgent.onPause(this);
         LogUtil.d(this.getClass().getSimpleName(), "onPause: ");
     }
 
@@ -111,6 +115,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        MobclickAgent.onPageEnd(this.getClass().getSimpleName());
         LogUtil.d(this.getClass().getSimpleName(), "onDestroy: ");
     }
 

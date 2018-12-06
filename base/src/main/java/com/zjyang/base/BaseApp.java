@@ -3,6 +3,7 @@ package com.zjyang.base;
 import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.umeng.commonsdk.UMConfigure;
 import com.zjyang.base.base.SkinManager;
 import com.zjyang.base.utils.ScreenUtils;
 
@@ -23,5 +24,7 @@ public class BaseApp {
         SkinManager.getInstance().init();
         Fresco.initialize(context);
         ScreenUtils.init(context);
+        UMConfigure.init(context, UMConfigure.DEVICE_TYPE_PHONE, null);
+        UMConfigure.setLogEnabled(true);
     }
 }
