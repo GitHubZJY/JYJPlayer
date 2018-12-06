@@ -17,6 +17,7 @@ import com.zjyang.base.R;
 
 public class RefreshViewHeader extends LinearLayout implements IHeaderCallBack {
     private TextView mHintTextView;
+    private LinearLayout mRootView;
 
     public RefreshViewHeader(Context context) {
         super(context);
@@ -34,8 +35,13 @@ public class RefreshViewHeader extends LinearLayout implements IHeaderCallBack {
     }
 
     private void initView(Context context) {
-        LayoutInflater.from(context).inflate(R.layout.layout_refresh_header, this);
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_refresh_header, this);
+        mRootView = (LinearLayout) findViewById(R.id.header_root_view);
         mHintTextView = (TextView) findViewById(R.id.refresh_header_tv);
+    }
+
+    public void setHeaderView(View view){
+        mRootView.addView(view, 0);
     }
 
     public void setRefreshTime(long lastRefreshTime) {

@@ -3,6 +3,7 @@ package com.zjyang.base.widget;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.andview.refreshview.XRefreshView;
@@ -17,6 +18,7 @@ public class RefreshLoadRecyclerView extends XRefreshView implements XRefreshVie
     public static final String TAG = "RefreshLoadRecyclerView";
 
     private RecyclerView mRecyclerView;
+    RefreshViewHeader mHeader;
 
     private boolean mIsRefreshEnable;
     private boolean mIsLoadMoreEnable;
@@ -36,8 +38,8 @@ public class RefreshLoadRecyclerView extends XRefreshView implements XRefreshVie
         mRecyclerView = new RecyclerView(context);
         addView(mRecyclerView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         //刷新动画，需要自定义CustomGifHeader，不需要修改动画的会默认头布局
-        RefreshViewHeader header = new RefreshViewHeader(getContext());
-        setCustomHeaderView(header);
+        mHeader = new RefreshViewHeader(getContext());
+        setCustomHeaderView(mHeader);
 
         mIsRefreshEnable = true;
         mIsLoadMoreEnable = false;
@@ -48,6 +50,10 @@ public class RefreshLoadRecyclerView extends XRefreshView implements XRefreshVie
 
         setXRefreshViewListener(this);
         setPinnedTime(MIX_REFRESH_TIME);
+    }
+
+    public void setHeader(View view){
+        mHeader.setHeaderView(view);
     }
 
     @Override

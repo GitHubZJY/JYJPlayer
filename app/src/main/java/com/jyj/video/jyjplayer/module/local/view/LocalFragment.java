@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.jyj.video.jyjplayer.R;
@@ -17,6 +18,7 @@ import com.jyj.video.jyjplayer.module.local.LocalTasksContract;
 import com.jyj.video.jyjplayer.module.local.adapter.FolderListAdapter;
 import com.jyj.video.jyjplayer.module.local.presenter.LocalPresenter;
 import com.jyj.video.jyjplayer.ui.EmptyTipView;
+import com.jyj.video.jyjplayer.ui.VideoLoadingView;
 import com.zjyang.base.utils.DrawUtils;
 import com.zjyang.base.utils.HandlerUtils;
 import com.zjyang.base.utils.LogUtil;
@@ -62,6 +64,11 @@ public class LocalFragment extends Fragment implements LocalTasksContract.View, 
         mEmptyTipView = (EmptyTipView) view.findViewById(R.id.empty_view);
         mEmptyTipView.setClickEmptyListener(this);
         mFolderLv = (RefreshLoadRecyclerView) view.findViewById(R.id.folder_lv);
+        VideoLoadingView loadingView = new VideoLoadingView(getContext());
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(DrawUtils.dp2px(60), DrawUtils.dp2px(60));
+        params.setMargins(DrawUtils.dp2px(4),DrawUtils.dp2px(4),DrawUtils.dp2px(4),DrawUtils.dp2px(4));
+        loadingView.setLayoutParams(params);
+        mFolderLv.setHeader(loadingView);
         mFolderLv.setOnRefreshLoadListener(this);
         mFolderList = new ArrayList<>();
         mFolderAdapter = new FolderListAdapter(getContext(), mFolderList);
