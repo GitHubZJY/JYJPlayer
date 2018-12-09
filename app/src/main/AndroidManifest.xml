@@ -61,6 +61,12 @@
             android:theme="@style/BaseActivityTheme">
 
         </activity>
+
+        <activity android:name=".module.setting.about.VersionDescribeActivity"
+            android:theme="@style/BaseActivityTheme">
+
+        </activity>
+
         <meta-data android:value="5c07d9d3f1f556c4bf000349" android:name="UMENG_APPKEY"/>
         <meta-data android:value="Umeng" android:name="UMENG_CHANNEL"/>
     </application>

@@ -1,5 +1,6 @@
 package com.jyj.video.jyjplayer.module.setting.about;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.jyj.video.jyjplayer.event.ToggleLanguageEvent;
 import com.jyj.video.jyjplayer.manager.SpManager;
 import com.jyj.video.jyjplayer.module.setting.language.LanguageAdapter;
 import com.jyj.video.jyjplayer.module.setting.language.model.LanguageBean;
+import com.jyj.video.jyjplayer.module.share.ShareUtils;
 import com.jyj.video.jyjplayer.utils.LanguageUtils;
 import com.jyj.video.jyjplayer.utils.TypefaceUtil;
 import com.zjyang.base.base.BaseActivity;
@@ -47,6 +49,10 @@ public class AboutUsActivity extends BaseActivity {
     TextView mVcTv;
     @BindView(R.id.share_tv)
     TextView mShareTv;
+    @BindView(R.id.check_update_item)
+    RelativeLayout mShareGroup;
+    @BindView(R.id.version_describe_item)
+    RelativeLayout mVerDesGroup;
 
     @Override
     public BasePresenter createPresenter() {
@@ -71,6 +77,20 @@ public class AboutUsActivity extends BaseActivity {
             mActionBar.setDisplayHomeAsUpEnabled(true);
             mActionBar.setTitle(getResources().getString(R.string.about_me));
         }
+    }
+
+
+    @OnClick(R.id.check_update_item)
+    void clickShare(){
+        ShareUtils.shareText(this, getResources().getString(R.string.share),
+                getResources().getString(R.string.share),
+                "");
+    }
+
+    @OnClick(R.id.version_describe_item)
+    void clickDescribe(){
+        Intent intent = new Intent(this, VersionDescribeActivity.class);
+        startActivity(intent);
     }
 
     @Override

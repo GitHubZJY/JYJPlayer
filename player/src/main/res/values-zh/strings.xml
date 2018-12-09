@@ -2,6 +2,6 @@
     <string name="app_name">player</string>
 
 
-    <string name="speed">Speed</string>
-    <string name="subtitle">Subtitle</string>
+    <string name="speed">速度</string>
+    <string name="subtitle">字幕</string>
 </resources>
