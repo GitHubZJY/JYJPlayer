@@ -84,7 +84,7 @@ public class AboutUsActivity extends BaseActivity {
     void clickShare(){
         ShareUtils.shareText(this, getResources().getString(R.string.share),
                 getResources().getString(R.string.share),
-                "");
+                getResources().getString(R.string.share_content));
     }
 
     @OnClick(R.id.version_describe_item)

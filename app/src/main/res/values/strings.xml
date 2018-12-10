@@ -95,4 +95,11 @@
     <string name="clear_success">Clear success</string>
     <string name="clear_cache_tip">Confirm that all cached data is cleared?</string>
 
+    <string name="share_content">The freshest android video player —— JYJPlayer</string>
+    <string name="version_title">v1.0 Newly launched</string>
+    <string name="version_detail">『Bring you an extremely smooth broadcast experience』</string>
+    <string name="version_describe_1">One-click scan/search for all video files in the device</string>
+    <string name="version_describe_2">Supporting HD broadcasting in most movie formats</string>
+    <string name="version_describe_3">While watching the video, online search for full-web subtitles, support a variety of regional languages.</string>
+
 </resources>

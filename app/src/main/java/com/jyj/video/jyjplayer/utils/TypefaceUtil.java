@@ -21,4 +21,11 @@ public class TypefaceUtil {
         }
         return sDefaultTypeface;
     }
+
+    public static Typeface geSUITypeface(Context context) {
+        Typeface typeface;
+        typeface = Typeface.createFromAsset(context.getApplicationContext()
+                .getAssets(), "fonts/SF-UI-Text-Bold.otf");
+        return typeface;
+    }
 }

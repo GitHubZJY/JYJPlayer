@@ -80,8 +80,15 @@ public class LocalFragment extends Fragment implements LocalTasksContract.View, 
     }
 
     @Override
+    public void startRefresh() {
+        if(mFolderLv != null){
+            mFolderLv.startRefresh();
+        }
+    }
+
+    @Override
     public void onRefresh() {
-        mPresenter.scanSystemFolderData();
+        mPresenter.scanSystemFolderData(true);
     }
 
     @Override

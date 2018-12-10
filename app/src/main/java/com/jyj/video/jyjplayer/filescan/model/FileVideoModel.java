@@ -137,6 +137,15 @@ public class FileVideoModel {
         return sFolderInfoList;
     }
 
+    public void reLoadFolderInfos(){
+        HandlerUtils.postThread(new Runnable() {
+            @Override
+            public void run() {
+                startLoadFileInfosTask();
+            }
+        });
+    }
+
     /**
      * 根据路径扫描单个文件夹 不遍历内文件夹
      * @param path

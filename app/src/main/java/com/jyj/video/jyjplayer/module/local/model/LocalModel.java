@@ -20,8 +20,12 @@ public class LocalModel extends BaseModel implements LocalTasksContract.Model{
     }
 
     @Override
-    public void getAllVideoFolderData(){
-        mFileVideoModel.loadFolderInfosAsync();
+    public void getAllVideoFolderData(boolean isUseCache){
+        if(isUseCache){
+            mFileVideoModel.loadFolderInfosAsync();
+            return;
+        }
+        mFileVideoModel.reLoadFolderInfos();
     }
 
     @Override

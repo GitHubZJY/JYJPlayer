@@ -1,106 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="16dp"
-    android:paddingBottom="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="36dp"
-            android:paddingRight="36dp"
-            android:layout_marginBottom="32dp">
-            <android.support.v7.widget.CardView
-                android:id="@+id/pic_1_iv"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="0dp"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="italic"
+                android:textSize="25sp"
+                android:textColor="@color/main_text_color"
+                android:text="@string/version_title"/>
+
+            <TextView
+                android:id="@+id/detail_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginRight="36dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="16sp"
+                android:textColor="@color/main_text_color"
+                android:text="@string/version_detail"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="36dp"
+                android:paddingRight="36dp"
+                android:layout_marginBottom="32dp">
+                <android.support.v7.widget.CardView
+                    android:id="@+id/pic_1_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    app:cardBackgroundColor="#ffffff"
+                    app:cardElevation="6dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_version_describe_1"
+                        />
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/main_text_color"
+                    android:text="@string/version_describe_1"/>
+            </LinearLayout>
+
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignBottom="@+id/pic_1_iv"
                 android:layout_margin="1dp"
                 app:cardBackgroundColor="#ffffff"
                 app:cardElevation="6dp">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_version_describe_1"
+                    android:src="@drawable/ic_version_describe_2"
                     />
             </android.support.v7.widget.CardView>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginRight="36dp"
+                android:layout_gravity="center_horizontal"
                 android:textSize="16sp"
                 android:textColor="@color/main_text_color"
-                android:text="一键扫描/搜索设备中所有视频文件"/>
+                android:text="@string/version_describe_2"/>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="1dp"
+                app:cardBackgroundColor="#ffffff"
+                app:cardElevation="6dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_version_describe_3"
+                    />
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="36dp"
+                android:layout_marginRight="36dp"
+                android:textSize="16sp"
+                android:textColor="@color/main_text_color"
+                android:text="@string/version_describe_3"/>
         </LinearLayout>
 
 
 
-        <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignBottom="@+id/pic_1_iv"
-            android:layout_margin="1dp"
-            app:cardBackgroundColor="#ffffff"
-            app:cardElevation="6dp">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_version_describe_2"
-                />
-        </android.support.v7.widget.CardView>
+    </ScrollView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0.8"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/version_buttom_background"
+        />
+</RelativeLayout>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="32dp"
-            android:layout_gravity="center_horizontal"
-            android:textSize="16sp"
-            android:textColor="@color/main_text_color"
-            android:text="支持绝大部分电影格式的高清播放"/>
-
-
-        <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="1dp"
-            app:cardBackgroundColor="#ffffff"
-            app:cardElevation="6dp">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_version_describe_3"
-                />
-        </android.support.v7.widget.CardView>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="32dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="36dp"
-            android:layout_marginRight="36dp"
-            android:textSize="16sp"
-            android:textColor="@color/main_text_color"
-            android:text="边看视频边在线搜索全网字幕，支持多种地区语言。"/>
-    </LinearLayout>
-
-
-
-</ScrollView>

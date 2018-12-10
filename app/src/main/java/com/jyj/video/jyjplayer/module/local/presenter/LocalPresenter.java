@@ -42,7 +42,7 @@ public class LocalPresenter implements LocalTasksContract.Presenter{
         PermissionUtils.requestSDPermission(context, new PermissionUtils.RequestPermissionCallback() {
             @Override
             public void onGranted() {
-                scanSystemFolderData();
+                mView.startRefresh();
             }
 
             @Override
@@ -53,8 +53,8 @@ public class LocalPresenter implements LocalTasksContract.Presenter{
     }
 
     @Override
-    public void scanSystemFolderData() {
-        mModel.getAllVideoFolderData();
+    public void scanSystemFolderData(boolean isUseCache) {
+        mModel.getAllVideoFolderData(isUseCache);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

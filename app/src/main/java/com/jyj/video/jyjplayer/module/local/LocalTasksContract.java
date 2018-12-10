@@ -14,6 +14,7 @@ import java.util.List;
 public interface LocalTasksContract {
 
     interface View {
+        void startRefresh();
         void notifyFolderListView(List<FolderInfo> scanList);
         void showEmptyView();
         void hideEmptyView();
@@ -21,14 +22,14 @@ public interface LocalTasksContract {
     }
 
     interface Model {
-        void getAllVideoFolderData();
+        void getAllVideoFolderData(boolean isUseCache);
         List<FolderInfo> getCachedOnlyFileInfos();
         List<FolderInfo> sortVideos2FolderInfo();
     }
 
     interface Presenter {
         void checkSDPermission(Context context);
-        void scanSystemFolderData();
+        void scanSystemFolderData(boolean isUseCache);
         void destroy();
     }
 }

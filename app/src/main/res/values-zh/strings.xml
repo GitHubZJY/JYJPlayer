@@ -96,4 +96,12 @@
     <string name="clear_success">清除成功</string>
     <string name="clear_cache_tip">确认清除所有缓存数据？</string>
 
+    <string name="share_content">最清新极致的视频播放器 —— JYJPlayer</string>
+    <string name="version_title">v1.0 全新上线</string>
+    <string name="version_detail">『带给你极致流畅的播放体验』</string>
+    <string name="version_describe_1">一键扫描/搜索设备中所有视频文件</string>
+    <string name="version_describe_2">支持绝大部分电影格式的高清播放</string>
+    <string name="version_describe_3">边看视频边在线搜索全网字幕，支持多种地区语言。</string>
+
+
 </resources>
