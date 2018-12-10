@@ -27,7 +27,7 @@
             android:layout_height="56dp"
             android:layout_centerVertical="true"
             android:gravity="center|left"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_toLeftOf="@id/close_dialog_btn"
             android:layout_alignParentLeft="true"
             android:textStyle="bold"
@@ -55,9 +55,11 @@
         android:layout_centerInParent="true"
         >
         <TextView
+            android:id="@+id/speed_tv_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="4dp"
@@ -65,12 +67,14 @@
             android:background="@drawable/bg_radius_stroke"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"
-            android:text="x2"
+            android:text="x1"
             />
         <TextView
+            android:id="@+id/speed_tv_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="4dp"
@@ -81,9 +85,11 @@
             android:text="x1.5"
             />
         <TextView
+            android:id="@+id/speed_tv_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="4dp"
@@ -91,7 +97,7 @@
             android:background="@drawable/bg_radius_stroke"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"
-            android:text="x1"
+            android:text="x2"
             />
     </LinearLayout>
 

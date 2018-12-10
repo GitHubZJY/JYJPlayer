@@ -24,6 +24,7 @@ import com.jyj.video.jyjplayer.constant.SpConstant;
 import com.jyj.video.jyjplayer.event.PlaySettingCloseEvent;
 import com.jyj.video.jyjplayer.event.SubtitleAsyncEvent;
 import com.jyj.video.jyjplayer.event.SubtitleSwitchEvent;
+import com.jyj.video.jyjplayer.event.UpdateSpeedEvent;
 import com.jyj.video.jyjplayer.filescan.model.FileVideoModel;
 import com.jyj.video.jyjplayer.filescan.model.bean.FolderInfo;
 import com.jyj.video.jyjplayer.filescan.model.bean.SubtitleInfo;
@@ -249,7 +250,6 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
 
     @Override
     public void clickSpeed() {
-        mVideoFrame.setSpeed(2);
         mSpeedPanel.initSpeedPanel(this, Configuration.ORIENTATION_LANDSCAPE);
         mSpeedPanel.setVisibility(View.VISIBLE);
         mSpeedPanel.startEnterAnimation();
@@ -307,6 +307,11 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
     }
 
     @Subscribe
+    public void onUpdateSpeedEvent(UpdateSpeedEvent event){
+        mVideoFrame.setSpeed(event.getSpeed());
+    }
+
+    @Subscribe
     public void onEvent(SubtitleAsyncEvent event){
         if(!event.isSuccess()){
             ToastUtils.showToast(this, getResources().getString(R.string.fail_load_tip));
@@ -357,6 +362,8 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
     protected void onDestroy() {
         super.onDestroy();
         mPlayerView.stopPlayback();
+        mSpeedPanel.clearAllViews();
+        mMenuPanel.clearAllViews();
         if(unbinder != null){
             unbinder.unbind();
         }

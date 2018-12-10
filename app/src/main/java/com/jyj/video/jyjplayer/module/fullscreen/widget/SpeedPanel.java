@@ -3,6 +3,7 @@ package com.jyj.video.jyjplayer.module.fullscreen.widget;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -12,10 +13,13 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.jyj.video.jyjplayer.R;
 import com.jyj.video.jyjplayer.event.PlaySettingCloseEvent;
+import com.jyj.video.jyjplayer.event.UpdateSpeedEvent;
 import com.jyj.video.jyjplayer.subtitle.SelectSubTitlePanel;
+import com.zjyang.base.base.SkinManager;
 import com.zjyang.base.utils.DrawUtils;
 import com.zjyang.base.utils.ScreenUtils;
 
@@ -27,11 +31,18 @@ import org.greenrobot.eventbus.EventBus;
 
 public class SpeedPanel extends RelativeLayout{
 
+    private float mCurSpeed = 1.0f;
     private boolean isExit;
     private boolean mIsExitAnimEnd = true;
     private Context mContext;
     private View mPanel;
     private ImageView mCloseIv;
+    private TextView mSpeedTv1;
+    private TextView mSpeedTv2;
+    private TextView mSpeedTv3;
+
+    public Drawable mUnSelectRes = getResources().getDrawable(R.drawable.bg_radius_stroke);
+    public Drawable mSelectRes = getResources().getDrawable(R.drawable.bg_radius_fill);
 
     //竖屏时菜单面板的高度
     private int MENU_PANEL_HEIGHT = 416;
@@ -53,6 +64,9 @@ public class SpeedPanel extends RelativeLayout{
     public void initSpeedPanel(Context context, int orientation) {
         mPanel = LayoutInflater.from(context).inflate(R.layout.layout_speed_panel, null);
         mCloseIv = (ImageView) mPanel.findViewById(R.id.close_dialog_btn);
+        mSpeedTv1 = (TextView) mPanel.findViewById(R.id.speed_tv_0);
+        mSpeedTv2 = (TextView) mPanel.findViewById(R.id.speed_tv_1);
+        mSpeedTv3 = (TextView) mPanel.findViewById(R.id.speed_tv_2);
         //mMenuPanel.setMenuItemClickListener(this);
         addView(mPanel);
         LayoutParams menuParams = (LayoutParams)mPanel.getLayoutParams();
@@ -77,6 +91,46 @@ public class SpeedPanel extends RelativeLayout{
             }
         });
         resetAllChildWidth(orientation);
+        initSpeedTvStatus();
+
+        mSpeedTv1.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCurSpeed = 1;
+                EventBus.getDefault().post(new UpdateSpeedEvent(mCurSpeed));
+                initSpeedTvStatus();
+            }
+        });
+
+        mSpeedTv2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCurSpeed = 1.5f;
+                EventBus.getDefault().post(new UpdateSpeedEvent(mCurSpeed));
+                initSpeedTvStatus();
+            }
+        });
+
+        mSpeedTv3.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCurSpeed = 2;
+                EventBus.getDefault().post(new UpdateSpeedEvent(mCurSpeed));
+                initSpeedTvStatus();
+            }
+        });
+    }
+
+
+    public void initSpeedTvStatus(){
+        mSpeedTv1.setTextColor(mCurSpeed == 1 ? Color.WHITE : Color.parseColor(SkinManager.BLUE));
+        mSpeedTv2.setTextColor(mCurSpeed == 1.5 ? Color.WHITE : Color.parseColor(SkinManager.BLUE));
+        mSpeedTv3.setTextColor(mCurSpeed == 2 ? Color.WHITE : Color.parseColor(SkinManager.BLUE));
+
+        mSpeedTv1.setBackground(mCurSpeed == 1 ? mSelectRes : mUnSelectRes);
+        mSpeedTv2.setBackground(mCurSpeed == 1.5 ? mSelectRes : mUnSelectRes);
+        mSpeedTv3.setBackground(mCurSpeed == 2 ? mSelectRes : mUnSelectRes);
+
     }
 
     public void resetAllChildWidth(int orientation){
