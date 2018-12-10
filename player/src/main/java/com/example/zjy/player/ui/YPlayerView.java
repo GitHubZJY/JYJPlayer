@@ -221,6 +221,13 @@ public class YPlayerView extends RelativeLayout implements QVMediaController.Con
     }
 
     @Override
+    public void clickSpeed() {
+        if(mListener != null){
+            mListener.clickSpeed();
+        }
+    }
+
+    @Override
     public void clickPlay(boolean isPlay) {
         if(isPlay){
             mVideoFrame.pause();

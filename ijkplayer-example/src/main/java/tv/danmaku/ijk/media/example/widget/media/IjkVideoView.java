@@ -390,6 +390,14 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         }
     }
 
+    public void setSpeed(float speed){
+        ((IjkMediaPlayer) mMediaPlayer).setSpeed(speed);
+    }
+
+    public float getSpeed(){
+        return ((IjkMediaPlayer) mMediaPlayer).getSpeed(1);
+    }
+
     public void setMediaController(IMediaController controller) {
         if (mMediaController != null) {
             mMediaController.hide();

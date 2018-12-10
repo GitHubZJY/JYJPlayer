@@ -39,4 +39,13 @@
 
     </com.jyj.video.jyjplayer.subtitle.SubTitleContainer>
 
+    <com.jyj.video.jyjplayer.module.fullscreen.widget.SpeedPanel
+        android:id="@+id/speed_panel"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+    </com.jyj.video.jyjplayer.module.fullscreen.widget.SpeedPanel>
+
 </FrameLayout>

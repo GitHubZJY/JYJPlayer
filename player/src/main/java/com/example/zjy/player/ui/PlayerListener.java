@@ -13,6 +13,8 @@ public interface PlayerListener {
 
     void clickSubtitle();
 
+    void clickSpeed();
+
 //    void clickPlay(boolean isPlay);
 //
     void progress(int progress) ;

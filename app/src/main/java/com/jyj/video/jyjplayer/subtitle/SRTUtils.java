@@ -117,11 +117,15 @@ public class SRTUtils {
         Log.d("zimu", "parse end");
 
         if(srt_map_new == null || srt_map_new.size() == 0){
-            EventBus.getDefault().post(new PlaySettingCloseEvent());
+            PlaySettingCloseEvent event = new PlaySettingCloseEvent();
+            event.setPanelType(PlaySettingCloseEvent.SUBTITLE_PANEL);
+            EventBus.getDefault().post(event);
             EventBus.getDefault().post(new SubtitleAsyncEvent(false, isAuto));
         }else{
             srt_map = srt_map_new;
-            EventBus.getDefault().post(new PlaySettingCloseEvent(srtPath));
+            PlaySettingCloseEvent event = new PlaySettingCloseEvent(srtPath);
+            event.setPanelType(PlaySettingCloseEvent.SUBTITLE_PANEL);
+            EventBus.getDefault().post(event);
             EventBus.getDefault().post(new SubtitleAsyncEvent(true, isAuto));
         }
         //关闭菜单

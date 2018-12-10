@@ -30,6 +30,7 @@ import com.jyj.video.jyjplayer.filescan.model.bean.SubtitleInfo;
 import com.jyj.video.jyjplayer.filescan.model.bean.VideoInfo;
 import com.jyj.video.jyjplayer.manager.SpManager;
 import com.jyj.video.jyjplayer.manager.VideoPlayDataManager;
+import com.jyj.video.jyjplayer.module.fullscreen.widget.SpeedPanel;
 import com.jyj.video.jyjplayer.subtitle.SRTUtils;
 import com.jyj.video.jyjplayer.subtitle.SubTitleContainer;
 import com.jyj.video.jyjplayer.utils.FileUtils;
@@ -62,6 +63,8 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
     YPlayerView mPlayerView;
     @BindView(R.id.menu_panel)
     SubTitleContainer mMenuPanel;
+    @BindView(R.id.speed_panel)
+    SpeedPanel mSpeedPanel;
     @BindView(R.id.subtitle_text_tv)
     TextView mSubtitleTv;
 
@@ -245,6 +248,14 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
     }
 
     @Override
+    public void clickSpeed() {
+        mVideoFrame.setSpeed(2);
+        mSpeedPanel.initSpeedPanel(this, Configuration.ORIENTATION_LANDSCAPE);
+        mSpeedPanel.setVisibility(View.VISIBLE);
+        mSpeedPanel.startEnterAnimation();
+    }
+
+    @Override
     public void clickBack() {
         finish();
     }
@@ -265,24 +276,34 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
 
     @Subscribe
     public void onEvent(PlaySettingCloseEvent event){
-        //AndroidDevice.hideSoftInput(this);
-        onWindowFocusChanged(true);
-        String srtFileUrl = event.getSrtFileUrl();
-        if(!TextUtils.isEmpty(srtFileUrl)){
-            //不为空路径，说明选择了某个字幕文件
-            //获取当前播放的视频信息，将选中的字幕信息一同存入数据库
-            VideoInfo videoInfo = VideoPlayDataManager.getInstance().getCurPlayVideoInfo();
-            if(videoInfo != null){
+        int type = event.getPanelType();
+        switch (type){
+            case PlaySettingCloseEvent.SUBTITLE_PANEL:
+                //AndroidDevice.hideSoftInput(this);
+                onWindowFocusChanged(true);
+                String srtFileUrl = event.getSrtFileUrl();
+                if(!TextUtils.isEmpty(srtFileUrl)){
+                    //不为空路径，说明选择了某个字幕文件
+                    //获取当前播放的视频信息，将选中的字幕信息一同存入数据库
+                    VideoInfo videoInfo = VideoPlayDataManager.getInstance().getCurPlayVideoInfo();
+                    if(videoInfo != null){
 //                videoInfo.setSubtitleName(FileUtils.getFileNameInPath(srtFileUrl));
 //                videoInfo.setSubtitlePath(srtFileUrl);
 //                VideoHelper.getInstance().addOrReplace(videoInfo);
-                FileVideoModel.createSubtitle(videoInfo.getPath(), srtFileUrl);
-            }
-            SRTUtils.showSRT(mSubtitleTv, mPlayerView.getVideoFrame());
-            mIsShowSubTitle = true;
+                        FileVideoModel.createSubtitle(videoInfo.getPath(), srtFileUrl);
+                    }
+                    SRTUtils.showSRT(mSubtitleTv, mPlayerView.getVideoFrame());
+                    mIsShowSubTitle = true;
+                }
+                //收起菜单面板
+                mMenuPanel.startExitAnimation();
+                break;
+            case PlaySettingCloseEvent.SPEED_PANEL:
+                mSpeedPanel.startExitAnimation();
+                break;
         }
-        //收起菜单面板
-        mMenuPanel.startExitAnimation();
+
+
     }
 
     @Subscribe
@@ -315,6 +336,9 @@ public class EnlargeWatchActivity extends BaseActivity implements EnlargeTasksCo
                 //  return true;    //已处理
                 if(mMenuPanel.getVisibility() == View.VISIBLE){
                     mMenuPanel.startExitAnimation();
+                    return true;
+                }else if(mSpeedPanel.getVisibility() == View.VISIBLE){
+                    mSpeedPanel.startExitAnimation();
                     return true;
                 }else{
                     onBackPressed();

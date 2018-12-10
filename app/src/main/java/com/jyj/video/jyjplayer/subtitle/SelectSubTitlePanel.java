@@ -150,7 +150,9 @@ public class SelectSubTitlePanel extends RelativeLayout {
         mCloseIv.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventBus.getDefault().post(new PlaySettingCloseEvent());
+                PlaySettingCloseEvent event = new PlaySettingCloseEvent();
+                event.setPanelType(PlaySettingCloseEvent.SUBTITLE_PANEL);
+                EventBus.getDefault().post(event);
             }
         });
 

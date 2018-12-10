@@ -116,6 +116,18 @@ public class VideoFrame extends RelativeLayout {
         }
     }
 
+    public void setSpeed(float speed){
+        switch (VideoSetting.getVideoType()){
+            case VideoSetting.ANDROID_VIDEO_VIEW:
+                LogUtil.d(TAG, "System--->setSpeed");
+                break;
+            case VideoSetting.IJK_VIDEO_VIEW:
+                LogUtil.d(TAG, "IjK--->setSpeed");
+                mIjkVideoView.setSpeed(speed);
+                break;
+        }
+    }
+
     public boolean isPlaying(){
         switch (VideoSetting.getVideoType()){
             case VideoSetting.ANDROID_VIDEO_VIEW:

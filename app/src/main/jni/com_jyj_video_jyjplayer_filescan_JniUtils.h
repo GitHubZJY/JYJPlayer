@@ -7,13 +7,23 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#undef com_jyj_video_jyjplayer_filescan_JniUtils_FILTER_FLAG_NONE
+#define com_jyj_video_jyjplayer_filescan_JniUtils_FILTER_FLAG_NONE 0i64
+#undef com_jyj_video_jyjplayer_filescan_JniUtils_FILTER_FLAG_NOMEDIA
+#define com_jyj_video_jyjplayer_filescan_JniUtils_FILTER_FLAG_NOMEDIA 1i64
+#undef com_jyj_video_jyjplayer_filescan_JniUtils_FILTER_FLAG_HIDDEN
+#define com_jyj_video_jyjplayer_filescan_JniUtils_FILTER_FLAG_HIDDEN 2i64
+#undef com_jyj_video_jyjplayer_filescan_JniUtils_FILTER_FLAG_WITHOUT_RECURSIVE
+#define com_jyj_video_jyjplayer_filescan_JniUtils_FILTER_FLAG_WITHOUT_RECURSIVE 4i64
+#undef com_jyj_video_jyjplayer_filescan_JniUtils_FILTER_FLAG_ADS_CACHE
+#define com_jyj_video_jyjplayer_filescan_JniUtils_FILTER_FLAG_ADS_CACHE 8i64
 /*
  * Class:     com_jyj_video_jyjplayer_filescan_JniUtils
  * Method:    getDocumentFiles
- * Signature: (Ljava/lang/String;)[Ljava/lang/String;
+ * Signature: ([Ljava/lang/String;J)V
  */
 JNIEXPORT void JNICALL Java_com_jyj_video_jyjplayer_filescan_JniUtils_getDocumentFiles
-  (JNIEnv *, jobject obj, jobjectArray str, jlong filter);
+  (JNIEnv *, jobject, jobjectArray, jlong);
 
 #ifdef __cplusplus
 }
