@@ -20,7 +20,20 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class com.umeng.** {*;}
+-keep class butterknife.** { *; }
+-dontwarn butterknife.internal.**
+-keep class **$$ViewBinder { *; }
+-keepclasseswithmembernames class * {
+   @butterknife.* <fields>;
+}
+-keepclasseswithmembernames class * {
+   @butterknife.* <methods>;
+}
+
+-keep class com.umeng.** { *; }
+-keep class com.umeng.analytics.** { *; }
+-keep class com.umeng.common.** { *; }
+-keep class com.umeng.newxp.** { *; }
 
 -keepclassmembers class * {
    public <init> (org.json.JSONObject);
@@ -62,7 +75,28 @@
 -dontwarn com.android.volley.toolbox.**
 -dontwarn com.facebook.infer.**
 
+-keep class android.** {*;}
+-keep class assets.** {*;}
+-keep class com.android.** {*;}
+-keep class com.google.android.** {*;}
+-keep class dalvik.** {*;}
+-keep class java.** {*;}
+-keep class javax.** {*;}
+-keep class junit.** {*;}
+-keep class org.** {*;}
+-keep class android.view.** {*;}
 
+
+-keepattributes *Annotation*
+-keepclassmembers class ** {
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
+
+# Only required if you use AsyncExecutor
+-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+    <init>(java.lang.Throwable);
+}
 
 -keepnames class * implements java.io.Serializable
 -keep public class * implements java.io.Serializable {
@@ -88,17 +122,42 @@
 -dontwarn javax.**
 -dontwarn junit.**
 -dontwarn org.**
+-keep class android.support.**
 -keep class org.apache.commons.** { *;}
 
 
-
 -keep class org.greenrobot.greendao.**{*;}
--keep public interface org.greenrobot.greendao.**
+-keep public class * extends org.greenrobot.greendao.AbstractDao
 -keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
-public static java.lang.String TABLENAME;
+        public static java.lang.String TABLENAME;
 }
 -keep class **$Properties
--keep class net.sqlcipher.database.**{*;}
--keep public interface net.sqlcipher.database.**
--dontwarn net.sqlcipher.database.**
--dontwarn org.greenrobot.greendao.**
+-keepclassmembers class **$Properties {*;}
+
+
+
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+}
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
+}
+
+
+#Ijkplayer
+-keep class tv.danmaku.ijk.media.**{*;}
+
+#FFmpegMediaMetadataRetriever START
+-keep class com.xxx.app.package.class { *; }
+-keep class wseemann.media.FFmpegMediaMetadataRetriever { *; }
+#FFmpegMediaMetadataRetriever END
+
