@@ -217,6 +217,7 @@ public class PanelManager {
 
     public void toggleLockStatus() {
         this.mIsLockScreen = !mIsLockScreen;
+        mLockIv.setImageResource(mIsLockScreen ? R.drawable.ic_play_unlock : R.drawable.ic_play_lock);
         setPanelEnable(mIsLockScreen);
     }
 

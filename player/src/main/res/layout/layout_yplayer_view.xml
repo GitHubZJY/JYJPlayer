@@ -107,7 +107,7 @@
         android:layout_marginRight="20dp"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_play_lock"
-        android:visibility="invisible"
+        android:visibility="visible"
         />
 
     <SeekBar
