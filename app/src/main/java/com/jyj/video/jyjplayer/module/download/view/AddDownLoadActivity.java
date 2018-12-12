@@ -2,6 +2,7 @@ package com.jyj.video.jyjplayer.module.download.view;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.MenuItem;
@@ -33,6 +34,8 @@ public class AddDownLoadActivity extends BaseActivity<AddDownLoadPresenter>{
 
     public Unbinder unbinder;
 
+    @BindView(R.id.check_down_group)
+    CardView mCheckDownBtn;
     @BindView(R.id.check_down_tv)
     TextView mCheckDownTv;
     @BindView(R.id.et_download_url)
@@ -52,7 +55,8 @@ public class AddDownLoadActivity extends BaseActivity<AddDownLoadPresenter>{
 
         unbinder = ButterKnife.bind(this);
 
-        mCheckDownTv.setBackground(ShapeUtils.getRoundRectDrawable(DrawUtils.dp2px(40), SkinManager.getInstance().getPrimaryColor()));
+        //mCheckDownBtn.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        //mCheckDownTv.setBackground(ShapeUtils.getRoundRectDrawable(DrawUtils.dp2px(20), SkinManager.getInstance().getPrimaryColor()));
         mCheckDownTv.setTextColor(SkinManager.getInstance().getPrimaryTextColor());
         initActionBar();
     }

@@ -21,8 +21,11 @@ import com.jyj.video.jyjplayer.module.fullscreen.EnlargeWatchActivity;
 import com.jyj.video.jyjplayer.utils.TimeUtils;
 import com.jyj.video.jyjplayer.utils.TypefaceUtil;
 import com.jyj.video.jyjplayer.utils.VideoUtil;
+import com.zjyang.base.utils.HandlerUtils;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by 74215 on 2018/11/3.
@@ -32,6 +35,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.Vide
 
     private List<VideoInfo> mVideoList;
     private Context mContext;
+    private ExecutorService cachedThreadPool = Executors.newFixedThreadPool(3);
 
     public VideoListAdapter(Context mContext, List<VideoInfo> mFolderList) {
         this.mVideoList = mFolderList;
@@ -46,14 +50,37 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.Vide
 
 
     @Override
-    public void onBindViewHolder(VideoListViewHolder holder, int position) {
+    public void onBindViewHolder(final VideoListViewHolder holder, int position) {
         final VideoInfo videoInfo = mVideoList.get(position);
         holder.mVideoNameTv.setTypeface(TypefaceUtil.getDefaultTypeface(mContext));
         holder.mVideoNameTv.setText((Html.fromHtml(videoInfo.getDisplayName())));
         holder.mVideoTimeTv.setTypeface(TypefaceUtil.getDefaultTypeface(mContext));
         holder.mVideoTimeTv.setText(VideoUtil.switchDurationFormat(videoInfo.getDuration()));
-        final Bitmap icon = FolderListPicManager.loadVideoIcon(videoInfo);//VideoUtil.createVideoThumbnail(videoInfo.getPath());if (icon != null) {
-        holder.mVideoIv.setImageBitmap(icon);
+        holder.mVideoIv.setTag(videoInfo.getPath());
+
+        if (cachedThreadPool.isShutdown()) {
+            return;
+        }
+        cachedThreadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                final Bitmap icon = FolderListPicManager.loadVideoIcon(videoInfo);//VideoUtil.createVideoThumbnail(videoInfo.getPath());
+                HandlerUtils.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (holder.mVideoIv.getTag().equals(videoInfo.getPath())) {
+                            if (icon != null) {
+                                holder.mVideoIv.setImageBitmap(icon);
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+
+        //final Bitmap icon = FolderListPicManager.loadVideoIcon(videoInfo);//VideoUtil.createVideoThumbnail(videoInfo.getPath());if (icon != null) {
+        //holder.mVideoIv.setImageBitmap(icon);
         holder.mRootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
