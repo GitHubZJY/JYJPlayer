@@ -82,11 +82,11 @@ public class DownLoadFragment extends Fragment implements NetBroadcastReceiver.N
     protected void initView(View root, Bundle savedInstanceState) {
         unbinder = ButterKnife.bind(this, root);
 
-        if (NetworkUtils.isNetworkOK(getContext())) {
-            mNetConnectionError.setVisibility(View.GONE);
-        } else {
-            mNetConnectionError.setVisibility(View.VISIBLE);
-        }
+//        if (NetworkUtils.isNetworkOK(getContext())) {
+//            mNetConnectionError.setVisibility(View.GONE);
+//        } else {
+//            mNetConnectionError.setVisibility(View.VISIBLE);
+//        }
 
         //注册广播
         netBroadcastReceiver = new NetBroadcastReceiver();
