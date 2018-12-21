@@ -161,3 +161,4 @@
 -keep class wseemann.media.FFmpegMediaMetadataRetriever { *; }
 #FFmpegMediaMetadataRetriever END
 
+-keepattributes SourceFile,LineNumberTable
