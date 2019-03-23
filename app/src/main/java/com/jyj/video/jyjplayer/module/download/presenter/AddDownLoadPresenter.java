@@ -41,4 +41,10 @@ public class AddDownLoadPresenter implements AddDownLoadTasksContract.Presenter{
         }
         mView.notifyHistoryListView(urlList);
     }
+
+    @Override
+    public void clearHistory() {
+        mModel.clearDownUrl();
+        mView.notifyHistoryListView(null);
+    }
 }

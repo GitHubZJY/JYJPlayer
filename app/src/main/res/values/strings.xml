@@ -104,4 +104,5 @@
 
     <string name="download_history">Download History</string>
     <string name="re_download">Re Download</string>
+    <string name="clear_history">Clear History</string>
 </resources>

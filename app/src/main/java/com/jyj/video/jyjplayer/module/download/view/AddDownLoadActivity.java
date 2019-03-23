@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -55,6 +56,10 @@ public class AddDownLoadActivity extends AppCompatActivity implements AddDownLoa
     EditText mDownLoadEt;
     @BindView(R.id.history_lv)
     RecyclerView mHistoryLv;
+    @BindView(R.id.history_tv)
+    TextView mHistoryTv;
+    @BindView(R.id.clear_tv)
+    TextView mClearTv;
 
     ActionBar mActionBar;
 
@@ -99,8 +104,22 @@ public class AddDownLoadActivity extends AppCompatActivity implements AddDownLoa
 
     @Override
     public void notifyHistoryListView(List<String> urlList) {
+        if(urlList == null || urlList.size() == 0){
+            mHistoryTv.setVisibility(View.GONE);
+            mClearTv.setVisibility(View.GONE);
+            return;
+        }
+        mHistoryTv.setVisibility(View.VISIBLE);
+        mClearTv.setVisibility(View.VISIBLE);
         mHistoryUrlList.clear();
         mHistoryUrlList.addAll(urlList);
+        mHistoryAdapter.notifyDataSetChanged();
+    }
+
+    @OnClick(R.id.clear_tv)
+    void clickClearHistory(){
+        mPresenter.clearHistory();
+        mHistoryUrlList.clear();
         mHistoryAdapter.notifyDataSetChanged();
     }
 

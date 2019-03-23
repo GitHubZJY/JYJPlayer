@@ -15,10 +15,12 @@ public interface AddDownLoadTasksContract {
     interface Presenter {
         void addUrlToDownList(String url);
         void initHistory();
+        void clearHistory();
     }
 
     interface Model {
         List<String> addDownUrl(String url);
         List<String> getDownUrlList();
+        void clearDownUrl();
     }
 }

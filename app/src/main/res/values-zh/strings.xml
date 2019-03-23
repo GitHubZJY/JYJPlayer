@@ -105,5 +105,6 @@
 
     <string name="download_history">下载历史</string>
     <string name="re_download">重新下载</string>
+    <string name="clear_history">清空历史</string>
 
 </resources>

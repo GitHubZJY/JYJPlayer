@@ -2,6 +2,8 @@ package com.jyj.video.jyjplayer;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -43,16 +45,16 @@ import butterknife.Unbinder;
 
 import static android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
-public class MainActivity extends BaseActivity implements HomeBottomBar.TabClickListener{
+public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     private Unbinder unbinder;
 
     @BindView(R.id.main_pager)
     CustomViewPager mMainPager;
-    @BindView(R.id.bottom_bar)
-    HomeBottomBar mBottomBar;
     @BindView(R.id.add_down_btn)
     FloatingActionButton mAddDownBtn;
+    @BindView(R.id.navigation)
+    BottomNavigationView mBottomBar;
 
     private List<Fragment> mFragments;
     private LocalFragment mLocalFragment;
@@ -113,15 +115,22 @@ public class MainActivity extends BaseActivity implements HomeBottomBar.TabClick
             }
         });
 
-        mBottomBar.setTabClickListener(this);
+        mBottomBar.setOnNavigationItemSelectedListener(this);
 
         mAddDownBtn.setBackgroundColor(SkinManager.getInstance().getPrimaryColor());
     }
 
     @Override
-    public boolean clickTab(int index) {
-        mMainPager.setCurrentItem(index-1);
-        return false;
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.navigation_local:
+                mMainPager.setCurrentItem(0);
+                break;
+            case R.id.navigation_download:
+                mMainPager.setCurrentItem(1);
+                break;
+        }
+        return true;
     }
 
     @OnClick(R.id.add_down_btn)

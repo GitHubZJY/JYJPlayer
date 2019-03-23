@@ -42,4 +42,12 @@ public class AddDownLoadModel implements AddDownLoadTasksContract.Model {
         return mDownUrlList;
     }
 
+    @Override
+    public void clearDownUrl() {
+        if(mDownUrlList == null){
+            return;
+        }
+        mDownUrlList.clear();
+        SpUtils.obtain(SpConstant.DEFAULT_SP_FILE).save(DOWNLOAD_URL_LIST, AppApplication.getGson().toJson(mDownUrlList));
+    }
 }
