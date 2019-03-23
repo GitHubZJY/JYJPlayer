@@ -2,14 +2,21 @@ package com.jyj.video.jyjplayer.module.download.model;
 
 import android.text.TextUtils;
 
+import com.google.gson.reflect.TypeToken;
+import com.jyj.video.jyjplayer.AppApplication;
+import com.jyj.video.jyjplayer.constant.SpConstant;
 import com.jyj.video.jyjplayer.download.film.bean.DownLoadFilmInfo;
 import com.jyj.video.jyjplayer.filescan.model.FileVideoModel;
 import com.jyj.video.jyjplayer.module.download.DownloadTasksContract;
+import com.jyj.video.jyjplayer.subtitle.bean.SubLanguage;
 import com.zjyang.base.base.BaseModel;
 import com.zjyang.base.utils.LogUtil;
+import com.zjyang.base.utils.SpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.jyj.video.jyjplayer.constant.SpConstant.DOWNLOAD_URL_LIST;
 
 /**
  * Created by 74215 on 2018/11/10.
@@ -88,4 +95,6 @@ public class DownLoadModel extends BaseModel implements DownloadTasksContract.Mo
     public List<DownLoadFilmInfo> getDownLoadList(){
         return mDownFilmList;
     }
+
+
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:id="@+id/item_url_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_link"
+        android:drawablePadding="8dp"
+        android:layout_toLeftOf="@id/download_tv"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textColor="#707070"
+        android:textSize="14sp"
+        />
+
+    <TextView
+        android:id="@+id/download_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:background="@drawable/ripple_bg"
+        android:layout_marginLeft="8dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="13sp"
+        android:text="@string/re_download"/>
+
+</RelativeLayout>

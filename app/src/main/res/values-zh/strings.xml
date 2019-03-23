@@ -26,10 +26,10 @@
 
     <string name="download_save_title">另存为</string>
     <string name="download_forbidden_title">抱歉</string>
-    <string name="download_pause">Paused</string>
-    <string name="download_finish">Downloaded</string>
-    <string name="download_error">Download Error</string>
-    <string name="download_auto_connecting">Auto Connecting</string>
+    <string name="download_pause">已暂停</string>
+    <string name="download_finish">下载完成</string>
+    <string name="download_error">下载失败</string>
+    <string name="download_auto_connecting">自动重连中</string>
 
     <string name="network_connection_error">当前网络状态不佳</string>
     <string name="search_fail_tip">搜索不到相关视频</string>
@@ -103,5 +103,7 @@
     <string name="version_describe_2">支持绝大部分电影格式的高清播放</string>
     <string name="version_describe_3">边看视频边在线搜索全网字幕，支持多种地区语言。</string>
 
+    <string name="download_history">下载历史</string>
+    <string name="re_download">重新下载</string>
 
 </resources>

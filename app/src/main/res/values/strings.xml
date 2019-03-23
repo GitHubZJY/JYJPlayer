@@ -102,4 +102,6 @@
     <string name="version_describe_2">Supporting HD broadcasting in most movie formats</string>
     <string name="version_describe_3">While watching the video, online search for full-web subtitles, support a variety of regional languages.</string>
 
+    <string name="download_history">Download History</string>
+    <string name="re_download">Re Download</string>
 </resources>

@@ -20,9 +20,12 @@ import com.jyj.video.jyjplayer.R;
 import com.jyj.video.jyjplayer.download.film.FilmDownLoadManager;
 import com.jyj.video.jyjplayer.download.film.bean.DownLoadFilmInfo;
 import com.jyj.video.jyjplayer.filescan.model.FileVideoModel;
+import com.jyj.video.jyjplayer.module.download.event.StartDownLoadEvent;
 import com.zjyang.base.utils.DrawUtils;
 import com.zjyang.base.utils.ShapeUtils;
 import com.zjyang.base.utils.ToastUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import static com.jyj.video.jyjplayer.download.Constant.Status.FINISH;
 
@@ -121,6 +124,7 @@ public class DownloadDialog extends Dialog {
                             }
                             ToastUtils.showToast(mContext, mContext.getResources().getString(R.string.already_download));
                         }else{
+                            EventBus.getDefault().post(new StartDownLoadEvent(mDownloadUrl));
                             FilmDownLoadManager.getInstance(AppApplication.getContext()).start(mDownloadUrl, str, mSuffix, 0,"");
                         }
                     }

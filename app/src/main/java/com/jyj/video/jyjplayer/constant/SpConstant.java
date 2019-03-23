@@ -161,4 +161,6 @@ public interface SpConstant {
     String SEARCH_TIPS_CONTAINER = "SEARCH_TIPS_CONTAINER"; //搜索提示弹框展示次数
 
     String CUR_LANGUAGE_CODE = "CUR_LANGUAGE_CODE";
+
+    String DOWNLOAD_URL_LIST = "DOWNLOAD_URL_LIST";
 }

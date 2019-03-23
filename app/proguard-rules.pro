@@ -162,3 +162,23 @@
 #FFmpegMediaMetadataRetriever END
 
 -keepattributes SourceFile,LineNumberTable
+
+
+-keepnames class * implements java.io.Serializable
+-keepclassmembers class * implements java.io.Serializable {
+static final long serialVersionUID;
+private static final java.io.ObjectStreamField[] serialPersistentFields;
+!static !transient ;
+private void writeObject(java.io.ObjectOutputStream);
+private void readObject(java.io.ObjectInputStream);
+java.lang.Object writeReplace();
+java.lang.Object readResolve();
+}
+
+-keep class * implements android.os.Parcelable {
+public static final android.os.Parcelable$Creator *;
+}
+
+-keepattributes *Annotation*
+-keepclassmembers class * {@com.xxx.Subscribe ;}
+-keepclassmembers class * {@com.xxx.Action ;}
