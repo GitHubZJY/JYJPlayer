@@ -144,7 +144,10 @@ public class DownLoadPresenter implements DownloadTasksContract.Presenter {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onDownFilmDataChangeEvent(DownFilmDataChangeEvent event){
+        mModel.updateDownLoadData();
+        mView.setDownLoadRecyclerView(mModel.getDownLoadList());
         mView.checkEmptyView(mModel.getDownLoadList());
+        mView.notifyAllList();
     }
 
 

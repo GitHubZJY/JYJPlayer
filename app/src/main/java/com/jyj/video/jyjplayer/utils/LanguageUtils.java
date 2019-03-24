@@ -1,5 +1,6 @@
 package com.jyj.video.jyjplayer.utils;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
@@ -19,8 +20,8 @@ import java.util.Locale;
 
 public class LanguageUtils {
 
-    public static void updateLanguage(Locale locale){
-        Resources resources = AppApplication.getContext().getResources();
+    public static void updateLanguage(Context context, Locale locale){
+        Resources resources = context.getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
         Configuration config = resources.getConfiguration();
         // 应用用户选择语言
@@ -29,13 +30,13 @@ public class LanguageUtils {
         EventBus.getDefault().post(new ToggleLanguageEvent());
     }
 
-    public static void initLanguageConfig(){
+    public static void initLanguageConfig(Context context){
         LanguageBean curLanguage = SpManager.getInstance().getCurLanguage();
         if(curLanguage == null){
             SpManager.getInstance().setCurLanguage(new LanguageBean(Locale.getDefault()));
-            updateLanguage(Locale.getDefault());
+            updateLanguage(context, Locale.getDefault());
             return;
         }
-        updateLanguage(curLanguage.getLocale());
+        updateLanguage(context, curLanguage.getLocale());
     }
 }

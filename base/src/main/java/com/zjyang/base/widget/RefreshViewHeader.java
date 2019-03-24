@@ -21,7 +21,7 @@ public class RefreshViewHeader extends LinearLayout implements IHeaderCallBack {
 
     public RefreshViewHeader(Context context) {
         super(context);
-        setBackgroundColor(context.getResources().getColor(R.color.white));
+        setBackgroundColor(context.getResources().getColor(R.color.bg_color));
         initView(context);
     }
 

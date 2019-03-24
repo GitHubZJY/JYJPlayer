@@ -46,6 +46,7 @@
     <string name="search_by">通过</string>
     <string name="search">搜索</string>
     <string name="searching">搜索中</string>
+    <string name="subtitle_switch">字幕开关</string>
 
     <string name="start_download">开始下载</string>
     <string name="download_sub_success">下载成功</string>
@@ -106,5 +107,8 @@
     <string name="download_history">下载历史</string>
     <string name="re_download">重新下载</string>
     <string name="clear_history">清空历史</string>
+
+    <string name="rename">重命名</string>
+    <string name="delete">删除</string>
 
 </resources>

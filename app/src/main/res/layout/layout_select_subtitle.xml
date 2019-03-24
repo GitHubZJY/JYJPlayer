@@ -34,7 +34,7 @@
         android:layout_marginRight="4dp"
         android:textColor="#ffffff"
         android:textSize="13sp"
-        android:text="字幕开关"
+        android:text="@string/subtitle_switch"
         android:layout_toLeftOf="@id/subtitle_switch"
         />
 

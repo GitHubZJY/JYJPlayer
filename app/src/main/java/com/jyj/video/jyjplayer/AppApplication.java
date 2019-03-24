@@ -53,7 +53,7 @@ public class AppApplication extends Application{
         //复制加载ijk so库
         new PlugInSoHelper(this).run();
         FileDownloader.setupOnApplicationOnCreate(this);
-        LanguageUtils.initLanguageConfig();
+        LanguageUtils.initLanguageConfig(this);
     }
 
     /**

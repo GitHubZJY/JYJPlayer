@@ -45,10 +45,6 @@ public class DownFilmTask {
     private String name;
     private String suffix;
     private String lastFinishPath;
-    private int mRetryTimes = 1; //记录大重试的次数(小次数为5次，每一次大重试即包含5次小重试)
-    private long mStartRetryTime = -1; //记录首次大重试的时间，用于限制30分钟后不再重试
-    private long mLastRetryTime = -1; //记录上次大重试的时间
-    private boolean mIsManualRetry; //解锁屏幕或者链接wifi导致的重试
     private int mRetryType = FilmDownLoadManager.CLICK_RETRY;//重试类型
 
     private Context context;
@@ -71,14 +67,6 @@ public class DownFilmTask {
     private boolean isResponsed = false;
 
     String mDownloadPath;
-
-    private Runnable mRetryRunnable = new Runnable() {
-        @Override
-        public void run() {
-            LogUtil.d(TAG, "倒计时结束，开始5次重试");
-            startDownload();
-        }
-    };
 
     public DownFilmTask(final Context context, final DownLoadFilmInfo downloadData, final String downloadingUrl) {
         init(context, downloadData, downloadingUrl);
@@ -180,14 +168,6 @@ public class DownFilmTask {
 
                     @Override
                     protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                        if(mIsManualRetry){
-                        }
-                        mIsManualRetry = false;
-                        if(mStartRetryTime != -1){
-                            //说明刚刚重试完毕的首次连接成功
-                            mStartRetryTime = -1;
-                        }
-                        mRetryTimes = 1;
                         isResponsed = true;
                         int percent = (int) ((double) task.getSmallFileSoFarBytes() / (double) task.getSmallFileTotalBytes() * 100);
                         LogUtil.e(TAG, "progress soFarBytes=" + soFarBytes + "  totalBytes=" + totalBytes + " percent=" + percent);
@@ -229,26 +209,6 @@ public class DownFilmTask {
                                 FilmDownLoadManager.getInstance(context).onCallback(ON_RETRY, downloadData);
                             }
                         });
-                        if(mIsManualRetry){
-                            return;
-                        }
-                        if(mStartRetryTime != -1 && System.currentTimeMillis() - mStartRetryTime >= 30*60*1000){
-                            //首次重试的时间与当前时间已相差30分钟，则不再自动重试
-                            return;
-                        }
-                        if(System.currentTimeMillis() - mLastRetryTime >= (mRetryTimes - 1)*5*1000){
-                            //假如距离上次自动重试的时间还未超过重试的间隔时长，说明此次重试为手动重试，不与自动重试逻辑混淆
-                            if(retryingTimes == 5){
-                                if(mRetryTimes == 1){
-                                    mStartRetryTime = System.currentTimeMillis();
-                                }
-                                mLastRetryTime = System.currentTimeMillis();
-                                mRetryTimes++;
-                                LogUtil.d(TAG, "5次重试失败，开始下一次重试倒计时");
-                                HandlerUtils.remove(mRetryRunnable);
-                                HandlerUtils.postDelay(mRetryRunnable, (mRetryTimes - 1)*5*1000);
-                            }
-                        }
                     }
 
                     @Override
@@ -295,14 +255,6 @@ public class DownFilmTask {
                     @Override
                     protected void error(BaseDownloadTask task, Throwable e) {
                         LogUtil.e(TAG, "paused Throwable=" + e + "  " + task);
-                        if(mIsManualRetry){
-
-                        }
-                        mIsManualRetry = false;
-                        if(mStartRetryTime != -1){
-                            //说明刚刚重试完毕的首次连接失败
-
-                        }
                         if(e instanceof InvalidParameterException){
                             DownFilmHelper.getInstance().deleteByUrl(url);
                             ToastUtils.showToast(context, context.getResources().getString(R.string.cannot_download_tip));
@@ -366,14 +318,6 @@ public class DownFilmTask {
             LogUtil.e(TAG, "暂停任务: " + downloadData.getUrl());
             downloadTask.pause();
         }
-    }
-
-    public boolean isManualRetry() {
-        return mIsManualRetry;
-    }
-
-    public void setIsManualRetry(boolean mIsManualRetry) {
-        this.mIsManualRetry = mIsManualRetry;
     }
 
     public int getRetryType() {

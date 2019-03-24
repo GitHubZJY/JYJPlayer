@@ -5,7 +5,7 @@
     android:id="@+id/item_down_film_root_view"
     android:background="?attr/selectableItemBackground"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    android:paddingRight="4dp"
     android:layout_width="match_parent"
     android:layout_height="96dp">
 
@@ -89,12 +89,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingRight="12dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:layout_alignParentRight="true"
+        android:src="@drawable/ic_edit"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:layout_centerVertical="true"
-        android:scaleType="fitXY"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"

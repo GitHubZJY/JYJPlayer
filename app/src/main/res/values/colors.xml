@@ -6,4 +6,6 @@
 
     <color name="main_text_color">#000000</color>
     <color name="tran">#00000000</color>
+
+    <color name="bg_color">#fbfbfb</color>
 </resources>

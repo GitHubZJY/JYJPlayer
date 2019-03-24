@@ -247,7 +247,7 @@ public class FilmDownLoadManager {
         downloadData.setFileName(checkedFileName);
         downloadData.setPath(SdcardUtil.DOWNLOAD_FILM_SAVE_PATH + downloadData.getFileName() + ".temp");
         DownFilmHelper.getInstance().addOrReplace(downloadData);
-        execute(downloadData, false, 0);
+        execute(downloadData, 0);
         return downloadManager;
     }
 
@@ -291,7 +291,7 @@ public class FilmDownLoadManager {
     /**
      * 执行下载任务
      */
-    private synchronized void execute(DownLoadFilmInfo downloadData, boolean isRetry, int retryType) {
+    private synchronized void execute(DownLoadFilmInfo downloadData, int retryType) {
         if (downloadData == null) {
             onCallback(ON_EEROR, ErrorCode.INVALID_URL);
             return;
@@ -320,7 +320,6 @@ public class FilmDownLoadManager {
             downloadTaskMap.put(downloadData.getUrl(), task);
 
         }
-        task.setIsManualRetry(isRetry);
         task.setRetryType(retryType);
         task.startDownload();
 
@@ -349,14 +348,14 @@ public class FilmDownLoadManager {
     public void resume(String url) {
         DownLoadFilmInfo data = getDownloadingInfo(url);
         if (data != null) {
-            execute(data, false, 0);
+            execute(data, 0);
         }
     }
 
     public void retryFailTask(String url, int retryType) {
         DownLoadFilmInfo data = getDownloadingInfo(url);
         if (data != null) {
-            execute(data, true, retryType);
+            execute(data, retryType);
         }
     }
 

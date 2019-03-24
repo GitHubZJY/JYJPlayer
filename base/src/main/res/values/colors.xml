@@ -10,6 +10,8 @@
     <color name="text_color_gray">#aaaaaa</color>
     <color name="yellow">#ffd600</color>
 
+    <color name="bg_color">#fbfbfb</color>
+
     <color name="white">#ffffff</color>
 
     <color name="line">#dadada</color>

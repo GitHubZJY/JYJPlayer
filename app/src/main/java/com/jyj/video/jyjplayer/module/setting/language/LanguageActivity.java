@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.jyj.video.jyjplayer.AppApplication;
 import com.jyj.video.jyjplayer.R;
 import com.jyj.video.jyjplayer.event.ToggleLanguageEvent;
 import com.jyj.video.jyjplayer.manager.SpManager;
@@ -97,7 +98,7 @@ public class LanguageActivity extends BaseActivity {
     @OnClick(R.id.auto_select_group)
     void clickAutoSelect(){
         SpManager.getInstance().setCurLanguage(new LanguageBean(Locale.getDefault()));
-        LanguageUtils.updateLanguage(Locale.getDefault());
+        LanguageUtils.updateLanguage(AppApplication.getContext(), Locale.getDefault());
         mAdapter.notifyDataSetChanged();
     }
 

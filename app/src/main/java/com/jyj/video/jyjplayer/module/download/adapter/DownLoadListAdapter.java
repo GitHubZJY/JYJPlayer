@@ -3,8 +3,10 @@ package com.jyj.video.jyjplayer.module.download.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.PopupWindowCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -24,9 +26,12 @@ import com.jyj.video.jyjplayer.filescan.model.FileVideoModel;
 import com.jyj.video.jyjplayer.filescan.model.bean.VideoInfo;
 import com.jyj.video.jyjplayer.manager.FolderListPicManager;
 import com.jyj.video.jyjplayer.manager.VideoPlayDataManager;
+import com.jyj.video.jyjplayer.module.download.widget.DownItemPopup;
 import com.jyj.video.jyjplayer.module.fullscreen.EnlargeWatchActivity;
+import com.jyj.video.jyjplayer.utils.TypefaceUtil;
 import com.jyj.video.jyjplayer.utils.VideoUtil;
 import com.zjyang.base.base.SkinManager;
+import com.zjyang.base.utils.DrawUtils;
 import com.zjyang.base.utils.LogUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -117,6 +122,13 @@ public class DownLoadListAdapter extends RecyclerView.Adapter<DownLoadListAdapte
             mContinueIv = (ImageView) itemView.findViewById(R.id.continue_start_iv);
             mPercentageTv = (TextView) itemView.findViewById(R.id.percentage_tv);
             mErrorIv = (ImageView) itemView.findViewById(R.id.download_error_iv);
+
+            mDownFilmNameTv.setTypeface(TypefaceUtil.getDefaultTypeface(mContext));
+            mDownStatusTv.setTypeface(TypefaceUtil.getDefaultTypeface(mContext));
+            mSpeedTv.setTypeface(TypefaceUtil.getDefaultTypeface(mContext));
+            mPercentageTv.setTypeface(TypefaceUtil.getDefaultTypeface(mContext));
+            mCurSizeTv.setTypeface(TypefaceUtil.getDefaultTypeface(mContext));
+            mMaxSizeTv.setTypeface(TypefaceUtil.getDefaultTypeface(mContext));
         }
 
         public void setContent(final int index, final DownLoadFilmInfo downLoadFilmInfo) {
@@ -220,7 +232,9 @@ public class DownLoadListAdapter extends RecyclerView.Adapter<DownLoadListAdapte
             mSettingIv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //showItemSettingPopup(view, downLoadFilmInfo, false);
+                    DownItemPopup mWindow = new DownItemPopup(mActivity);
+                    mWindow.setFilmInfo(downLoadFilmInfo);
+                    PopupWindowCompat.showAsDropDown(mWindow, mSettingIv, -DrawUtils.dp2px(70), -DrawUtils.dp2px(50), Gravity.LEFT);
                 }
             });
 

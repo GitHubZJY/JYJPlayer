@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jyj.video.jyjplayer.AppApplication;
 import com.jyj.video.jyjplayer.R;
 import com.jyj.video.jyjplayer.manager.SpManager;
 import com.jyj.video.jyjplayer.module.setting.language.model.LanguageBean;
@@ -53,7 +54,7 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.Langua
             @Override
             public void onClick(View view) {
                 SpManager.getInstance().setCurLanguage(languageBean);
-                LanguageUtils.updateLanguage(languageBean.getLocale());
+                LanguageUtils.updateLanguage(AppApplication.getContext(), languageBean.getLocale());
                 notifyDataSetChanged();
             }
         });
