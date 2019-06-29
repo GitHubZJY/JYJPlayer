@@ -121,8 +121,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
     private int mVideoSarNum;
     private int mVideoSarDen;
 
-    private InfoHudViewHolder mHudViewHolder;
-
     private long mPrepareStartTime = 0;
     private long mPrepareEndTime = 0;
 
@@ -258,7 +256,7 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
     }
 
     public void setHudView(TableLayout tableLayout) {
-        mHudViewHolder = new InfoHudViewHolder(getContext(), tableLayout);
+        //mHudViewHolder = new InfoHudViewHolder(getContext(), tableLayout);
     }
 
     /**
@@ -306,8 +304,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
             mMediaPlayer.stop();
             mMediaPlayer.release();
             mMediaPlayer = null;
-            if (mHudViewHolder != null)
-                mHudViewHolder.setMediaPlayer(null);
             mCurrentState = STATE_IDLE;
             mTargetState = STATE_IDLE;
             AudioManager am = (AudioManager) mAppContext.getSystemService(Context.AUDIO_SERVICE);
@@ -362,8 +358,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
             mMediaPlayer.setScreenOnWhilePlaying(true);
             mPrepareStartTime = System.currentTimeMillis();
             mMediaPlayer.prepareAsync();
-            if (mHudViewHolder != null)
-                mHudViewHolder.setMediaPlayer(mMediaPlayer);
 
             // REMOVED: mPendingSubtitleTracks
 
@@ -437,9 +431,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
     IMediaPlayer.OnPreparedListener mPreparedListener = new IMediaPlayer.OnPreparedListener() {
         public void onPrepared(IMediaPlayer mp) {
             mPrepareEndTime = System.currentTimeMillis();
-            if(mHudViewHolder != null){
-                mHudViewHolder.updateLoadCost(mPrepareEndTime - mPrepareStartTime);
-            }
             mCurrentState = STATE_PREPARED;
 
             // Get the capabilities of the player for this stream
@@ -624,9 +615,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         @Override
         public void onSeekComplete(IMediaPlayer mp) {
             mSeekEndTime = System.currentTimeMillis();
-            if(mHudViewHolder != null){
-                mHudViewHolder.updateSeekCost(mSeekEndTime - mSeekStartTime);
-            }
         }
     };
 
@@ -1130,8 +1118,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         if (mEnableBackgroundPlay) {
             MediaPlayerService.intentToStart(getContext());
             mMediaPlayer = MediaPlayerService.getMediaPlayer();
-            if (mHudViewHolder != null)
-                mHudViewHolder.setMediaPlayer(mMediaPlayer);
         }
     }
 
@@ -1145,75 +1131,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
 
     public void stopBackgroundPlay() {
         MediaPlayerService.setMediaPlayer(null);
-    }
-
-    //-------------------------
-    // Extend: Background
-    //-------------------------
-    public void showMediaInfo() {
-        if (mMediaPlayer == null)
-            return;
-
-        int selectedVideoTrack = MediaPlayerCompat.getSelectedTrack(mMediaPlayer, ITrackInfo.MEDIA_TRACK_TYPE_VIDEO);
-        int selectedAudioTrack = MediaPlayerCompat.getSelectedTrack(mMediaPlayer, ITrackInfo.MEDIA_TRACK_TYPE_AUDIO);
-        int selectedSubtitleTrack = MediaPlayerCompat.getSelectedTrack(mMediaPlayer, ITrackInfo.MEDIA_TRACK_TYPE_TIMEDTEXT);
-
-        TableLayoutBinder builder = new TableLayoutBinder(getContext());
-        builder.appendSection(R.string.mi_player);
-        builder.appendRow2(R.string.mi_player, MediaPlayerCompat.getName(mMediaPlayer));
-        builder.appendSection(R.string.mi_media);
-        builder.appendRow2(R.string.mi_resolution, buildResolution(mVideoWidth, mVideoHeight, mVideoSarNum, mVideoSarDen));
-        builder.appendRow2(R.string.mi_length, buildTimeMilli(mMediaPlayer.getDuration()));
-
-        ITrackInfo trackInfos[] = mMediaPlayer.getTrackInfo();
-        if (trackInfos != null) {
-            int index = -1;
-            for (ITrackInfo trackInfo : trackInfos) {
-                index++;
-
-                int trackType = trackInfo.getTrackType();
-                if (index == selectedVideoTrack) {
-                    builder.appendSection(getContext().getString(R.string.mi_stream_fmt1, index) + " " + getContext().getString(R.string.mi__selected_video_track));
-                } else if (index == selectedAudioTrack) {
-                    builder.appendSection(getContext().getString(R.string.mi_stream_fmt1, index) + " " + getContext().getString(R.string.mi__selected_audio_track));
-                } else if (index == selectedSubtitleTrack) {
-                    builder.appendSection(getContext().getString(R.string.mi_stream_fmt1, index) + " " + getContext().getString(R.string.mi__selected_subtitle_track));
-                } else {
-                    builder.appendSection(getContext().getString(R.string.mi_stream_fmt1, index));
-                }
-                builder.appendRow2(R.string.mi_type, buildTrackType(trackType));
-                builder.appendRow2(R.string.mi_language, buildLanguage(trackInfo.getLanguage()));
-
-                IMediaFormat mediaFormat = trackInfo.getFormat();
-                if (mediaFormat == null) {
-                } else if (mediaFormat instanceof IjkMediaFormat) {
-                    switch (trackType) {
-                        case ITrackInfo.MEDIA_TRACK_TYPE_VIDEO:
-                            builder.appendRow2(R.string.mi_codec, mediaFormat.getString(IjkMediaFormat.KEY_IJK_CODEC_LONG_NAME_UI));
-                            builder.appendRow2(R.string.mi_profile_level, mediaFormat.getString(IjkMediaFormat.KEY_IJK_CODEC_PROFILE_LEVEL_UI));
-                            builder.appendRow2(R.string.mi_pixel_format, mediaFormat.getString(IjkMediaFormat.KEY_IJK_CODEC_PIXEL_FORMAT_UI));
-                            builder.appendRow2(R.string.mi_resolution, mediaFormat.getString(IjkMediaFormat.KEY_IJK_RESOLUTION_UI));
-                            builder.appendRow2(R.string.mi_frame_rate, mediaFormat.getString(IjkMediaFormat.KEY_IJK_FRAME_RATE_UI));
-                            builder.appendRow2(R.string.mi_bit_rate, mediaFormat.getString(IjkMediaFormat.KEY_IJK_BIT_RATE_UI));
-                            break;
-                        case ITrackInfo.MEDIA_TRACK_TYPE_AUDIO:
-                            builder.appendRow2(R.string.mi_codec, mediaFormat.getString(IjkMediaFormat.KEY_IJK_CODEC_LONG_NAME_UI));
-                            builder.appendRow2(R.string.mi_profile_level, mediaFormat.getString(IjkMediaFormat.KEY_IJK_CODEC_PROFILE_LEVEL_UI));
-                            builder.appendRow2(R.string.mi_sample_rate, mediaFormat.getString(IjkMediaFormat.KEY_IJK_SAMPLE_RATE_UI));
-                            builder.appendRow2(R.string.mi_channels, mediaFormat.getString(IjkMediaFormat.KEY_IJK_CHANNEL_UI));
-                            builder.appendRow2(R.string.mi_bit_rate, mediaFormat.getString(IjkMediaFormat.KEY_IJK_BIT_RATE_UI));
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-        }
-
-        AlertDialog.Builder adBuilder = builder.buildAlertDialogBuilder();
-        adBuilder.setTitle(R.string.media_information);
-        adBuilder.setNegativeButton(R.string.close, null);
-        adBuilder.show();
     }
 
     private String buildResolution(int width, int height, int sarNum, int sarDen) {
