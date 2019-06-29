@@ -113,7 +113,7 @@ public class SystemVideoScanner {
 
                 // 过滤广告文件夹： 非 ad-cache adscache video-cache 非ins下载文件夹
                 if (size > 0
-                        && !"Camera".equals(VideoUtil.getVideoName(VideoUtil.getParentPath(path)))
+                        //&& !"Camera".equals(VideoUtil.getVideoName(VideoUtil.getParentPath(path)))
                         // other
                         && !path.toLowerCase().contains("cache")
                         && !path.toLowerCase().contains("temp")
@@ -129,8 +129,7 @@ public class SystemVideoScanner {
                         && !path.toLowerCase().contains("wechat")
                         && !path.toLowerCase().contains("tencent")
                         && !path.toLowerCase().contains("messager")
-                        && !path.toLowerCase().contains("whatsapp")
-                        && !path.contains(SdcardUtil.DOWNLOAD_SAVE_PATH)) {
+                        && !path.toLowerCase().contains("whatsapp")) {
                     sysVideoList.add(info);
                 }
             } while (cursor.moveToNext());
