@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.jyj.video.jyjplayer.filescan.model.FileVideoModel;
 import com.jyj.video.jyjplayer.filescan.model.bean.FolderInfo;
-
 import java.util.List;
 
 /**
@@ -18,7 +17,6 @@ public interface LocalTasksContract {
         void notifyFolderListView(List<FolderInfo> scanList);
         void showEmptyView();
         void hideEmptyView();
-        void resume();
     }
 
     interface Model {

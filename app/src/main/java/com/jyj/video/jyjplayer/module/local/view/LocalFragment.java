@@ -147,11 +147,6 @@ public class LocalFragment extends Fragment implements LocalTasksContract.View, 
     }
 
     @Override
-    public void resume() {
-        onResume();
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
         if(mPresenter != null){
